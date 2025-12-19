@@ -6,201 +6,41 @@
     <title>INBACOO Cd. Quetzal - TAC</title>
     <style>
         :root {
-            --amarillo-tac: #FFD700;
-            --gris-oscuro: #1a1a1a;
+            --azul: #004a99;
+            --verde: #28a745;
+            --amarillo: #ffc107;
             --blanco: #ffffff;
         }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            background-color: var(--blanco);
-            text-align: center;
-        }
-
-        .top-banner {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&q=80&w=1200');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 30px 10px;
-        }
-
-        .top-banner h2 {
-            margin: 0;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-        }
-
-        .main-title {
-            background-color: var(--amarillo-tac);
-            padding: 25px 10px;
-            border-bottom: 2px solid #e6c200;
-        }
-
-        .main-title h1 {
-            margin: 0;
-            font-size: 2rem;
-            color: black;
-        }
-
-        .main-title p {
-            margin: 10px 0 0;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px 15px;
-        }
-
-        .grid-grados {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .card-grado {
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; text-align: center; }
+        .header { background: var(--azul); color: var(--blanco); padding: 40px 15px; border-bottom: 10px solid var(--verde); }
+        .sub-header { background: var(--amarillo); padding: 15px; font-weight: bold; color: #333; }
+        .container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
+        .grid-grados { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+        .card-inbacoo {
             text-decoration: none;
-            color: black;
-        }
-
-        .card-grado img {
-            width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: var(--blanco);
+            border: 3px solid var(--azul);
+            border-radius: 20px;
+            padding: 30px;
             transition: 0.3s;
+            color: var(--azul);
         }
-
-        .card-grado:hover img {
-            transform: translateY(-5px);
-        }
-
-        .card-grado h3 {
-            margin: 15px 0 5px;
-            text-decoration: underline;
-            font-size: 1.3rem;
-        }
-
-        .card-grado span {
-            font-size: 0.9rem;
-            font-weight: bold;
-            display: block;
-        }
-
-        .oficina-virtual {
-            border-top: 2px solid #ddd;
-            padding-top: 30px;
-            margin-bottom: 40px;
-        }
-
-        .btn-oficina {
-            background-color: #3b5998;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: bold;
-        }
-
-        .info-footer {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            align-items: center;
-            text-align: left;
-            padding: 20px;
-            background: #f9f9f9;
-            border: 1px solid #eee;
-        }
-
-        .btn-inicio {
-            background-color: var(--amarillo-tac);
-            padding: 10px 40px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            border: 1px solid #000;
-            display: inline-block;
-            margin-top: 20px;
-        }
+        .card-inbacoo:hover { border-color: var(--verde); background: #f0fdf4; transform: translateY(-5px); }
+        .n { font-size: 3.5rem; font-weight: 900; color: var(--verde); }
+        .t { font-size: 1.2rem; font-weight: bold; display: block; border-top: 2px solid var(--amarillo); padding-top: 10px; }
+        .btn-inicio { display: inline-block; margin-top: 40px; padding: 12px 40px; background: var(--verde); color: white; text-decoration: none; border-radius: 50px; font-weight: bold; }
     </style>
 </head>
 <body>
-
-<div class="top-banner">
-    <h2>INSTITUTO BÁSICO POR COOPERATIVA -INBACOO- CIUDAD QUETZAL</h2>
-</div>
-
-<div class="main-title">
-    <h1>Tecnologías del Aprendizaje y la Comunicación</h1>
-    <p>Identifique su grado e ingrese dando clic en el botón correspondiente</p>
-</div>
-
-<div class="container">
-    <div class="grid-grados">
-        <a href="primero/index.html" class="card-grado">
-            <img src="https://img.freepik.com/foto-gratis/aula-escuela-borrosa-fondo-educativo_53876-128522.jpg" alt="1ro Básico">
-            <h3>PRIMERO BÁSICO</h3>
-            <span>UNICAMENTE SECCIONES: A, B, C, D</span>
-        </a>
-
-        <a href="segundo/index.html" class="card-grado">
-            <img src="https://img.freepik.com/foto-gratis/aula-vacia-escuela_23-2149032549.jpg" alt="2do Básico">
-            <h3>SEGUNDO BÁSICO</h3>
-            <span>UNICAMENTE SECCIONES: A, B, C, D</span>
-        </a>
-
-        <a href="tercero/index.html" class="card-grado">
-            <img src="https://img.freepik.com/foto-gratis/aula-escuela-moderna_23-2148764024.jpg" alt="3ro Básico">
-            <h3>TERCERO BÁSICO</h3>
-            <span>UNICAMENTE SECCIONES: A, B, C, D</span>
-        </a>
-    </div>
-
-    <div class="oficina-virtual">
-        <p><b>DÉ CLIC AQUÍ</b> para abrir la Ventanilla de Atención y Registro de Consultas.</p>
-        <a href="#" class="btn-oficina">
-            <div style="font-size: 1.5rem; margin-right: 15px;">✉️</div>
-            <div style="text-align: left;">
-                <span style="display:block; font-size: 1.2rem;">OFICINA VIRTUAL DE ATENCIÓN</span>
-                <span style="font-size: 0.8rem; font-weight: normal;">Registro Oficial de Consultas y Gestiones - INBACOO</span>
-            </div>
-        </a>
-    </div>
-
-    <div class="info-footer">
-        <div>
-            <img src="https://drive.google.com/thumbnail?id=1BYDc46lNjDGs3Ct9WyP22mxXE3we5ple" width="120" alt="Escudo INBACOO">
+    <div class="header"><h2>INBACOO CIUDAD QUETZAL</h2></div>
+    <div class="sub-header">PORTAL EDUCATIVO DE TAC</div>
+    <div class="container">
+        <div class="grid-grados">
+            <a href="primero/index.html" class="card-inbacoo"><span class="n">1º</span><span class="t">PRIMERO BÁSICO</span><small>Secciones A, B, C, D</small></a>
+            <a href="segundo/index.html" class="card-inbacoo"><span class="n">2º</span><span class="t">SEGUNDO BÁSICO</span><small>Secciones A, B, C, D</small></a>
+            <a href="tercero/index.html" class="card-inbacoo"><span class="n">3º</span><span class="t">TERCERO BÁSICO</span><small>Secciones A, B, C, D</small></a>
         </div>
-        <div>
-            <h4 style="margin:0">INBACOO CIUDAD QUETZAL</h4>
-            <p style="font-size: 0.9rem;">
-                San Juan Sacatepéquez<br>
-                Jornada Vespertina<br>
-                Cátedra de TAC
-            </p>
-        </div>
-        <div style="text-align: center;">
-            <p><b>Asistente IA</b></p>
-            <a href="https://gemini.google.com" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" width="80" alt="Gemini">
-            </a>
-        </div>
+        <a href="../index.html" class="btn-inicio">🏠 REGRESAR AL MENÚ</a>
     </div>
-
-    <a href="../index.html" class="btn-inicio">INICIO</a>
-</div>
-
 </body>
 </html>
