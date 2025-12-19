@@ -6,211 +6,42 @@
     <title>INEB San Raymundo - TAC</title>
     <style>
         :root {
-            --amarillo-tac: #FFD700;
-            --gris-oscuro: #1a1a1a;
+            --amarillo: #FFD700;
+            --negro: #000000;
             --blanco: #ffffff;
         }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            background-color: var(--blanco);
-            text-align: center;
-        }
-
-        /* --- ENCABEZADO SUPERIOR --- */
-        .top-banner {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 30px 10px;
-        }
-
-        .top-banner h2 {
-            margin: 0;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-        }
-
-        /* --- TÍTULO AMARILLO --- */
-        .main-title {
-            background-color: var(--amarillo-tac);
-            padding: 25px 10px;
-            border-bottom: 2px solid #e6c200;
-        }
-
-        .main-title h1 {
-            margin: 0;
-            font-size: 2rem;
-            color: black;
-        }
-
-        .main-title p {
-            margin: 10px 0 0;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px 15px;
-        }
-
-        /* --- GRID DE GRADOS --- */
-        .grid-grados {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .card-grado {
+        body { margin: 0; font-family: 'Arial Black', sans-serif; background-color: var(--blanco); text-align: center; }
+        .banner-top { background: var(--negro); color: var(--amarillo); padding: 30px; border-bottom: 8px solid var(--amarillo); }
+        .titulo-seccion { background: var(--amarillo); color: var(--negro); padding: 20px; font-weight: bold; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .grid-grados { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card {
             text-decoration: none;
-            color: black;
-        }
-
-        .card-grado img {
-            width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: var(--negro);
+            color: var(--blanco);
+            padding: 40px 20px;
+            border-radius: 4px;
+            border-bottom: 6px solid var(--amarillo);
             transition: 0.3s;
         }
-
-        .card-grado:hover img {
-            transform: translateY(-5px);
-        }
-
-        .card-grado h3 {
-            margin: 15px 0 5px;
-            text-decoration: underline;
-            font-size: 1.3rem;
-        }
-
-        .card-grado span {
-            font-size: 0.9rem;
-            font-weight: bold;
-            display: block;
-        }
-
-        /* --- SECCIÓN OFICINA VIRTUAL --- */
-        .oficina-virtual {
-            border-top: 2px solid #ddd;
-            padding-top: 30px;
-            margin-bottom: 40px;
-        }
-
-        .btn-oficina {
-            background-color: #3b5998;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: bold;
-        }
-
-        /* --- INFORMACIÓN INSTITUCIONAL --- */
-        .info-footer {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            align-items: center;
-            text-align: left;
-            padding: 20px;
-            background: #f9f9f9;
-            border: 1px solid #eee;
-        }
-
-        .btn-inicio {
-            background-color: var(--amarillo-tac);
-            padding: 10px 40px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            border: 1px solid #000;
-            display: inline-block;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .main-title h1 { font-size: 1.5rem; }
-            .info-footer { text-align: center; }
-        }
+        .card:hover { transform: scale(1.02); background: #222; }
+        .card span { display: block; }
+        .num { font-size: 4rem; color: var(--amarillo); }
+        .nom { font-size: 1.3rem; margin: 10px 0; }
+        .sec { font-size: 0.8rem; color: #aaa; }
+        .btn-inicio { display: inline-block; margin-top: 40px; padding: 10px 30px; background: var(--negro); color: var(--amarillo); text-decoration: none; border: 2px solid var(--amarillo); font-weight: bold; }
     </style>
 </head>
 <body>
-
-<div class="top-banner">
-    <h2>INSTITUTO NACIONAL MIXTO DE EDUCACIÓN BÁSICA DE SAN RAYMUNDO</h2>
-</div>
-
-<div class="main-title">
-    <h1>Tecnologías del Aprendizaje y la Comunicación</h1>
-    <p>Identifique su grado e ingrese dando clic en el botón correspondiente</p>
-</div>
-
-<div class="container">
-    <div class="grid-grados">
-        <a href="primero/index.html" class="card-grado">
-            <img src="https://img.freepik.com/foto-gratis/aula-escuela-borrosa-fondo-educativo_53876-128522.jpg" alt="1ro Básico">
-            <h3>PRIMERO BÁSICO</h3>
-            <span>UNICAMENTE SECCIONES: A, B, C, D, E, F</span>
-        </a>
-
-        <a href="segundo/index.html" class="card-grado">
-            <img src="https://img.freepik.com/foto-gratis/aula-vacia-escuela_23-2149032549.jpg" alt="2do Básico">
-            <h3>SEGUNDO BÁSICO</h3>
-            <span>UNICAMENTE SECCIONES: A, B, C, D</span>
-        </a>
-
-        <a href="tercero/index.html" class="card-grado">
-            <img src="https://img.freepik.com/foto-gratis/aula-escuela-moderna_23-2148764024.jpg" alt="3ro Básico">
-            <h3>TERCERO BÁSICO</h3>
-            <span>UNICAMENTE SECCIONES: A, B, C, D</span>
-        </a>
-    </div>
-
-    <div class="oficina-virtual">
-        <p><b>DÉ CLIC AQUÍ</b> para abrir la Ventanilla de Atención y Registro de Consultas.</p>
-        <a href="#" class="btn-oficina">
-            <div style="font-size: 1.5rem; margin-right: 15px;">✉️</div>
-            <div style="text-align: left;">
-                <span style="display:block; font-size: 1.2rem;">OFICINA VIRTUAL DE ATENCIÓN</span>
-                <span style="font-size: 0.8rem; font-weight: normal;">Registro Oficial de Consultas y Gestiones - Cátedra de TAC</span>
-            </div>
-        </a>
-    </div>
-
-    <div class="info-footer">
-        <div>
-            <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" width="120" alt="Escudo">
+    <div class="banner-top"><h2>INEB SAN RAYMUNDO</h2></div>
+    <div class="titulo-seccion">TECNOLOGÍAS DEL APRENDIZAJE Y LA COMUNICACIÓN</div>
+    <div class="container">
+        <div class="grid-grados">
+            <a href="primero/index.html" class="card"><span class="num">1º</span><span class="nom">PRIMERO BÁSICO</span><span class="sec">Secciones: A, B, C, D, E, F</span></a>
+            <a href="segundo/index.html" class="card"><span class="num">2º</span><span class="nom">SEGUNDO BÁSICO</span><span class="sec">Secciones: A, B, C, D</span></a>
+            <a href="tercero/index.html" class="card"><span class="num">3º</span><span class="nom">TERCERO BÁSICO</span><span class="sec">Secciones: A, B, C, D</span></a>
         </div>
-        <div>
-            <h4 style="margin:0">INEB SAN RAYMUNDO</h4>
-            <p style="font-size: 0.9rem;">
-                5ta. Calle Final 7-80 zona 2<br>
-                Teléfono: 6630 8652<br>
-                San Raymundo
-            </p>
-        </div>
-        <div style="text-align: center;">
-            <p><b>Google Gemini</b></p>
-            <a href="https://gemini.google.com" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" width="80" alt="Gemini">
-            </a>
-        </div>
+        <a href="../index.html" class="btn-inicio">VOLVER AL INICIO</a>
     </div>
-
-    <a href="../index.html" class="btn-inicio">INICIO</a>
-</div>
-
 </body>
 </html>
