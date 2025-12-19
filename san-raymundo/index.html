@@ -7,126 +7,120 @@
     <style>
         :root {
             --amarillo: #FFD700;
-            --negro: #000000;
+            --negro: #111111;
             --blanco: #ffffff;
         }
         body { 
             margin: 0; 
-            font-family: 'Arial Black', Gadget, sans-serif; 
+            font-family: 'Arial Black', sans-serif; 
             background-color: var(--blanco); 
             text-align: center; 
         }
-        /* Banner superior Negro */
-        .banner-negro { 
+        .banner-principal { 
             background: var(--negro); 
             color: var(--amarillo); 
-            padding: 40px 10px; 
+            padding: 45px 15px; 
             border-bottom: 8px solid var(--amarillo); 
         }
-        .banner-negro h2 { margin: 0; font-size: 1.5rem; text-transform: uppercase; }
+        .banner-principal h2 { margin: 0; font-size: 1.6rem; text-transform: uppercase; }
 
-        /* Franja Amarilla */
-        .franja-amarilla { 
+        .barra-titulo { 
             background: var(--amarillo); 
             color: var(--negro); 
-            padding: 20px; 
+            padding: 15px; 
             font-weight: bold; 
-            font-size: 1.2rem;
             border-bottom: 2px solid #333;
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
 
-        /* Grados en Negro con número Amarillo */
         .grid-grados { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 25px; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
         }
         
-        .boton-grado {
+        .caja-grado {
             text-decoration: none;
             background: var(--negro);
             color: var(--blanco);
             padding: 50px 20px;
-            border-radius: 10px;
+            border-radius: 5px;
+            border-bottom: 6px solid var(--amarillo);
             transition: 0.3s;
-            display: block;
         }
 
-        .boton-grado:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .caja-grado:hover { 
+            transform: translateY(-8px);
+            background: #222;
         }
 
-        .big-num { 
+        .numero-gigante { 
             font-size: 5rem; 
             display: block; 
-            color: var(--amarillo); 
+            color: var(--amarillo);
             line-height: 1;
         }
         
-        .txt-grado { 
+        .nombre-grado { 
             font-size: 1.4rem; 
             font-weight: bold; 
             display: block; 
             margin-top: 15px;
-            text-transform: uppercase;
         }
 
-        .secciones-info { 
-            font-size: 0.9rem; 
-            color: #888; 
+        .secciones-texto { 
+            font-size: 0.85rem; 
+            color: #999; 
             margin-top: 10px; 
             display: block; 
         }
 
-        .btn-volver { 
+        .boton-home { 
             display: inline-block; 
             margin-top: 50px; 
-            padding: 15px 40px; 
+            padding: 15px 45px; 
             background: var(--amarillo); 
             color: var(--negro); 
             text-decoration: none; 
             font-weight: bold; 
             border: 2px solid var(--negro);
-            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
-<div class="banner-negro">
+<div class="banner-principal">
     <h2>INSTITUTO NACIONAL MIXTO DE EDUCACIÓN BÁSICA</h2>
-    <h3 style="margin: 5px 0 0; color: white;">SAN RAYMUNDO</h3>
+    <h3 style="color: white; margin-top: 5px;">SAN RAYMUNDO</h3>
 </div>
 
-<div class="franja-amarilla">
-    TECNOLOGÍAS DEL APRENDIZAJE Y LA COMUNICACIÓN (TAC)
+<div class="barra-titulo">
+    TECNOLOGÍAS DEL APRENDIZAJE Y LA COMUNICACIÓN
 </div>
 
 <div class="container">
     <div class="grid-grados">
-        <a href="primero/index.html" class="boton-grado">
-            <span class="big-num">1º</span>
-            <span class="txt-grado">Primero Básico</span>
-            <span class="secciones-info">SECCIONES: A, B, C, D, E, F</span>
+        <a href="primero/index.html" class="caja-grado">
+            <span class="numero-gigante">1º</span>
+            <span class="nombre-grado">PRIMERO BÁSICO</span>
+            <span class="secciones-texto">SECCIONES: A, B, C, D, E, F</span>
         </a>
 
-        <a href="segundo/index.html" class="boton-grado">
-            <span class="big-num">2º</span>
-            <span class="txt-grado">Segundo Básico</span>
-            <span class="secciones-info">SECCIONES: A, B, C, D</span>
+        <a href="segundo/index.html" class="caja-grado">
+            <span class="numero-gigante">2º</span>
+            <span class="nombre-grado">SEGUNDO BÁSICO</span>
+            <span class="secciones-texto">SECCIONES: A, B, C, D</span>
         </a>
 
-        <a href="tercero/index.html" class="boton-grado">
-            <span class="big-num">3º</span>
-            <span class="txt-grado">Tercero Básico</span>
-            <span class="secciones-info">SECCIONES: A, B, C, D</span>
+        <a href="tercero/index.html" class="caja-grado">
+            <span class="numero-gigante">3º</span>
+            <span class="nombre-grado">TERCERO BÁSICO</span>
+            <span class="secciones-texto">SECCIONES: A, B, C, D</span>
         </a>
     </div>
 
-    <a href="../index.html" class="btn-volver">IR AL INICIO</a>
+    <a href="../index.html" class="boton-home">REGRESAR AL INICIO</a>
 </div>
 
 </body>
