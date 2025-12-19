@@ -3,93 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INBACOO TAC</title>
+    <title>INBACOO - Portal TAC</title>
     <style>
-        body { margin: 0; font-family: 'Ubuntu', sans-serif; background: #0f172a; color: white; text-align: center; }
-        
-        .top-nav { background: #1e293b; padding: 30px; border-bottom: 4px solid #22c55e; }
-        
-        .container { max-width: 1000px; margin: 0 auto; padding: 50px 20px; }
-
-        .grid-neon { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-
-        .card-neon {
-            text-decoration: none;
-            color: white;
-            background: #1e293b;
-            padding: 40px 20px;
-            border-radius: 20px;
-            border: 2px solid transparent;
-            transition: 0.4s;
-            position: relative;
+        :root {
+            --azul-vibrante: linear-gradient(135deg, #00c6ff, #0072ff);
+            --verde-lima: linear-gradient(135deg, #a8ff78, #08ffc8);
+            --amarillo-sol: linear-gradient(135deg, #fceeb5, #f5d020);
+            --blanco: #ffffff;
+            --texto: #2d3436;
         }
 
-        /* Colores Neón Individuales */
-        .neon-azul:hover { border-color: #3b82f6; box-shadow: 0 0 20px #3b82f6; }
-        .neon-verde:hover { border-color: #22c55e; box-shadow: 0 0 20px #22c55e; }
-        .neon-amarillo:hover { border-color: #eab308; box-shadow: 0 0 20px #eab308; }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            background-color: #f0f7ff; /* Un azul muy pálido para dar frescura */
+            color: var(--texto);
+            text-align: center; 
+        }
 
-        .grado-n { 
-            font-size: 5rem; 
-            font-weight: 900; 
-            display: block;
-            -webkit-text-stroke: 1.5px #fff;
-            color: transparent; /* Número transparente con borde blanco */
+        /* Encabezado con mucha luz y vida */
+        .header-fresh { 
+            background: var(--blanco); 
+            padding: 50px 20px; 
+            border-bottom: 5px solid #0072ff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         
-        .txt { font-size: 1.5rem; font-weight: bold; display: block; margin-top: 15px; }
-        
-        .label-seccion {
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 0.8rem;
-            color: #94a3b8;
+        .header-fresh h1 { 
+            margin: 0; 
+            font-size: 2.2rem; 
+            color: #0072ff;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: -1px;
         }
 
-        .btn-back {
-            display: inline-block;
-            margin-top: 60px;
-            padding: 15px 40px;
-            background: #22c55e;
-            color: #000;
+        .container { max-width: 1100px; margin: 0 auto; padding: 50px 20px; }
+
+        .subtitulo {
+            font-size: 1.4rem;
+            color: #636e72;
+            margin-bottom: 45px;
+        }
+
+        /* Grid de Grados con Degradados */
+        .grid-grados { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 35px; 
+        }
+        
+        .boton-grado {
             text-decoration: none;
+            background: var(--blanco);
+            border-radius: 30px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .boton-grado:hover { 
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,114,255,0.2);
+        }
+
+        /* Espacio para el número con degradado */
+        .header-card {
+            padding: 40px;
+            font-size: 5rem;
+            font-weight: 900;
+            color: white;
+            /* El borde en el número que te gustó */
+            -webkit-text-stroke: 2px rgba(0,0,0,0.2);
+        }
+
+        .bg-azul { background: var(--azul-vibrante); }
+        .bg-verde { background: var(--verde-lima); color: #2d3436 !important; }
+        .bg-amarillo { background: var(--amarillo-sol); color: #2d3436 !important; }
+
+        .footer-card {
+            padding: 25px;
+            background: white;
+        }
+
+        .nombre-grado { 
+            font-size: 1.6rem; 
+            font-weight: 800; 
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .secciones-pill { 
+            display: inline-block;
+            font-size: 0.9rem; 
+            background: #dfe6e9;
+            padding: 6px 18px;
             border-radius: 50px;
+            color: #2d3436;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4);
+        }
+
+        /* Botón de inicio llamativo */
+        .btn-inicio { 
+            display: inline-block; 
+            margin-top: 70px; 
+            padding: 20px 60px; 
+            background: #0072ff; 
+            color: white; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 100px;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(0,114,255,0.3);
+            transition: 0.3s;
+        }
+
+        .btn-inicio:hover {
+            background: #00c6ff;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <div class="top-nav">
-        <h1 style="margin:0; font-size: 1.5rem;">INBACOO - CIUDAD QUETZAL</h1>
+
+<div class="header-fresh">
+    <h1>INBACOO - Ciudad Quetzal</h1>
+    <p style="margin: 8px 0 0; color: #b2bec3; font-weight: bold;">Cátedra de TAC | Jornada Vespertina</p>
+</div>
+
+<div class="container">
+    <p class="subtitulo">Selecciona tu grado para comenzar</p>
+
+    <div class="grid-grados">
+        <a href="primero/index.html" class="boton-grado">
+            <div class="header-card bg-azul">1º</div>
+            <div class="footer-card">
+                <span class="nombre-grado">PRIMERO BÁSICO</span>
+                <span class="secciones-pill">SECCIONES: A, B, C, D</span>
+            </div>
+        </a>
+
+        <a href="segundo/index.html" class="boton-grado">
+            <div class="header-card bg-verde">2º</div>
+            <div class="footer-card">
+                <span class="nombre-grado">SEGUNDO BÁSICO</span>
+                <span class="secciones-pill">SECCIONES: A, B, C, D</span>
+            </div>
+        </a>
+
+        <a href="tercero/index.html" class="boton-grado">
+            <div class="header-card bg-amarillo">3º</div>
+            <div class="footer-card">
+                <span class="nombre-grado">TERCERO BÁSICO</span>
+                <span class="secciones-pill">SECCIONES: A, B, C, D</span>
+            </div>
+        </a>
     </div>
 
-    <div class="container">
-        <h2 style="margin-bottom: 40px; color: #94a3b8;">Plataforma Virtual de Aprendizaje</h2>
-        
-        <div class="grid-neon">
-            <a href="primero/index.html" class="card-neon neon-azul">
-                <span class="grado-n">1º</span>
-                <span class="txt">PRIMERO BÁSICO</span>
-                <span class="label-seccion">Secciones: A, B, C, D</span>
-            </a>
+    <a href="../index.html" class="btn-inicio">🏠 VOLVER AL PORTAL PRINCIPAL</a>
+</div>
 
-            <a href="segundo/index.html" class="card-neon neon-verde">
-                <span class="grado-n">2º</span>
-                <span class="txt">SEGUNDO BÁSICO</span>
-                <span class="label-seccion">Secciones: A, B, C, D</span>
-            </a>
-
-            <a href="tercero/index.html" class="card-neon neon-amarillo">
-                <span class="grado-n">3º</span>
-                <span class="txt">TERCERO BÁSICO</span>
-                <span class="label-seccion">Secciones: A, B, C, D</span>
-            </a>
-        </div>
-
-        <a href="../index.html" class="btn-back">⬅ REGRESAR AL MENÚ PRINCIPAL</a>
-    </div>
 </body>
 </html>
