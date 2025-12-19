@@ -6,146 +6,159 @@
     <title>INEB San Raymundo - TAC</title>
     <style>
         :root {
-            --amarillo: #FFD700;
-            --negro: #202124;
-            --gris-claro: #f8f9fa;
-            --blanco: #ffffff;
+            --primero: #3498db; /* Celeste vibrante */
+            --segundo: #2ecc71; /* Verde esmeralda */
+            --tercero: #e67e22; /* Naranja tecnológico */
+            --fondo: #f0f2f5;
+            --texto: #2c3e50;
         }
+
         body { 
             margin: 0; 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background-color: var(--blanco); 
-            color: var(--negro);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--fondo); 
+            color: var(--texto);
             text-align: center; 
         }
 
-        /* Banner Superior Moderno */
-        .banner-principal { 
-            background: var(--negro); 
-            color: var(--blanco); 
-            padding: 50px 20px; 
-            border-bottom: 10px solid var(--amarillo);
+        /* Encabezado Alegre */
+        .header-colorido { 
+            background: #ffffff; 
+            padding: 40px 20px; 
+            border-bottom: 5px solid #FFD700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .banner-principal h2 { 
+        
+        .header-colorido h1 { 
             margin: 0; 
             font-size: 1.8rem; 
-            letter-spacing: 1px;
+            color: #1a1a1a;
             text-transform: uppercase;
         }
-        .banner-principal span { color: var(--amarillo); }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-        .instruccion {
-            font-size: 1.2rem;
+        .bienvenida {
+            font-size: 1.3rem;
             margin-bottom: 40px;
-            color: #555;
+            font-weight: 500;
         }
 
-        /* Tarjetas de Grado con Colores Amenos */
+        /* Grid de Grados con Colores Diferenciados */
         .grid-grados { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 25px; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
         }
         
-        .caja-grado {
+        .tarjeta-grado {
             text-decoration: none;
-            background: var(--gris-claro);
-            color: var(--negro);
-            padding: 40px 20px;
-            border-radius: 20px;
-            border: 2px solid #eee;
-            transition: all 0.3s ease;
+            background: white;
+            padding: 0;
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
 
-        .caja-grado:hover { 
-            transform: translateY(-10px);
-            background: var(--blanco);
-            border-color: var(--amarillo);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .tarjeta-grado:hover { 
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
-        /* Círculo decorativo para el número */
-        .circulo-num {
-            background: var(--negro);
-            color: var(--amarillo);
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            border-radius: 50%;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
+        /* Cabeceras de colores para cada grado */
+        .grado-cap {
+            padding: 30px;
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
         }
-        
-        .nombre-grado { 
+
+        .grado-1 { background: var(--primero); }
+        .grado-2 { background: var(--segundo); }
+        .grado-3 { background: var(--tercero); }
+
+        .grado-info {
+            padding: 25px;
+            background: white;
+        }
+
+        .grado-titulo { 
             font-size: 1.5rem; 
-            font-weight: bold; 
-            text-transform: uppercase;
+            font-weight: 800; 
             margin-bottom: 10px;
+            color: #333;
         }
 
-        .secciones-texto { 
-            font-size: 0.9rem; 
-            background: var(--amarillo);
-            padding: 5px 15px;
-            border-radius: 20px;
+        .grado-seccion { 
+            display: inline-block;
+            font-size: 0.85rem; 
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 50px;
+            color: #666;
             font-weight: bold;
         }
 
-        .btn-home { 
+        .btn-footer { 
             display: inline-block; 
             margin-top: 60px; 
-            padding: 15px 40px; 
-            background: var(--negro); 
-            color: var(--blanco); 
+            padding: 18px 50px; 
+            background: #1a1a1a; 
+            color: white; 
             text-decoration: none; 
             font-weight: bold; 
-            border-radius: 50px;
+            border-radius: 15px;
+            font-size: 1.1rem;
             transition: 0.3s;
         }
 
-        .btn-home:hover {
+        .btn-footer:hover {
             background: #444;
-            padding: 15px 50px;
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
 
-<div class="banner-principal">
-    <h2>INSTITUTO NACIONAL MIXTO DE EDUCACIÓN BÁSICA</h2>
-    <h2><span>SAN RAYMUNDO</span></h2>
+<div class="header-colorido">
+    <h1>INEB San Raymundo 🇬🇹</h1>
+    <p style="margin: 5px 0 0; color: #888;">Cátedra de Tecnología (TAC)</p>
 </div>
 
 <div class="container">
-    <p class="instruccion"><b>Tecnologías del Aprendizaje y la Comunicación</b><br>Identifique su grado para acceder a los materiales.</p>
+    <p class="bienvenida">¡Hola! Selecciona tu grado para ver tus tareas y guías:</p>
 
     <div class="grid-grados">
-        <a href="primero/index.html" class="caja-grado">
-            <div class="circulo-num">1º</div>
-            <span class="nombre-grado">Primero Básico</span>
-            <span class="secciones-texto">SECCIONES: A, B, C, D, E, F</span>
+        <a href="primero/index.html" class="tarjeta-grado">
+            <div class="grado-cap grado-1">1º</div>
+            <div class="grado-info">
+                <span class="grado-titulo">PRIMERO BÁSICO</span>
+                <span class="grado-seccion">Secciones: A, B, C, D, E, F</span>
+            </div>
         </a>
 
-        <a href="segundo/index.html" class="caja-grado">
-            <div class="circulo-num">2º</div>
-            <span class="nombre-grado">Segundo Básico</span>
-            <span class="secciones-texto">SECCIONES: A, B, C, D</span>
+        <a href="segundo/index.html" class="tarjeta-grado">
+            <div class="grado-cap grado-2">2º</div>
+            <div class="grado-info">
+                <span class="grado-titulo">SEGUNDO BÁSICO</span>
+                <span class="grado-seccion">Secciones: A, B, C, D</span>
+            </div>
         </a>
 
-        <a href="tercero/index.html" class="caja-grado">
-            <div class="circulo-num">3º</div>
-            <span class="nombre-grado">Tercero Básico</span>
-            <span class="secciones-texto">SECCIONES: A, B, C, D</span>
+        <a href="tercero/index.html" class="tarjeta-grado">
+            <div class="grado-cap grado-3">3º</div>
+            <div class="grado-info">
+                <span class="grado-titulo">TERCERO BÁSICO</span>
+                <span class="grado-seccion">Secciones: A, B, C, D</span>
+            </div>
         </a>
     </div>
 
-    <a href="../index.html" class="btn-home">⬅ VOLVER AL INICIO</a>
+    <a href="../index.html" class="btn-footer">🏠 Regresar al Inicio</a>
 </div>
 
 </body>
