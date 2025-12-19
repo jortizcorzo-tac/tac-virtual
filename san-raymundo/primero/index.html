@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1ro Básico - San Raymundo</title>
+    <style>
+        :root {
+            --amarillo: #FFD700;
+            --negro: #1a1a1a;
+            --blanco: #ffffff;
+            --azul-btn: #3498db;
+        }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: var(--blanco); 
+            text-align: center; 
+        }
+
+        .header-grado {
+            background: var(--negro);
+            color: var(--blanco);
+            padding: 40px 20px;
+            border-bottom: 8px solid var(--amarillo);
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+
+        .instruccion { font-size: 1.2rem; margin-bottom: 30px; color: #444; }
+
+        /* Estilo de Botones por Bimestre */
+        .grid-bimestres {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .btn-bimestre {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            background: var(--negro);
+            color: var(--blanco);
+            padding: 25px 40px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: 0.3s;
+            border-left: 10px solid var(--amarillo);
+        }
+
+        .btn-bimestre:hover {
+            transform: scale(1.02);
+            background: #333;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .numero-b {
+            background: var(--amarillo);
+            color: var(--negro);
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 30px;
+            background: #eee;
+            color: #333;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-grado">
+    <h1>PRIMERO BÁSICO</h1>
+    <p>Selecciona el bimestre para ver tu documentación</p>
+</div>
+
+<div class="container">
+    <p class="instruccion"><b>Guías y Material de Apoyo (TAC)</b></p>
+
+    <div class="grid-bimestres">
+        <a href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view?usp=drive_link" target="_blank" class="btn-bimestre">
+            <span>Bimestre 1</span>
+            <span class="numero-b">1</span>
+        </a>
+
+        <a href="https://drive.google.com/file/d/14BFVEuv1FVybBfqHrWhAghUtbr2yNI3y/view?usp=sharing" target="_blank" class="btn-bimestre">
+            <span>Bimestre 2</span>
+            <span class="numero-b">2</span>
+        </a>
+
+        <a href="https://drive.google.com/file/d/1cc6cdmF3QC_DCzLSL2T3PMzvEKWCQXhO/view?usp=sharing" target="_blank" class="btn-bimestre">
+            <span>Bimestre 3</span>
+            <span class="numero-b">3</span>
+        </a>
+
+        <a href="https://drive.google.com/file/d/1_2fDtMtX1QNK4JszYXFDrRksf9Fs9BF_/view?usp=sharing" target="_blank" class="btn-bimestre">
+            <span>Bimestre 4</span>
+            <span class="numero-b">4</span>
+        </a>
+    </div>
+
+    <a href="../index.html" class="btn-volver">⬅ Volver a Grados</a>
+</div>
+
+</body>
+</html>
