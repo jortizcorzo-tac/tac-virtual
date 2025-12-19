@@ -21,7 +21,7 @@
             line-height: 1.6;
         }
 
-        /* --- ENCABEZADO TIPO BANNER --- */
+        /* --- ENCABEZADO BANNER --- */
         .header-banner {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200');
@@ -93,7 +93,7 @@
             margin-bottom: 35px;
         }
 
-        /* --- BOTONES DE ESTABLECIMIENTO CON ENLACES --- */
+        /* --- BOTONES DE ESTABLECIMIENTO (CONEXIÓN INTERNA) --- */
         .grid-establecimientos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -120,6 +120,22 @@
         .btn-escuela:hover { background: #4b5563; transform: translateY(-3px); }
         .logo-escuela { width: 50px; height: 50px; object-fit: contain; }
 
+        /* --- SECCIÓN INFO 24/7 --- */
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background: var(--blanco);
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 5px solid var(--naranja);
+            text-align: center;
+        }
+
         /* --- AVISO OFICIAL --- */
         .aviso-institucional {
             background: #fee2e2;
@@ -132,6 +148,7 @@
             text-align: center;
         }
 
+        /* --- PIE DE PÁGINA --- */
         footer {
             background: #e5e7eb;
             padding: 40px 20px;
@@ -150,6 +167,7 @@
         @media (max-width: 600px) {
             .header-banner h1 { font-size: 1.3rem; }
             #saludo { font-size: 1.5rem; }
+            .btn-escuela { font-size: 1rem; padding: 20px; }
         }
     </style>
 </head>
@@ -185,14 +203,29 @@
     </div>
 
     <div class="grid-establecimientos">
-        <a href="https://www.facebook.com/inebsanrayoficial/" class="btn-escuela" target="_blank">
+        <a href="san-raymundo/index.html" class="btn-escuela">
             <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" class="logo-escuela" alt="Logo INEB">
             INEB SAN RAYMUNDO
         </a>
-        <a href="https://www.facebook.com/inbacoocq/" class="btn-escuela" target="_blank">
+        <a href="inbacoo/index.html" class="btn-escuela">
             <img src="https://drive.google.com/thumbnail?id=1BYDc46lNjDGs3Ct9WyP22mxXE3we5ple" class="logo-escuela" alt="Logo INBACOO">
             INBACOO CD. QUETZAL
         </a>
+    </div>
+
+    <div class="grid-info">
+        <div class="info-box">
+            <h3>📥 Acceso Total</h3>
+            <p>Descarga tus guías y recursos de forma inmediata.</p>
+        </div>
+        <div class="info-box" style="border-top-color: var(--gris-oscuro);">
+            <h3>⏱️ Tu Ritmo</h3>
+            <p>Avanza en tus contenidos de forma organizada.</p>
+        </div>
+        <div class="info-box">
+            <h3>📱 24/7</h3>
+            <p>Acceso disponible en cualquier horario y dispositivo.</p>
+        </div>
     </div>
 
     <div class="aviso-institucional">
