@@ -87,21 +87,20 @@
         .thumb-wrap img { width: 100%; display: block; }
         .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: #ef4444; }
 
-        /* --- SECCIÓN DE AVISOS (ESTILO IMAGEN) --- */
-        .aviso-legal {
-            background: #fff; border-radius: 12px; padding: 30px;
-            margin: 40px 0 20px 0; text-align: left; border-left: 6px solid var(--rojo-institucional);
+        /* --- SECCIÓN DE AVISOS (Forma unificada con 1ro Básico) --- */
+        .aviso-inferior {
+            background: #fff; border-radius: 15px; padding: 25px;
+            margin: 40px 0; text-align: left; border-left: 8px solid var(--rojo-institucional);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .aviso-legal h4 { color: #064e3b; margin: 0 0 15px 0; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
-        .aviso-legal p { font-size: 0.95rem; line-height: 1.5; margin: 8px 0; color: #1a3a3a; }
-        .aviso-legal strong { color: #064e3b; }
+        .aviso-inferior h4 { color: var(--rojo-institucional); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .aviso-inferior p { font-size: 0.9rem; line-height: 1.6; color: var(--texto-oscuro); margin-bottom: 8px; }
 
         /* --- BOTÓN VOLVER --- */
         .btn-volver {
-            display: inline-block; margin-top: 10px; padding: 12px 40px; 
-            background: #e5e7eb; color: #1f2937; text-decoration: none; 
-            border-radius: 50px; font-weight: bold; font-size: 0.9rem;
+            display: inline-block; margin-top: 20px; padding: 15px 40px; 
+            background: #ddd; color: #333; text-decoration: none; 
+            border-radius: 50px; font-weight: bold;
         }
     </style>
 </head>
@@ -151,10 +150,11 @@
             <div class="grid-videos" id="videoGrid"></div>
         </div>
 
-        <div class="aviso-legal">
-            <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación</h4>
-            <p><strong>Canal Oficial:</strong> Único medio digital para recursos de TAC. No se utiliza mensajería privada para proteger la privacidad estudiantil.</p>
-            <p><strong>Atención:</strong> De lunes a viernes en el establecimiento (7:30 - 12:30).</p>
+        <div class="aviso-inferior">
+            <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
+            <p><strong>Canal Oficial:</strong> Este es el único canal digital oficial de la cátedra de TAC. No se utiliza mensajería instantánea para resguardo de la privacidad.</p>
+            <p><strong>Protección al Menor:</strong> No se fomenta el uso de redes sociales para fines académicos obligatorios.</p>
+            <p><strong>Atención Presencial:</strong> Consultas en el establecimiento de <strong>7:30 - 12:30</strong>.</p>
         </div>
 
         <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
