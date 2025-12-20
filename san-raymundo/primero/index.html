@@ -4,36 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1ro Básico - INEB San Raymundo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
+            /* --- CONFIGURACIÓN DE COLORES (GRADIENTES MODERNOS) --- */
+            --gradiente-azul: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            --gradiente-negro: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
             --amarillo: #FFD700;
-            --negro: #1a1a1a;
             --blanco: #ffffff;
-            --azul-btn: #3498db;
+            --fondo: #f3f4f6;
+            --texto-oscuro: #1a1a1a;
         }
+
         body { 
             margin: 0; 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: var(--blanco); 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background-color: var(--fondo); 
             text-align: center; 
         }
 
+        /* --- ENCABEZADO CON PROFUNDIDAD --- */
         .header-grado {
-            background: var(--negro);
+            background: var(--gradiente-negro);
             color: var(--blanco);
-            padding: 40px 20px;
+            padding: 50px 20px;
             border-bottom: 8px solid var(--amarillo);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
         }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .copyright-front {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--amarillo);
+        }
 
-        .instruccion { font-size: 1.2rem; margin-bottom: 30px; color: #444; }
+        .container { max-width: 850px; margin: 0 auto; padding: 40px 20px; }
 
-        /* Estilo de Botones por Bimestre */
+        .instruccion { font-size: 1.3rem; margin-bottom: 35px; color: var(--texto-oscuro); font-weight: bold; }
+
+        /* --- ESTILO DE BOTONES POR BIMESTRE --- */
         .grid-bimestres {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 25px;
+            margin-bottom: 50px;
         }
 
         .btn-bimestre {
@@ -41,78 +62,146 @@
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
-            background: var(--negro);
-            color: var(--blanco);
+            background: var(--blanco);
+            color: var(--texto-oscuro);
             padding: 25px 40px;
             border-radius: 15px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
-            transition: 0.3s;
-            border-left: 10px solid var(--amarillo);
+            transition: 0.4s ease;
+            border-left: 15px solid var(--amarillo);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
         .btn-bimestre:hover {
-            transform: scale(1.02);
-            background: #333;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transform: scale(1.03) translateX(10px);
+            background: var(--gradiente-negro);
+            color: var(--blanco);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
         }
 
         .numero-b {
             background: var(--amarillo);
             color: var(--negro);
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
+            width: 55px;
+            height: 55px;
+            line-height: 55px;
             border-radius: 50%;
             display: inline-block;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
+
+        /* --- SECCIÓN TV TECNOLÓGICA --- */
+        .tv-tecnologica {
+            margin-top: 60px;
+            background: #000;
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- WHATSAPP FLOTANTE --- */
+        .ws-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 2px 10px 20px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .ws-float:hover { transform: scale(1.1) rotate(12deg); }
 
         .btn-volver {
             display: inline-block;
-            margin-top: 50px;
-            padding: 15px 30px;
-            background: #eee;
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: #ddd;
             color: #333;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 50px;
             font-weight: bold;
+            transition: 0.3s;
         }
+        .btn-volver:hover { background: #bbb; }
     </style>
 </head>
 <body>
 
-<div class="header-grado">
-    <h1>PRIMERO BÁSICO</h1>
-    <p>Selecciona el bimestre para ver tu documentación</p>
-</div>
+    <a href="https://wa.me/50251688768?text=Hola%20Profe,%20soy%20de%20Primero%20Básico,%20Sección:____,%20Clave:____.%20Tengo%20la%20siguiente%20duda:" class="ws-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-<div class="container">
-    <p class="instruccion"><b>Guías y Material de Apoyo (TAC)</b></p>
-
-    <div class="grid-bimestres">
-        <a href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view?usp=drive_link" target="_blank" class="btn-bimestre">
-            <span>Bimestre 1</span>
-            <span class="numero-b">1</span>
-        </a>
-
-        <a href="https://drive.google.com/file/d/14BFVEuv1FVybBfqHrWhAghUtbr2yNI3y/view?usp=sharing" target="_blank" class="btn-bimestre">
-            <span>Bimestre 2</span>
-            <span class="numero-b">2</span>
-        </a>
-
-        <a href="https://drive.google.com/file/d/1cc6cdmF3QC_DCzLSL2T3PMzvEKWCQXhO/view?usp=sharing" target="_blank" class="btn-bimestre">
-            <span>Bimestre 3</span>
-            <span class="numero-b">3</span>
-        </a>
-
-        <a href="https://drive.google.com/file/d/1_2fDtMtX1QNK4JszYXFDrRksf9Fs9BF_/view?usp=sharing" target="_blank" class="btn-bimestre">
-            <span>Bimestre 4</span>
-            <span class="numero-b">4</span>
-        </a>
+    <div class="header-grado">
+        <div class="copyright-front">
+            <i class="far fa-copyright"></i> 2025 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC
+        </div>
+        <h1>PRIMERO BÁSICO - INEB</h1>
+        <p style="opacity: 0.8;">Portal de Recursos y Documentación Digital</p>
     </div>
 
-    <a href="../index.html" class="btn-volver">⬅ Volver a Grados</a>
-</div>
+    <div class="container">
+        <p class="instruccion">Guías de Estudio y Material de Apoyo</p>
+
+        <div class="grid-bimestres">
+            <a href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view?usp=drive_link" target="_blank" class="btn-bimestre">
+                <span><i class="fas fa-file-pdf"></i> Bimestre 1</span>
+                <span class="numero-b">1</span>
+            </a>
+
+            <a href="https://drive.google.com/file/d/14BFVEuv1FVybBfqHrWhAghUtbr2yNI3y/view?usp=sharing" target="_blank" class="btn-bimestre">
+                <span><i class="fas fa-file-pdf"></i> Bimestre 2</span>
+                <span class="numero-b">2</span>
+            </a>
+
+            <a href="https://drive.google.com/file/d/1cc6cdmF3QC_DCzLSL2T3PMzvEKWCQXhO/view?usp=sharing" target="_blank" class="btn-bimestre">
+                <span><i class="fas fa-file-pdf"></i> Bimestre 3</span>
+                <span class="numero-b">3</span>
+            </a>
+
+            <a href="https://drive.google.com/file/d/1_2fDtMtX1QNK4JszYXFDrRksf9Fs9BF_/view?usp=sharing" target="_blank" class="btn-bimestre">
+                <span><i class="fas fa-file-pdf"></i> Bimestre 4</span>
+                <span class="numero-b">4</span>
+            </a>
+        </div>
+
+        <div class="tv-tecnologica">
+            <h3><i class="fas fa-tv"></i> TV Tecnológica: DW en Español</h3>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Contenido educativo en vivo para complementar tu formación.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/live_stream?channel=UCCWthuzS4fN9Uay6n-9Uv2w" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
+    </div>
 
 </body>
 </html>
