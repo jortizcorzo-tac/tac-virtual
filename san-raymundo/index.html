@@ -23,24 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* --- PANTALLA DE BLOQUEO --- */
-        #bloqueo {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--gradiente-azul); z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
-            text-align: center;
-        }
-        .input-pass { 
-            padding: 12px; border-radius: 8px; border: none; margin: 15px; 
-            width: 220px; text-align: center; font-size: 1.1rem; 
-            text-transform: uppercase;
-        }
-        .btn-pass { 
-            padding: 12px 30px; background: var(--oro); border: none; 
-            border-radius: 8px; font-weight: bold; cursor: pointer; color: #1e3a8a; 
-        }
-
-        /* --- VENTANILLA FLOTANTE OPTIMIZADA (VISIBLE EN MÓVIL) --- */
+        /* --- VENTANILLA FLOTANTE OPTIMIZADA --- */
         .ventanilla-container {
             position: fixed;
             bottom: 20px;
@@ -148,13 +131,6 @@
 </head>
 <body>
 
-<div id="bloqueo">
-    <i class="fas fa-user-shield" style="font-size: 3rem; margin-bottom: 20px;"></i>
-    <h2>PORTAL INEB - TAC</h2>
-    <input type="password" id="pass" class="input-pass" placeholder="Contraseña">
-    <button onclick="verificar()" class="btn-pass">ENTRAR</button>
-</div>
-
 <div class="ventanilla-container">
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-link" target="_blank">
         <div class="ventanilla-content">
@@ -167,7 +143,7 @@
 <div class="banner-establecimiento">
     <div class="copyright-front">© 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC</div>
     <br>
-    <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" style="width: 70px; margin-bottom: 10px;">
+    <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" style="width: 70px; margin-bottom: 10px;" alt="Logo Establecimiento">
     <h1 style="margin:0; font-size: 1.8rem;">INEB SAN RAYMUNDO</h1>
     <p style="opacity: 0.9;">Recursos Educativos Digitales</p>
 </div>
@@ -203,17 +179,6 @@
 
     <a href="../index.html" class="btn-regresar">⬅ Volver al Inicio General</a>
 </div>
-
-<script>
-    function verificar() {
-        if (document.getElementById("pass").value.toUpperCase() === "TAC2026") {
-            document.getElementById("bloqueo").style.display = "none";
-        } else {
-            alert("Clave incorrecta.");
-        }
-    }
-    document.getElementById("pass").addEventListener("keyup", (e) => { if(e.key === "Enter") verificar(); });
-</script>
 
 </body>
 </html>
