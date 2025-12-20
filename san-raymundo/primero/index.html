@@ -7,81 +7,98 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --gradiente-negro: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
+            /* Gradiente de tres colores: más llamativo y profesional */
+            --gradiente-premium: linear-gradient(135deg, #001f3f 0%, #0074D9 50%, #7FDBFF 100%);
             --amarillo: #FFD700;
             --blanco: #ffffff;
-            --fondo: #f3f4f6;
-            --texto-oscuro: #1a1a1a;
+            --fondo: #f8f9fa;
+            --texto-oscuro: #212529;
         }
 
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; }
+        body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--fondo); text-align: center; }
 
         .header-grado {
-            background: var(--gradiente-negro);
+            background: var(--gradiente-premium);
             color: var(--blanco);
-            padding: 50px 20px;
-            border-bottom: 8px solid var(--amarillo);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            padding: 70px 20px;
+            border-bottom: 10px solid var(--amarillo);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             position: relative;
         }
 
         .copyright-front {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 25px; border-radius: 50px;
-            font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.2); color: var(--amarillo);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 10px 30px; border-radius: 50px;
+            font-size: 0.9rem; font-weight: 800; margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.3); color: var(--amarillo);
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
 
-        /* --- BOTONES DE BIMESTRE --- */
-        .grid-bimestres { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 50px; }
+        .grid-bimestres { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 60px; }
+        
         .btn-bimestre {
             display: flex; align-items: center; justify-content: space-between;
             text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
-            padding: 20px 35px; border-radius: 12px; font-size: 1.4rem; font-weight: bold;
-            transition: 0.3s; border-left: 12px solid var(--amarillo);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 22px 40px; border-radius: 15px; font-size: 1.5rem; font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-left: 15px solid #0074D9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        .btn-bimestre:hover { transform: translateX(8px); background: #fdfdfd; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .numero-b { background: var(--amarillo); color: #000; width: 45px; height: 45px; line-height: 45px; border-radius: 50%; display: inline-block; font-size: 1.2rem; }
 
-        /* --- GRID DE VIDEOS 2x2 --- */
+        .btn-bimestre:hover { 
+            transform: scale(1.02) translateX(10px); 
+            border-left-color: var(--amarillo); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .numero-b { background: #e9ecef; color: #0074D9; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; display: inline-block; font-size: 1.3rem; }
+
+        /* --- SECCIÓN EXPLORADOR --- */
         .tv-seccion {
-            margin-top: 50px; background: #111; padding: 30px 15px;
-            border-radius: 25px; color: white; box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            margin-top: 40px; background: #1a1a1a; padding: 40px 20px;
+            border-radius: 30px; color: white; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 1px solid #333;
         }
+
         .grid-videos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 25px;
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 25px; margin-top: 30px;
         }
-        @media (max-width: 768px) {
-            .grid-videos { grid-template-columns: 1fr; }
+
+        @media (max-width: 768px) { .grid-videos { grid-template-columns: 1fr; } }
+
+        .video-card { 
+            background: #252525; padding: 15px; border-radius: 20px; 
+            border-bottom: 4px solid transparent; transition: 0.3s;
         }
-        .video-card { background: #222; padding: 10px; border-radius: 15px; border: 1px solid #333; }
-        .video-card h4 { font-size: 0.9rem; margin: 10px 0; color: var(--amarillo); }
+        
+        .video-card:hover { border-bottom-color: var(--amarillo); transform: translateY(-5px); }
+        .video-card h4 { font-size: 0.95rem; margin-bottom: 12px; color: var(--blanco); height: 2.5em; overflow: hidden; }
+
         .video-container {
             position: relative; padding-bottom: 56.25%; height: 0;
-            overflow: hidden; border-radius: 10px; background: #000;
+            overflow: hidden; border-radius: 12px; background: #000;
         }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         .ws-float {
             position: fixed; bottom: 30px; right: 30px; background-color: #25d366;
-            color: white; width: 60px; height: 60px; border-radius: 50%;
+            color: white; width: 65px; height: 65px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 30px; box-shadow: 2x 10px 20px rgba(0,0,0,0.3); z-index: 100;
+            font-size: 35px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 100;
         }
 
-        .btn-volver { display: inline-block; margin-top: 40px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
+        .btn-volver { display: inline-block; margin: 50px 0; padding: 18px 50px; background: #e2e8f0; color: #475569; text-decoration: none; border-radius: 50px; font-weight: 800; transition: 0.3s; }
+        .btn-volver:hover { background: #cbd5e1; }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/50251688768?text=Hola%20Profe,%20soy%20de%20Primero%20Básico,%20Sección:____,%20Clave:____.%20Tengo%20la%20siguiente%20duda:" class="ws-float" target="_blank">
+    <a href="https://wa.me/50251688768?text=Hola%20Profe..." class="ws-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -89,68 +106,84 @@
         <div class="copyright-front">
             <i class="far fa-copyright"></i> 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC
         </div>
-        <h1>PRIMERO BÁSICO</h1>
-        <p>INEB San Raymundo | Jornada Matutina</p>
+        <h1 style="font-size: 3rem; margin: 0; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">PRIMERO BÁSICO</h1>
+        <p style="font-size: 1.2rem; margin-top: 10px; opacity: 0.9;">Exploración de Tecnologías del Aprendizaje y la Comunicación</p>
     </div>
 
     <div class="container">
-        <p style="font-size: 1.3rem; font-weight: bold; margin-bottom: 25px;">Guías y Material de Apoyo</p>
-
         <div class="grid-bimestres">
             <a href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view?usp=drive_link" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-file-pdf"></i> Bimestre 1</span>
+                <span><i class="fas fa-folder-open" style="margin-right:15px; color:#0074D9;"></i> Bimestre 1</span>
                 <span class="numero-b">1</span>
             </a>
             <a href="https://drive.google.com/file/d/14BFVEuv1FVybBfqHrWhAghUtbr2yNI3y/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-file-pdf"></i> Bimestre 2</span>
+                <span><i class="fas fa-folder-open" style="margin-right:15px; color:#0074D9;"></i> Bimestre 2</span>
                 <span class="numero-b">2</span>
             </a>
             <a href="https://drive.google.com/file/d/1cc6cdmF3QC_DCzLSL2T3PMzvEKWCQXhO/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-file-pdf"></i> Bimestre 3</span>
+                <span><i class="fas fa-folder-open" style="margin-right:15px; color:#0074D9;"></i> Bimestre 3</span>
                 <span class="numero-b">3</span>
             </a>
             <a href="https://drive.google.com/file/d/1_2fDtMtX1QNK4JszYXFDrRksf9Fs9BF_/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-file-pdf"></i> Bimestre 4</span>
+                <span><i class="fas fa-folder-open" style="margin-right:15px; color:#0074D9;"></i> Bimestre 4</span>
                 <span class="numero-b">4</span>
             </a>
         </div>
 
         <div class="tv-seccion">
-            <h3><i class="fas fa-microchip"></i> EXPLORADOR TECNOLÓGICO 2026</h3>
-            <div class="grid-videos">
-                <!-- Video 1 -->
-                <div class="video-card">
-                    <h4>Exploración Tecnológica I</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/XuWMWPwdlik" allowfullscreen></iframe>
-                    </div>
+            <h2 style="margin: 0; color: var(--amarillo); letter-spacing: 2px;"><i class="fas fa-satellite-dish"></i> EXPLORADOR TAC 2026</h2>
+            <p style="color: #888; font-size: 0.9rem;">Contenido aleatorio actualizado para hoy</p>
+            
+            <div class="grid-videos" id="videoGrid">
                 </div>
-                <!-- Video 2 -->
-                <div class="video-card">
-                    <h4>Exploración Tecnológica II</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/wD8yJnIG7gI" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <!-- Video 3 -->
-                <div class="video-card">
-                    <h4>Exploración Tecnológica III</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/p7ApUREHF3A" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <!-- Video 4 -->
-                <div class="video-card">
-                    <h4>Exploración Tecnológica IV</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/C2Nbr4NNlzY" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
+        <a href="../index.html" class="btn-volver">⬅ VOLVER AL MENÚ DE GRADOS</a>
     </div>
 
+    <script>
+        const videoPool = [
+            { title: "El origen del Internet", id: "XuWMWPwdlik" },
+            { title: "¿Cómo funcionan los buscadores?", id: "wD8yJnIG7gI" },
+            { title: "La Inteligencia Artificial en 2026", id: "5U_8idp48rU" },
+            { title: "Hardware: Componentes Esenciales", id: "S2p_f_v8L9E" },
+            { title: "Ciberseguridad y Redes Sociales", id: "G7Pq8NIn7-U" },
+            { title: "Robots y el futuro del trabajo", id: "vsc_VzS_B5U" },
+            { title: "El interior de un Smartphone", id: "C2Nbr4NNlzY" },
+            { title: "Algoritmos: Los pasos del código", id: "p7ApUREHF3A" },
+            { title: "Historia de las Computadoras", id: "mC_836M_oX8" },
+            { title: "¿Qué es el Almacenamiento en la Nube?", id: "m96_7S_P2F0" },
+            { title: "Biotecnología y Computación", id: "6lI9I9vCj9s" },
+            { title: "Realidad Virtual y Metaverso", id: "8I9pAn54M6w" },
+            { title: "El lenguaje de las máquinas (Binario)", id: "5K9M_qHhKks" },
+            { title: "Evolución de los Sistemas Operativos", id: "R_T_N1m_pX8" },
+            { title: "Fibra Óptica: Viajando a la luz", id: "HInlDIn_n8Y" },
+            { title: "Drones: Tecnología en el aire", id: "0w_eXyN_VIs" },
+            { title: "La primera Programadora del mundo", id: "f_Xq-Wf7CqU" },
+            { title: "Impresoras 3D y su impacto", id: "B_G_V6R_xQ8" },
+            { title: "Big Data: El poder de los datos", id: "7v_yG_xV_U8" },
+            { title: "Supercomputadoras del mundo", id: "Y_z_V9R_mP0" }
+        ];
+
+        function shuffleAndLoad() {
+            const grid = document.getElementById('videoGrid');
+            // Algoritmo de mezcla Fisher-Yates para mayor aleatoriedad
+            for (let i = videoPool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [videoPool[i], videoPool[j]] = [videoPool[j], videoPool[i]];
+            }
+            const selected = videoPool.slice(0, 4);
+            grid.innerHTML = selected.map(v => `
+                <div class="video-card">
+                    <h4>${v.title}</h4>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.onload = shuffleAndLoad;
+    </script>
 </body>
 </html>
