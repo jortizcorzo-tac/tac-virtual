@@ -26,7 +26,7 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
         }
 
-        /* --- VENTANILLA FLOTANTE (Sustituye a WhatsApp por seguridad) --- */
+        /* --- VENTANILLA FLOTANTE --- */
         .ventanilla-container { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
         .ventanilla-link { text-decoration: none; }
         .ventanilla-content {
@@ -85,11 +85,14 @@
         .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; color: var(--amarillo); }
         .video-card h4 { padding: 10px; margin: 0; font-size: 0.85rem; }
 
-        .aviso-legal {
+        /* --- AVISO LEGAL (Corregido según referencia 1ro Básico) --- */
+        .aviso-inferior {
             background: #fff; border-radius: 15px; padding: 25px;
             margin: 40px 0; text-align: left; border-left: 8px solid var(--rojo-aviso);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); color: var(--texto-oscuro);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
+        .aviso-inferior h4 { color: var(--rojo-aviso); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .aviso-inferior p { font-size: 0.9rem; line-height: 1.6; color: var(--texto-oscuro); margin-bottom: 8px; }
 
         .btn-volver { display: inline-block; margin-top: 20px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
     </style>
@@ -139,12 +142,12 @@
             <div class="grid-videos" id="videoGrid"></div>
         </div>
 
-    <div class="aviso-inferior">
-        <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
-        <p><strong>Canal Oficial:</strong> Este es el único canal digital oficial de la cátedra de TAC. No se utiliza mensajería instantánea para resguardo de la privacidad.</p>
-        <p><strong>Protección al Menor:</strong> No se fomenta el uso de redes sociales para fines académicos obligatorios.</p>
-        <p><strong>Atención Presencial:</strong> Consultas en el establecimiento de <strong>7:30 - 12:30</strong>.</p>
-    </div>
+        <div class="aviso-inferior">
+            <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
+            <p><strong>Canal Oficial:</strong> Este es el único canal digital oficial de la cátedra de TAC. No se utiliza mensajería instantánea para resguardo de la privacidad.</p>
+            <p><strong>Protección al Menor:</strong> No se fomenta el uso de redes sociales para fines académicos obligatorios.</p>
+            <p><strong>Atención Presencial:</strong> Consultas en el establecimiento de <strong>7:30 - 12:30</strong>.</p>
+        </div>
 
         <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
     </div>
