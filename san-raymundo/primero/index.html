@@ -7,61 +7,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            /* Gradiente de tres colores: más llamativo y profesional */
-            --gradiente-premium: linear-gradient(135deg, #001f3f 0%, #0074D9 50%, #7FDBFF 100%);
+            --gradiente-vibrante: linear-gradient(135deg, #001f3f 0%, #0074D9 50%, #7FDBFF 100%);
             --amarillo: #FFD700;
             --blanco: #ffffff;
             --fondo: #f8f9fa;
-            --texto-oscuro: #212529;
         }
 
-        body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--fondo); text-align: center; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--fondo); text-align: center; }
 
         .header-grado {
-            background: var(--gradiente-premium);
+            background: var(--gradiente-vibrante);
             color: var(--blanco);
-            padding: 70px 20px;
+            padding: 60px 20px;
             border-bottom: 10px solid var(--amarillo);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            position: relative;
         }
 
         .copyright-front {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.2);
             padding: 10px 30px; border-radius: 50px;
             font-size: 0.9rem; font-weight: 800; margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.3); color: var(--amarillo);
-            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--amarillo); border: 1px solid rgba(255,255,255,0.3);
         }
 
         .container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
 
-        .grid-bimestres { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 60px; }
-        
-        .btn-bimestre {
-            display: flex; align-items: center; justify-content: space-between;
-            text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
-            padding: 22px 40px; border-radius: 15px; font-size: 1.5rem; font-weight: 700;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-left: 15px solid #0074D9;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .btn-bimestre:hover { 
-            transform: scale(1.02) translateX(10px); 
-            border-left-color: var(--amarillo); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .numero-b { background: #e9ecef; color: #0074D9; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; display: inline-block; font-size: 1.3rem; }
-
-        /* --- SECCIÓN EXPLORADOR --- */
+        /* GRID DE VIDEOS (2x2) */
         .tv-seccion {
-            margin-top: 40px; background: #1a1a1a; padding: 40px 20px;
-            border-radius: 30px; color: white; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            border: 1px solid #333;
+            background: #111; padding: 40px 20px;
+            border-radius: 30px; color: white; margin-top: 20px;
         }
 
         .grid-videos {
@@ -71,119 +46,81 @@
 
         @media (max-width: 768px) { .grid-videos { grid-template-columns: 1fr; } }
 
-        .video-card { 
-            background: #252525; padding: 15px; border-radius: 20px; 
-            border-bottom: 4px solid transparent; transition: 0.3s;
-        }
-        
-        .video-card:hover { border-bottom-color: var(--amarillo); transform: translateY(-5px); }
-        .video-card h4 { font-size: 0.95rem; margin-bottom: 12px; color: var(--blanco); height: 2.5em; overflow: hidden; }
+        .video-card { background: #222; padding: 15px; border-radius: 20px; }
+        .video-card h4 { font-size: 1rem; color: var(--amarillo); margin-bottom: 15px; }
 
         .video-container {
             position: relative; padding-bottom: 56.25%; height: 0;
-            overflow: hidden; border-radius: 12px; background: #000;
+            overflow: hidden; border-radius: 12px;
         }
+
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        .ws-float {
-            position: fixed; bottom: 30px; right: 30px; background-color: #25d366;
-            color: white; width: 65px; height: 65px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 35px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 100;
+        .btn-bimestre {
+            display: flex; align-items: center; justify-content: space-between;
+            text-decoration: none; background: white; color: #333;
+            padding: 20px 35px; border-radius: 15px; font-weight: bold;
+            margin-bottom: 15px; border-left: 15px solid #0074D9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s;
         }
+        .btn-bimestre:hover { transform: translateX(10px); border-left-color: var(--amarillo); }
 
-        .btn-volver { display: inline-block; margin: 50px 0; padding: 18px 50px; background: #e2e8f0; color: #475569; text-decoration: none; border-radius: 50px; font-weight: 800; transition: 0.3s; }
-        .btn-volver:hover { background: #cbd5e1; }
+        .ws-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 100; }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/50251688768?text=Hola%20Profe..." class="ws-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <div class="header-grado">
-        <div class="copyright-front">
-            <i class="far fa-copyright"></i> 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC
-        </div>
-        <h1 style="font-size: 3rem; margin: 0; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">PRIMERO BÁSICO</h1>
-        <p style="font-size: 1.2rem; margin-top: 10px; opacity: 0.9;">Exploración de Tecnologías del Aprendizaje y la Comunicación</p>
+        <div class="copyright-front">© 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC</div>
+        <h1>PRIMERO BÁSICO</h1>
+        <p>INEB San Raymundo | Jornada Matutina</p>
     </div>
 
     <div class="container">
-        <div class="grid-bimestres">
-            <a href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view?usp=drive_link" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-folder-open" style="margin-right:15px; color:#0074D9;"></i> Bimestre 1</span>
-                <span class="numero-b">1</span>
-            </a>
-            <a href="https://drive.google.com/file/d/14BFVEuv1FVybBfqHrWhAghUtbr2yNI3y/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-folder-open" style="margin-right:15px; color:#0074D9;"></i> Bimestre 2</span>
-                <span class="numero-b">2</span>
-            </a>
-            <a href="https://drive.google.com/file/d/1cc6cdmF3QC_DCzLSL2T3PMzvEKWCQXhO/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-folder-open" style="margin-right:15px; color:#0074D9;"></i> Bimestre 3</span>
-                <span class="numero-b">3</span>
-            </a>
-            <a href="https://drive.google.com/file/d/1_2fDtMtX1QNK4JszYXFDrRksf9Fs9BF_/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-folder-open" style="margin-right:15px; color:#0074D9;"></i> Bimestre 4</span>
-                <span class="numero-b">4</span>
-            </a>
+        <div style="margin-bottom: 40px;">
+            <a href="#" class="btn-bimestre"><span>Bimestre 1</span><span>1</span></a>
+            <a href="#" class="btn-bimestre"><span>Bimestre 2</span><span>2</span></a>
+            <a href="#" class="btn-bimestre"><span>Bimestre 3</span><span>3</span></a>
+            <a href="#" class="btn-bimestre"><span>Bimestre 4</span><span>4</span></a>
         </div>
 
         <div class="tv-seccion">
-            <h2 style="margin: 0; color: var(--amarillo); letter-spacing: 2px;"><i class="fas fa-satellite-dish"></i> EXPLORADOR TAC 2026</h2>
-            <p style="color: #888; font-size: 0.9rem;">Contenido aleatorio actualizado para hoy</p>
-            
-            <div class="grid-videos" id="videoGrid">
-                </div>
-        </div>
-
-        <a href="../index.html" class="btn-volver">⬅ VOLVER AL MENÚ DE GRADOS</a>
-    </div>
-
-    <script>
-        const videoPool = [
-            { title: "El origen del Internet", id: "XuWMWPwdlik" },
-            { title: "¿Cómo funcionan los buscadores?", id: "wD8yJnIG7gI" },
-            { title: "La Inteligencia Artificial en 2026", id: "5U_8idp48rU" },
-            { title: "Hardware: Componentes Esenciales", id: "S2p_f_v8L9E" },
-            { title: "Ciberseguridad y Redes Sociales", id: "G7Pq8NIn7-U" },
-            { title: "Robots y el futuro del trabajo", id: "vsc_VzS_B5U" },
-            { title: "El interior de un Smartphone", id: "C2Nbr4NNlzY" },
-            { title: "Algoritmos: Los pasos del código", id: "p7ApUREHF3A" },
-            { title: "Historia de las Computadoras", id: "mC_836M_oX8" },
-            { title: "¿Qué es el Almacenamiento en la Nube?", id: "m96_7S_P2F0" },
-            { title: "Biotecnología y Computación", id: "6lI9I9vCj9s" },
-            { title: "Realidad Virtual y Metaverso", id: "8I9pAn54M6w" },
-            { title: "El lenguaje de las máquinas (Binario)", id: "5K9M_qHhKks" },
-            { title: "Evolución de los Sistemas Operativos", id: "R_T_N1m_pX8" },
-            { title: "Fibra Óptica: Viajando a la luz", id: "HInlDIn_n8Y" },
-            { title: "Drones: Tecnología en el aire", id: "0w_eXyN_VIs" },
-            { title: "La primera Programadora del mundo", id: "f_Xq-Wf7CqU" },
-            { title: "Impresoras 3D y su impacto", id: "B_G_V6R_xQ8" },
-            { title: "Big Data: El poder de los datos", id: "7v_yG_xV_U8" },
-            { title: "Supercomputadoras del mundo", id: "Y_z_V9R_mP0" }
-        ];
-
-        function shuffleAndLoad() {
-            const grid = document.getElementById('videoGrid');
-            // Algoritmo de mezcla Fisher-Yates para mayor aleatoriedad
-            for (let i = videoPool.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [videoPool[i], videoPool[j]] = [videoPool[j], videoPool[i]];
-            }
-            const selected = videoPool.slice(0, 4);
-            grid.innerHTML = selected.map(v => `
+            <h2><i class="fas fa-broadcast-tower"></i> CANALES TAC 2026</h2>
+            <div class="grid-videos">
+                
                 <div class="video-card">
-                    <h4>${v.title}</h4>
+                    <h4>Ciencia y Redes</h4>
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/videoseries?list=PLpZofS_9ZcCc6l6760W_mYvE-9z73h0-Y" allowfullscreen></iframe>
                     </div>
                 </div>
-            `).join('');
-        }
 
-        window.onload = shuffleAndLoad;
-    </script>
+                <div class="video-card">
+                    <h4>Mundo Digital DW</h4>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/videoseries?list=PLvG_D89Z6Z-E0S6b9bF9I_9nU7P3R8A0C" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <h4>Innovación y Futuro</h4>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/videoseries?list=PLfAnmXG6L6P7L0uS9L8_K6Z0-uW9NfL6X" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <h4>Hardware y Sistemas</h4>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/videoseries?list=PL6n9B-uX_5_P-L_y7VvNia0j8Q6_t8S-E" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/50251688768" class="ws-float"><i class="fab fa-whatsapp"></i></a>
+
 </body>
 </html>
