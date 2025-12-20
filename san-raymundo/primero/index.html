@@ -7,120 +7,155 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --gradiente-vibrante: linear-gradient(135deg, #001f3f 0%, #0074D9 50%, #7FDBFF 100%);
+            --azul-zafiro: linear-gradient(135deg, #004e92 0%, #000428 100%);
             --amarillo: #FFD700;
             --blanco: #ffffff;
-            --fondo: #f8f9fa;
+            --fondo: #f0f2f5;
+            --sombra: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--fondo); text-align: center; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; color: #333; }
 
         .header-grado {
-            background: var(--gradiente-vibrante);
+            background: var(--azul-zafiro);
             color: var(--blanco);
             padding: 60px 20px;
-            border-bottom: 10px solid var(--amarillo);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-bottom: 8px solid var(--amarillo);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         .copyright-front {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px 30px; border-radius: 50px;
-            font-size: 0.9rem; font-weight: 800; margin-bottom: 20px;
-            color: var(--amarillo); border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 25px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;
+            border: 1px solid var(--amarillo); color: var(--amarillo);
         }
 
-        .container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
 
-        /* GRID DE VIDEOS (2x2) */
+        /* --- MOSAICO DE VIDEOS (SOLUCIÓN REAL) --- */
         .tv-seccion {
-            background: #111; padding: 40px 20px;
-            border-radius: 30px; color: white; margin-top: 20px;
+            margin-top: 30px; background: #fff; padding: 40px 20px;
+            border-radius: 20px; box-shadow: var(--sombra);
         }
 
         .grid-videos {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 25px; margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 30px;
         }
 
         @media (max-width: 768px) { .grid-videos { grid-template-columns: 1fr; } }
 
-        .video-card { background: #222; padding: 15px; border-radius: 20px; }
-        .video-card h4 { font-size: 1rem; color: var(--amarillo); margin-bottom: 15px; }
-
-        .video-container {
-            position: relative; padding-bottom: 56.25%; height: 0;
-            overflow: hidden; border-radius: 12px;
+        .video-card {
+            background: #fdfdfd;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: 0.3s;
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
 
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
 
+        .thumb-container {
+            width: 100%;
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thumb-container img { width: 100%; display: block; opacity: 0.8; }
+
+        .play-icon {
+            position: absolute;
+            font-size: 50px;
+            color: var(--amarillo);
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .video-info { padding: 15px; background: #fff; text-align: left; }
+        .video-info h4 { margin: 0; font-size: 1rem; color: #004e92; }
+        .video-info p { margin: 5px 0 0; font-size: 0.8rem; color: #777; }
+
+        /* --- BOTONES BIMESTRE --- */
         .btn-bimestre {
             display: flex; align-items: center; justify-content: space-between;
-            text-decoration: none; background: white; color: #333;
-            padding: 20px 35px; border-radius: 15px; font-weight: bold;
-            margin-bottom: 15px; border-left: 15px solid #0074D9;
+            text-decoration: none; background: #fff; color: #333;
+            padding: 20px 30px; border-radius: 12px; font-weight: bold;
+            margin-bottom: 15px; border-left: 10px solid #004e92;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s;
         }
-        .btn-bimestre:hover { transform: translateX(10px); border-left-color: var(--amarillo); }
+        .btn-bimestre:hover { background: #004e92; color: #fff; }
 
-        .ws-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 100; }
+        .ws-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
     <div class="header-grado">
-        <div class="copyright-front">© 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC</div>
-        <h1>PRIMERO BÁSICO</h1>
-        <p>INEB San Raymundo | Jornada Matutina</p>
+        <div class="copyright-front">
+            <i class="far fa-copyright"></i> 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC
+        </div>
+        <h1 style="font-size: 2.5rem; margin: 0;">PRIMERO BÁSICO</h1>
+        <p style="letter-spacing: 1px; opacity: 0.9;">INEB San Raymundo | 2026</p>
     </div>
 
     <div class="container">
+        
         <div style="margin-bottom: 40px;">
-            <a href="#" class="btn-bimestre"><span>Bimestre 1</span><span>1</span></a>
-            <a href="#" class="btn-bimestre"><span>Bimestre 2</span><span>2</span></a>
-            <a href="#" class="btn-bimestre"><span>Bimestre 3</span><span>3</span></a>
-            <a href="#" class="btn-bimestre"><span>Bimestre 4</span><span>4</span></a>
+            <a href="#" class="btn-bimestre"><span><i class="fas fa-file-pdf"></i> Guía Bimestre 1</span> <i class="fas fa-chevron-right"></i></a>
+            <a href="#" class="btn-bimestre"><span><i class="fas fa-file-pdf"></i> Guía Bimestre 2</span> <i class="fas fa-chevron-right"></i></a>
         </div>
 
         <div class="tv-seccion">
-            <h2><i class="fas fa-broadcast-tower"></i> CANALES TAC 2026</h2>
-            <div class="grid-videos">
-                
-                <div class="video-card">
-                    <h4>Ciencia y Redes</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/videoseries?list=PLpZofS_9ZcCc6l6760W_mYvE-9z73h0-Y" allowfullscreen></iframe>
-                    </div>
+            <h2 style="color: #004e92;"><i class="fas fa-play-circle"></i> BIBLIOTECA VIDEO-TAC</h2>
+            <p>Haz clic en cualquier video para abrir la lección tecnológica.</p>
+            
+            <div class="grid-videos" id="mosaicoVideos">
                 </div>
-
-                <div class="video-card">
-                    <h4>Mundo Digital DW</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/videoseries?list=PLvG_D89Z6Z-E0S6b9bF9I_9nU7P3R8A0C" allowfullscreen></iframe>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <h4>Innovación y Futuro</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/videoseries?list=PLfAnmXG6L6P7L0uS9L8_K6Z0-uW9NfL6X" allowfullscreen></iframe>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <h4>Hardware y Sistemas</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/videoseries?list=PL6n9B-uX_5_P-L_y7VvNia0j8Q6_t8S-E" allowfullscreen></iframe>
-                    </div>
-                </div>
-
-            </div>
         </div>
+
     </div>
 
-    <a href="https://wa.me/50251688768" class="ws-float"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/50251688768" class="ws-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
+    <script>
+        const videos = [
+            { id: "XuWMWPwdlik", title: "Historia de la Computación", desc: "Desde el ábaco hasta hoy." },
+            { id: "wD8yJnIG7gI", title: "¿Cómo funciona el Internet?", desc: "La red de redes explicada." },
+            { id: "5U_8idp48rU", title: "Inteligencia Artificial", desc: "El futuro de las máquinas." },
+            { id: "S2p_f_v8L9E", title: "Hardware: Partes de la PC", desc: "Componentes internos." },
+            { id: "G7Pq8NIn7-U", title: "Ciberseguridad", desc: "Navega seguro en redes." },
+            { id: "vsc_VzS_B5U", title: "Robótica y Trabajo", desc: "Impacto en la sociedad." }
+        ];
+
+        function cargarMosaico() {
+            const container = document.getElementById('mosaicoVideos');
+            // Mezclar videos
+            const seleccionados = videos.sort(() => 0.5 - Math.random()).slice(0, 4);
+            
+            container.innerHTML = seleccionados.map(v => `
+                <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" class="video-card">
+                    <div class="thumb-container">
+                        <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="thumbnail">
+                        <i class="fas fa-play-circle play-icon"></i>
+                    </div>
+                    <div class="video-info">
+                        <h4>${v.title}</h4>
+                        <p>${v.desc}</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        window.onload = cargarMosaico;
+    </script>
 </body>
 </html>
