@@ -13,6 +13,7 @@
             --fondo: #f4f7f9;
             --texto-oscuro: #0a192f;
             --azul-boton: #0056b3;
+            --rojo-aviso: #991b1b;
         }
 
         body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; }
@@ -36,74 +37,73 @@
 
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
-        /* --- BOTONES DE BIMESTRE (AJUSTE DE ANCHO) --- */
-        .grid-bimestres { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; /* Centra los botones */
-            gap: 15px; 
-            margin-bottom: 50px; 
+        /* --- VENTANILLA FLOTANTE --- */
+        .ventanilla-container {
+            position: fixed; bottom: 30px; right: 30px; 
+            display: flex; align-items: center; z-index: 100;
         }
-        
-        .btn-bimestre {
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            text-decoration: none; 
-            background: var(--blanco); 
-            color: var(--texto-oscuro);
-            padding: 15px 25px; 
-            border-radius: 12px; 
-            font-size: 1.2rem; 
-            font-weight: bold;
-            transition: 0.3s; 
-            border-left: 10px solid var(--azul-boton);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 400px; /* Limita el ancho máximo para que no sean tan anchos */
+        .ventanilla-tag {
+            background: #00308f; color: white; padding: 12px 20px; 
+            border-radius: 30px 0 0 30px; font-weight: bold; font-size: 0.8rem; 
+            border: 3px solid var(--amarillo); border-right: none;
+            box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
         }
-
-        .btn-bimestre:hover { transform: translateX(8px); border-left-color: var(--amarillo); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .numero-b { background: var(--amarillo); color: #000; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; display: inline-block; font-size: 1.1rem; }
-
-        /* --- GRID DE VIDEOS 2x2 --- */
-        .tv-seccion {
-            margin-top: 50px; background: #0a192f; padding: 30px 15px;
-            border-radius: 25px; color: white; box-shadow: 0 15px 40px rgba(0,48,143,0.4);
-            border: 2px solid #0076ce;
-        }
-        .grid-videos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 25px;
+        .ventanilla-icon {
+            background: #00308f; color: white; width: 65px; height: 65px; 
+            border-radius: 0 50% 50% 0; display: flex; align-items: center; 
+            justify-content: center; font-size: 26px; text-decoration: none; 
+            border: 3px solid var(--amarillo); box-shadow: 5px 5px 15px rgba(0,0,0,0.2); 
+            transition: 0.3s;
         }
         @media (max-width: 768px) {
-            .grid-videos { grid-template-columns: 1fr; }
+            .ventanilla-tag { display: none; }
+            .ventanilla-icon { border-radius: 50%; }
         }
+
+        /* --- BOTONES DE BIMESTRE --- */
+        .grid-bimestres { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 50px; }
+        .btn-bimestre {
+            display: flex; align-items: center; justify-content: space-between;
+            text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
+            padding: 15px 25px; border-radius: 12px; font-size: 1.2rem; font-weight: bold;
+            transition: 0.3s; border-left: 10px solid var(--azul-boton);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%; max-width: 400px;
+        }
+        .btn-bimestre:hover { transform: translateX(8px); border-left-color: var(--amarillo); }
+        .numero-b { background: var(--amarillo); color: #000; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; display: inline-block; }
+
+        /* --- SECCIÓN VIDEOS --- */
+        .tv-seccion {
+            margin-top: 50px; background: #0a192f; padding: 30px 15px;
+            border-radius: 25px; color: white; border: 2px solid #0076ce;
+        }
+        .grid-videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 25px; }
+        @media (max-width: 768px) { .grid-videos { grid-template-columns: 1fr; } }
         .video-card { background: #112240; padding: 10px; border-radius: 15px; border: 1px solid #233554; }
         .video-card h4 { font-size: 0.9rem; margin: 10px 0; color: var(--amarillo); }
-        .video-container {
-            position: relative; padding-bottom: 56.25%; height: 0;
-            overflow: hidden; border-radius: 10px; background: #000;
-        }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        .ws-float {
-            position: fixed; bottom: 30px; right: 30px; background-color: #25d366;
-            color: white; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; box-shadow: 2px 10px 20px rgba(0,0,0,0.3); z-index: 100;
+        /* --- AVISO LEGAL (DEBAJO DE VIDEOS) --- */
+        .aviso-inferior {
+            background: #fff; border-radius: 15px; padding: 25px;
+            margin: 40px 0; text-align: left; border-left: 8px solid var(--rojo-aviso);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
+        .aviso-inferior h4 { color: var(--rojo-aviso); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .aviso-inferior p { font-size: 0.9rem; line-height: 1.6; color: var(--texto-oscuro); margin-bottom: 8px; }
 
-        .btn-volver { display: inline-block; margin-top: 40px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
+        .btn-volver { display: inline-block; margin-top: 20px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/50251688768?text=Hola%20Profe..." class="ws-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <div class="ventanilla-container">
+        <span class="ventanilla-tag">VENTANILLA DE ATENCIÓN</span>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-icon" target="_blank">
+            <i class="fas fa-landmark"></i>
+        </a>
+    </div>
 
     <div class="header-grado">
         <div class="copyright-front">
@@ -163,6 +163,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="aviso-inferior">
+            <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
+            <p><strong>Canal Oficial:</strong> Este es el único canal digital oficial de la cátedra de Tecnologías del Aprendizaje y las Comunicaciones -TAC-. No se utiliza mensajería instantánea para resguardo de la privacidad de la comunidad educativa.</p>
+            <p><strong>Protección al Menor:</strong> En cumplimiento con las normas de seguridad digital y protección al menor, esta cátedra no fomenta el uso de redes sociales para fines académicos obligatorios.</p>
+            <p><strong>Atención Presencial:</strong> Consultas en el establecimiento en horario de <strong>7:30 - 12:30</strong>.</p>
         </div>
 
         <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
