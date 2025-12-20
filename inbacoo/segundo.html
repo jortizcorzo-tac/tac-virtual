@@ -6,15 +6,18 @@
     <title>2do Básico - INBACOO</title>
     <style>
         :root {
-            --verde-grad: linear-gradient(135deg, #a8ff78, #08ffc8);
-            --fondo: #f0f7ff;
+            /* Verde Tecnológico: más profundo y elegante */
+            --verde-primario: #064e3b;
+            --verde-acento: #059669;
+            --verde-grad: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+            --fondo: #f3f4f6; /* Gris neutro coherente con el portal */
             --blanco: #ffffff;
-            --texto: #2d3436;
+            --texto: #1f2937;
         }
 
         body { 
             margin: 0; 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
             background-color: var(--fondo); 
             color: var(--texto);
             text-align: center; 
@@ -23,8 +26,8 @@
         .header-grado { 
             background: var(--blanco); 
             padding: 50px 20px; 
-            border-bottom: 5px solid #08ffc8;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom: 6px solid var(--verde-primario);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
         .container { max-width: 900px; margin: 40px auto; padding: 20px; }
@@ -32,24 +35,25 @@
         .grid-bimestres { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 20px; 
+            gap: 25px; 
         }
         
         .card-bimestre {
             text-decoration: none;
             background: var(--blanco);
-            border-radius: 25px;
-            padding: 35px 20px;
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 40px 20px;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
-            border: 2px solid transparent;
+            border: 1px solid #e5e7eb;
         }
 
         .card-bimestre:hover { 
-            transform: translateY(-10px);
-            border-color: #08ffc8;
+            transform: translateY(-8px);
+            border-color: var(--verde-acento);
+            box-shadow: 0 12px 24px rgba(6, 78, 59, 0.12);
         }
 
         .numero-romano {
@@ -58,44 +62,59 @@
             background: var(--verde-grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .nombre-bimestre {
+            font-weight: 800; 
+            color: var(--texto); 
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-volver { 
             display: inline-block; 
-            margin-top: 40px; 
-            padding: 15px 40px; 
-            background: #dfe6e9; 
-            color: #2d3436; 
+            margin-top: 50px; 
+            padding: 15px 45px; 
+            background: #374151; 
+            color: white; 
             text-decoration: none; 
-            border-radius: 50px;
+            border-radius: 12px;
             font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-volver:hover { 
+            background: #111827; 
+            transform: scale(1.02);
         }
     </style>
 </head>
 <body>
 
     <div class="header-grado">
-        <h1>SEGUNDO BÁSICO - INBACOO</h1>
-        <p style="color: #08ffc8; font-weight: bold;">Contenido exclusivo para estudiantes autorizados</p>
+        <h1 style="margin:0; letter-spacing: 1px; color: #064e3b;">SEGUNDO BÁSICO</h1>
+        <p style="color: #6b7280; font-weight: 500; margin: 8px 0 0; text-transform: uppercase; font-size: 0.9rem;">INBACOO | Material de Apoyo</p>
     </div>
 
     <div class="container">
         <div class="grid-bimestres">
             <a href="segundo/b1.html" class="card-bimestre">
                 <span class="numero-romano">I</span>
-                <span style="font-weight:bold; color:#2d3436;">Bimestre 1</span>
+                <span class="nombre-bimestre">Bimestre 1</span>
             </a>
             <a href="segundo/b2.html" class="card-bimestre">
                 <span class="numero-romano">II</span>
-                <span style="font-weight:bold; color:#2d3436;">Bimestre 2</span>
+                <span class="nombre-bimestre">Bimestre 2</span>
             </a>
             <a href="segundo/b3.html" class="card-bimestre">
                 <span class="numero-romano">III</span>
-                <span style="font-weight:bold; color:#2d3436;">Bimestre 3</span>
+                <span class="nombre-bimestre">Bimestre 3</span>
             </a>
             <a href="segundo/b4.html" class="card-bimestre">
                 <span class="numero-romano">IV</span>
-                <span style="font-weight:bold; color:#2d3436;">Bimestre 4</span>
+                <span class="nombre-bimestre">Bimestre 4</span>
             </a>
         </div>
         <a href="index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
