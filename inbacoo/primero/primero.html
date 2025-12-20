@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1ro Básico - Bimestres</title>
+    <style>
+        :root {
+            --azul: linear-gradient(135deg, #00c6ff, #0072ff);
+            --fondo: #f0f7ff;
+            --blanco: #ffffff;
+        }
+        body { 
+            margin: 0; font-family: 'Segoe UI', sans-serif; 
+            background-color: var(--fondo); text-align: center; 
+        }
+        .header { 
+            background: var(--blanco); padding: 40px; 
+            border-bottom: 5px solid #0072ff; 
+        }
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .grid-bimestres {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+        }
+        .card-bimestre {
+            text-decoration: none; background: var(--blanco);
+            padding: 30px; border-radius: 20px; color: #2d3436;
+            font-weight: bold; font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s; border: 2px solid transparent;
+        }
+        .card-bimestre:hover {
+            transform: translateY(-5px); border-color: #0072ff;
+            box-shadow: 0 15px 30px rgba(0,114,255,0.1);
+        }
+        .numero { 
+            display: block; font-size: 3rem; color: #0072ff; margin-bottom: 10px;
+        }
+        .btn-volver {
+            display: inline-block; margin-top: 40px; color: #636e72; text-decoration: none; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 style="color:#0072ff; margin:0;">PRIMERO BÁSICO</h1>
+        <p>Selecciona el Bimestre</p>
+    </div>
+    <div class="container">
+        <div class="grid-bimestres">
+            <a href="primero/b1.html" class="card-bimestre"><span class="numero">I</span>Bimestre 1</a>
+            <a href="primero/b2.html" class="card-bimestre"><span class="numero">II</span>Bimestre 2</a>
+            <a href="primero/b3.html" class="card-bimestre"><span class="numero">III</span>Bimestre 3</a>
+            <a href="primero/b4.html" class="card-bimestre"><span class="numero">IV</span>Bimestre 4</a>
+        </div>
+        <a href="index.html" class="btn-volver">⬅ Volver a Grados</a>
+    </div>
+</body>
+</html>
