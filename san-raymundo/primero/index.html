@@ -16,8 +16,45 @@
             --rojo-aviso: #991b1b;
         }
 
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background-color: var(--fondo); 
+            text-align: center; 
+        }
 
+        /* --- VENTANILLA FLOTANTE (VISIBLE EN MÓVIL) --- */
+        .ventanilla-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .ventanilla-link { text-decoration: none; }
+        .ventanilla-content {
+            background: #00308f;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 15px;
+            border: 3px solid var(--amarillo);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: 0.3s ease;
+            min-width: 90px;
+        }
+        .ventanilla-content i { font-size: 24px; margin-bottom: 5px; }
+        .ventanilla-text {
+            font-size: 0.65rem;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.1;
+        }
+        .ventanilla-content:hover { transform: scale(1.05); background: #0044cc; }
+
+        /* --- ENCABEZADO --- */
         .header-grado {
             background: var(--gradiente-encabezado);
             color: var(--blanco);
@@ -36,29 +73,6 @@
         }
 
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-
-        /* --- VENTANILLA FLOTANTE --- */
-        .ventanilla-container {
-            position: fixed; bottom: 30px; right: 30px; 
-            display: flex; align-items: center; z-index: 100;
-        }
-        .ventanilla-tag {
-            background: #00308f; color: white; padding: 12px 20px; 
-            border-radius: 30px 0 0 30px; font-weight: bold; font-size: 0.8rem; 
-            border: 3px solid var(--amarillo); border-right: none;
-            box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
-        }
-        .ventanilla-icon {
-            background: #00308f; color: white; width: 65px; height: 65px; 
-            border-radius: 0 50% 50% 0; display: flex; align-items: center; 
-            justify-content: center; font-size: 26px; text-decoration: none; 
-            border: 3px solid var(--amarillo); box-shadow: 5px 5px 15px rgba(0,0,0,0.2); 
-            transition: 0.3s;
-        }
-        @media (max-width: 768px) {
-            .ventanilla-tag { display: none; }
-            .ventanilla-icon { border-radius: 50%; }
-        }
 
         /* --- BOTONES DE BIMESTRE --- */
         .grid-bimestres { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 50px; }
@@ -86,94 +100,3 @@
 
         /* --- AVISO LEGAL (DEBAJO DE VIDEOS) --- */
         .aviso-inferior {
-            background: #fff; border-radius: 15px; padding: 25px;
-            margin: 40px 0; text-align: left; border-left: 8px solid var(--rojo-aviso);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        .aviso-inferior h4 { color: var(--rojo-aviso); margin-top: 0; display: flex; align-items: center; gap: 10px; }
-        .aviso-inferior p { font-size: 0.9rem; line-height: 1.6; color: var(--texto-oscuro); margin-bottom: 8px; }
-
-        .btn-volver { display: inline-block; margin-top: 20px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-    <div class="ventanilla-container">
-        <span class="ventanilla-tag">VENTANILLA DE ATENCIÓN</span>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-icon" target="_blank">
-            <i class="fas fa-landmark"></i>
-        </a>
-    </div>
-
-    <div class="header-grado">
-        <div class="copyright-front">
-            <i class="far fa-copyright"></i> 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC
-        </div>
-        <h1>PRIMERO BÁSICO</h1>
-        <p>INEB San Raymundo | Jornada Matutina</p>
-    </div>
-
-    <div class="container">
-        <p style="font-size: 1.3rem; font-weight: bold; margin-bottom: 25px; color: var(--azul-boton);">Guías y Material de Apoyo</p>
-
-        <div class="grid-bimestres">
-            <a href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view?usp=drive_link" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-file-pdf"></i> Bimestre 1</span>
-                <span class="numero-b">1</span>
-            </a>
-            <a href="https://drive.google.com/file/d/14BFVEuv1FVybBfqHrWhAghUtbr2yNI3y/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-file-pdf"></i> Bimestre 2</span>
-                <span class="numero-b">2</span>
-            </a>
-            <a href="https://drive.google.com/file/d/1cc6cdmF3QC_DCzLSL2T3PMzvEKWCQXhO/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-file-pdf"></i> Bimestre 3</span>
-                <span class="numero-b">3</span>
-            </a>
-            <a href="https://drive.google.com/file/d/1_2fDtMtX1QNK4JszYXFDrRksf9Fs9BF_/view?usp=sharing" target="_blank" class="btn-bimestre">
-                <span><i class="fas fa-file-pdf"></i> Bimestre 4</span>
-                <span class="numero-b">4</span>
-            </a>
-        </div>
-
-        <div class="tv-seccion">
-            <h3><i class="fas fa-microchip"></i> EXPLORADOR TECNOLÓGICO 2026</h3>
-            <div class="grid-videos">
-                <div class="video-card">
-                    <h4>Exploración Tecnológica I</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/XuWMWPwdlik" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <h4>Exploración Tecnológica II</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/wD8yJnIG7gI" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <h4>Exploración Tecnológica III</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/p7ApUREHF3A" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <h4>Exploración Tecnológica IV</h4>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/C2Nbr4NNlzY" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="aviso-inferior">
-            <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
-            <p><strong>Canal Oficial:</strong> Este es el único canal digital oficial de la cátedra de Tecnologías del Aprendizaje y las Comunicaciones -TAC-. No se utiliza mensajería instantánea para resguardo de la privacidad de la comunidad educativa.</p>
-            <p><strong>Protección al Menor:</strong> En cumplimiento con las normas de seguridad digital y protección al menor, esta cátedra no fomenta el uso de redes sociales para fines académicos obligatorios.</p>
-            <p><strong>Atención Presencial:</strong> Consultas en el establecimiento en horario de <strong>7:30 - 12:30</strong>.</p>
-        </div>
-
-        <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
-    </div>
-
-</body>
-</html>
