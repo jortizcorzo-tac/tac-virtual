@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2do Básico B2 - INBACOO</title>
+    <style>
+        :root { --azul-grad: linear-gradient(135deg, #00c6ff, #0072ff); --temario-grad: linear-gradient(135deg, #f6d365, #fda085); --fondo: #f8f9fa; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--fondo); text-align: center; }
+        #bloqueo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #121212; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; }
+        .login-box { background: #1e1e1e; padding: 40px; border-radius: 25px; border: 2px solid #0072ff; }
+        input { padding: 15px; border-radius: 10px; border: none; width: 220px; margin-bottom: 20px; text-align: center; font-size: 1rem; }
+        button { padding: 15px 40px; background: #0072ff; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        #contenido { display: none; }
+        .banner { background: var(--azul-grad); color: white; padding: 50px 20px; border-bottom: 6px solid #0056b3; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; }
+        .card { text-decoration: none; background: white; padding: 30px 15px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border: 1px solid #eee; }
+        .card:hover { transform: translateY(-8px); border-color: #0072ff; }
+        .num { font-size: 2.5rem; font-weight: 900; color: #0072ff; margin-top: 5px; }
+        .card-temario { background: var(--temario-grad); color: white; border: 2px solid #e67e22; }
+    </style>
+</head>
+<body>
+    <div id="bloqueo">
+        <div class="login-box">
+            <h2>🔐 Acceso TAC</h2>
+            <p>Contraseña para Segundo Básico (B2):</p>
+            <input type="text" id="passInput" onkeypress="if(event.key==='Enter') validar()">
+            <br><button onclick="validar()">INGRESAR</button>
+            <p id="errorMsg" style="color: #ff7675; display: none; margin-top: 15px;">⚠️ Contraseña incorrecta</p>
+        </div>
+    </div>
+    <div id="contenido">
+        <div class="banner"><h1>SEGUNDO BÁSICO</h1><h3>Bimestre II - INBACOO</h3></div>
+        <div class="container">
+            <div class="grid">
+                <a href="https://drive.google.com/file/d/1fkYcVbJqZz749xhU6HnvSeEGftKnE-GF/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">01</span></a>
+                <a href="https://drive.google.com/file/d/1EzOth-8fNNADq-IcZs6ApDt1Z_0YG3lY/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">02</span></a>
+                <a href="https://drive.google.com/file/d/1Z_RzL5frAcYWLJMFiHjRv70tT_XfUL7B/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">03</span></a>
+                <a href="https://drive.google.com/file/d/1u3RtFfKR5I4KK855qWR-L_rAY08s4-aN/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">04</span></a>
+                <a href="https://drive.google.com/file/d/191MZ8uRBKwOl0P8Xhr95z7RN21c4obD1/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">05</span></a>
+                <a href="https://drive.google.com/file/d/1R8rx2LYMZiXuA0GNwPu0DhbdwBrza48V/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">06</span></a>
+                <a href="https://drive.google.com/file/d/1UIPm5mbC0db8dLUtrUDuCPBcRp3vzUpj/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">07</span></a>
+                <a href="https://drive.google.com/file/d/1ZsbSzn0qzaa8obQJ7uRHW3CpWMSgXLly/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">08</span></a>
+                <a href="https://drive.google.com/file/d/1Cfgx1Jg6_IDy8FxuGIaUfLJqZPXJxX9d/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">09</span></a>
+                <a href="https://drive.google.com/file/d/1yzMYCyfS_XC41SZozQ98r98OMtxiqWUO/view?usp=drive_link" target="_blank" class="card card-temario"><span style="color:white">TEMARIO</span><span class="num" style="color:white; font-size:1.1rem;">DISTANCIA</span></a>
+            </div>
+            <br><a href="../index.html" style="color:#888; text-decoration:none;">⬅ Volver</a>
+        </div>
+    </div>
+    <script>
+        function validar() {
+            const inputVal = document.getElementById("passInput").value.toUpperCase();
+            if(inputVal === "TAC22CQ") {
+                document.getElementById("bloqueo").style.display = "none";
+                document.getElementById("contenido").style.display = "block";
+            } else { document.getElementById("errorMsg").style.display = "block"; }
+        }
+    </script>
+</body>
+</html>
