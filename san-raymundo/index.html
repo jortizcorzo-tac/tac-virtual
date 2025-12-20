@@ -20,6 +20,7 @@
             padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--fondo);
+            overflow-x: hidden;
         }
 
         /* --- SEGURIDAD: PANTALLA DE BLOQUEO --- */
@@ -29,8 +30,17 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
             text-align: center;
         }
-        .input-pass { padding: 12px; border-radius: 8px; border: none; margin: 15px; width: 220px; text-align: center; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        .btn-pass { padding: 12px 30px; background: #facc15; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #1e3a8a; transition: 0.3s; }
+        .input-pass { 
+            padding: 12px; border-radius: 8px; border: none; margin: 15px; 
+            width: 220px; text-align: center; font-size: 1.1rem; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+            text-transform: uppercase; /* Sugiere visualmente las mayúsculas */
+        }
+        .btn-pass { 
+            padding: 12px 30px; background: #facc15; border: none; 
+            border-radius: 8px; font-weight: bold; cursor: pointer; 
+            color: #1e3a8a; transition: 0.3s; 
+        }
         .btn-pass:hover { background: #ffffff; transform: scale(1.05); }
 
         /* --- ENCABEZADO CON PROFUNDIDAD Y COPYRIGHT --- */
@@ -86,7 +96,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-left: 12px solid #E67E22;
+            border-left: 12px solid #e67e22;
             transition: 0.4s ease;
             display: flex;
             justify-content: space-between;
@@ -97,3 +107,113 @@
             transform: translateX(10px);
             background: var(--gradiente-naranja);
             color: white;
+            border-left-color: var(--gris-oscuro);
+        }
+
+        /* --- WHATSAPP FLOTANTE --- */
+        .ws-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 2px 10px 20px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .ws-float:hover { transform: scale(1.1) rotate(10deg); }
+
+        .btn-regresar {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--gris-oscuro);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid var(--gris-oscuro);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .btn-regresar:hover { background: var(--gris-oscuro); color: white; }
+    </style>
+</head>
+<body>
+
+<div id="bloqueo">
+    <i class="fas fa-user-shield" style="font-size: 4rem; margin-bottom: 20px;"></i>
+    <h2>PORTAL INEB - TAC</h2>
+    <p>Ingresa la clave de acceso autorizada:</p>
+    <input type="password" id="pass" class="input-pass" placeholder="Contraseña">
+    <button onclick="verificar()" class="btn-pass">VERIFICAR ACCESO</button>
+</div>
+
+<a href="https://wa.me/50251688768?text=Hola%20Profe,%20soy%20de%20Grado:____,%20Sección:____,%20Clave:____.%20Tengo%20la%20siguiente%20duda:" class="ws-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<div class="banner-establecimiento">
+    <div class="copyright-front">
+        <i class="far fa-copyright"></i> 2025 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC
+    </div>
+    <br>
+    <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" style="width: 90px; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+    <h1 style="margin:0; font-size: 2.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">INEB SAN RAYMUNDO</h1>
+    <p style="opacity: 0.9; font-weight: 300;">Plataforma de Recursos Educativos Digitales</p>
+</div>
+
+<div class="container">
+    <p class="instruccion-grado">¿En qué grado estás inscrito?</p>
+
+    <div class="grid-grados">
+        <a href="primero/index.html" class="btn-grado">
+            <span>Primero Básico</span>
+            <span><i class="fas fa-chevron-right"></i></span>
+        </a>
+        <a href="segundo/index.html" class="btn-grado" style="border-left-color: var(--gris-oscuro);">
+            <span>Segundo Básico</span>
+            <span><i class="fas fa-chevron-right"></i></span>
+        </a>
+        <a href="tercero/index.html" class="btn-grado">
+            <span>Tercero Básico</span>
+            <span><i class="fas fa-chevron-right"></i></span>
+        </a>
+    </div>
+
+    <a href="../index.html" class="btn-regresar">⬅ Volver al Inicio General</a>
+</div>
+
+<script>
+    /* --- LOGICA DE SEGURIDAD (CONTRASENA FLEXIBLE) --- */
+    function verificar() {
+        // Contraseña definida en mayúsculas
+        const passwordCorrecta = "TAC2026"; 
+        
+        // Convertimos el input a mayúsculas para comparar (Case Insensitive)
+        const input = document.getElementById("pass").value.toUpperCase();
+        
+        if (input === passwordCorrecta) {
+            document.getElementById("bloqueo").style.display = "none";
+        } else {
+            alert("Acceso denegado. Verifica la clave con tu catedrático.");
+            document.getElementById("pass").value = ""; // Limpia para reintentar
+        }
+    }
+
+    // Permitir entrar con la tecla Enter
+    document.getElementById("pass").addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            verificar();
+        }
+    });
+</script>
+
+</body>
+</html>
