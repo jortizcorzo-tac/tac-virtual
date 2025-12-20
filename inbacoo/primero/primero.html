@@ -3,57 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1ro Básico - Bimestres</title>
+    <title>1ro Básico - Seguridad INBACOO</title>
     <style>
         :root {
-            --azul: linear-gradient(135deg, #00c6ff, #0072ff);
+            --azul-grad: linear-gradient(135deg, #00c6ff, #0072ff);
             --fondo: #f0f7ff;
             --blanco: #ffffff;
+            --texto: #2d3436;
         }
+
         body { 
-            margin: 0; font-family: 'Segoe UI', sans-serif; 
-            background-color: var(--fondo); text-align: center; 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: var(--fondo); 
+            color: var(--texto);
+            text-align: center; 
         }
-        .header { 
-            background: var(--blanco); padding: 40px; 
-            border-bottom: 5px solid #0072ff; 
+
+        /* Pantalla de Bloqueo Estilo Oscuro */
+        #bloqueo {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
-        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
-        .grid-bimestres {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+
+        .login-box {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 2px solid #00c6ff;
+            color: white;
+            max-width: 350px;
+            width: 90%;
         }
+
+        input {
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #334155;
+            width: 80%;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-align: center;
+            background: #0f172a;
+            color: white;
+        }
+
+        .btn-entrar {
+            padding: 15px 40px;
+            background: var(--azul-grad);
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-entrar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 198, 255, 0.4);
+        }
+
+        /* Contenido Protegido */
+        #contenido { display: none; }
+
+        .header-grado { 
+            background: var(--blanco); 
+            padding: 50px 20px; 
+            border-bottom: 5px solid #0072ff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
+
+        .grid-bimestres { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 25px; 
+        }
+        
         .card-bimestre {
-            text-decoration: none; background: var(--blanco);
-            padding: 30px; border-radius: 20px; color: #2d3436;
-            font-weight: bold; font-size: 1.2rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: 0.3s; border: 2px solid transparent;
+            text-decoration: none;
+            background: var(--blanco);
+            border-radius: 25px;
+            padding: 40px 20px;
+            transition: 0.4s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
         }
-        .card-bimestre:hover {
-            transform: translateY(-5px); border-color: #0072ff;
-            box-shadow: 0 15px 30px rgba(0,114,255,0.1);
+
+        .card-bimestre:hover { 
+            transform: translateY(-12px);
+            border-color: #0072ff;
+            box-shadow: 0 15px 35px rgba(0, 114, 255, 0.15);
         }
-        .numero { 
-            display: block; font-size: 3rem; color: #0072ff; margin-bottom: 10px;
+
+        .numero-romano {
+            font-size: 4rem;
+            font-weight: 900;
+            background: var(--azul-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
         }
-        .btn-volver {
-            display: inline-block; margin-top: 40px; color: #636e72; text-decoration: none; font-weight: bold;
+
+        .btn-volver { 
+            display: inline-block; 
+            margin-top: 50px; 
+            padding: 15px 45px; 
+            background: #e2e8f0; 
+            color: #475569; 
+            text-decoration: none; 
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
         }
+
+        .btn-volver:hover { background: #cbd5e1; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1 style="color:#0072ff; margin:0;">PRIMERO BÁSICO</h1>
-        <p>Selecciona el Bimestre</p>
-    </div>
-    <div class="container">
-        <div class="grid-bimestres">
-            <a href="primero/b1.html" class="card-bimestre"><span class="numero">I</span>Bimestre 1</a>
-            <a href="primero/b2.html" class="card-bimestre"><span class="numero">II</span>Bimestre 2</a>
-            <a href="primero/b3.html" class="card-bimestre"><span class="numero">III</span>Bimestre 3</a>
-            <a href="primero/b4.html" class="card-bimestre"><span class="numero">IV</span>Bimestre 4</a>
+
+    <div id="bloqueo">
+        <div class="login-box">
+            <h2 style="color:#00c6ff; margin-top:0;">1ro Básico</h2>
+            <p style="opacity:0.8;">Ingresa la contraseña para acceder al portal:</p>
+            <input type="password" id="passInput" placeholder="Contraseña">
+            <br>
+            <button class="btn-entrar" onclick="validar()">INGRESAR</button>
         </div>
-        <a href="index.html" class="btn-volver">⬅ Volver a Grados</a>
     </div>
+
+    <div id="contenido">
+        <div class="header-grado">
+            <h1 style="margin:0; letter-spacing:-1px;">PRIMERO BÁSICO - INBACOO</h1>
+            <p style="color: #0072ff; font-weight: bold; margin: 8px 0 0;">Material de Apoyo y Guías de Estudio</p>
+        </div>
+
+        <div class="container">
+            <div class="grid-bimestres">
+                <a href="primero/b1.html" class="card-bimestre">
+                    <span class="numero-romano">I</span>
+                    <span style="font-weight:bold; color:#2d3436; font-size:1.2rem;">Bimestre 1</span>
+                </a>
+                <a href="primero/b2.html" class="card-bimestre">
+                    <span class="numero-romano">II</span>
+                    <span style="font-weight:bold; color:#2d3436; font-size:1.2rem;">Bimestre 2</span>
+                </a>
+                <a href="primero/b3.html" class="card-bimestre">
+                    <span class="numero-romano">III</span>
+                    <span style="font-weight:bold; color:#2d3436; font-size:1.2rem;">Bimestre 3</span>
+                </a>
+                <a href="primero/b4.html" class="card-bimestre">
+                    <span class="numero-romano">IV</span>
+                    <span style="font-weight:bold; color:#2d3436; font-size:1.2rem;">Bimestre 4</span>
+                </a>
+            </div>
+            <a href="index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
+        </div>
+    </div>
+
+    <script>
+        function validar() {
+            // Contraseña sugerida para 1ro: INBACOO11
+            if(document.getElementById("passInput").value === "INBACOO11") {
+                document.getElementById("bloqueo").style.display = "none";
+                document.getElementById("contenido").style.display = "block";
+            } else {
+                alert("Contraseña incorrecta. Consulta con tu profesor.");
+            }
+        }
+        
+        // Permitir entrar con la tecla Enter
+        document.getElementById("passInput").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                validar();
+            }
+        });
+    </script>
 </body>
 </html>
