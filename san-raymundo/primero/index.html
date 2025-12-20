@@ -3,57 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TAC - Primero Básico</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Explorador Tecnológico - TAC</title>
 
 <style>
+/* ================== COLORES BASE ================== */
 :root{
+    --fondo-oscuro:#0d0d0d;
+    --tarjeta:#1c1c1c;
     --amarillo:#FFD700;
-    --oscuro:#0b0b0b;
 }
 
+/* ================== ESTILOS GENERALES ================== */
 body{
     margin:0;
-    font-family:Segoe UI, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background:#f3f4f6;
-    text-align:center;
 }
 
-/* ---------- SECCIÓN TV ---------- */
-.tv-seccion{
-    background:var(--oscuro);
-    color:white;
-    padding:40px 20px;
-    border-radius:30px;
-    max-width:1000px;
+/* ================== CONTENEDOR PRINCIPAL ================== */
+.seccion-tv{
+    max-width:1100px;
     margin:60px auto;
+    background:var(--fondo-oscuro);
+    border-radius:30px;
+    padding:40px 30px;
+    color:white;
 }
 
+.seccion-tv h2{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+/* ================== GRID 2x2 ================== */
 .grid-videos{
     display:grid;
     grid-template-columns: repeat(2, 1fr);
-    gap:25px;
-    margin-top:30px;
+    gap:30px;
 }
 
-@media (max-width:700px){
+/* Responsive: móviles */
+@media(max-width:768px){
     .grid-videos{
         grid-template-columns:1fr;
     }
 }
 
+/* ================== TARJETA DE VIDEO ================== */
 .video-card{
-    background:#1a1a1a;
+    background:var(--tarjeta);
     border-radius:20px;
     padding:15px;
 }
 
-.video-card h4{
+.video-card h3{
     color:var(--amarillo);
-    margin-bottom:10px;
+    text-align:center;
+    margin:10px 0 15px;
+    font-size:1rem;
 }
 
+/* ================== MINIATURA ================== */
 .video-link{
     position:relative;
     display:block;
@@ -66,7 +76,8 @@ body{
     display:block;
 }
 
-.play-btn{
+/* Botón play */
+.play{
     position:absolute;
     inset:0;
     display:flex;
@@ -74,60 +85,74 @@ body{
     justify-content:center;
     font-size:3rem;
     color:white;
-    background:rgba(0,0,0,.45);
+    background:rgba(0,0,0,0.45);
 }
 </style>
 </head>
 
 <body>
 
-<div class="tv-seccion">
-<h2>📺 Explorador Tecnológico</h2>
+<section class="seccion-tv">
+<h2>📺 EXPLORADOR TECNOLÓGICO</h2>
 
 <div class="grid-videos">
 
-<!-- VIDEO 1 -->
+<!-- ================================================= -->
+<!-- VIDEO 1 – ¿QUÉ ES LA IA?                          -->
+<!-- SOLO CAMBIA EL ID DEL VIDEO EN 2 LUGARES          -->
+<!-- ================================================= -->
 <div class="video-card">
-<h4>¿Qué es la Inteligencia Artificial?</h4>
+<h3>¿Qué es la Inteligencia Artificial?</h3>
+
 <a class="video-link" target="_blank"
-href="https://www.youtube.com/watch?v=2ePf9rue1Ao">
-<img src="https://img.youtube.com/vi/2ePf9rue1Ao/hqdefault.jpg">
-<div class="play-btn">▶</div>
+   href="https://www.youtube.com/watch?v=2ePf9rue1Ao">
+   <!-- MINIATURA -->
+   <img src="https://img.youtube.com/vi/2ePf9rue1Ao/hqdefault.jpg" alt="IA">
+   <div class="play">▶</div>
 </a>
 </div>
 
-<!-- VIDEO 2 -->
+<!-- ================================================= -->
+<!-- VIDEO 2 – EVOLUCIÓN DEL HARDWARE                  -->
+<!-- ================================================= -->
 <div class="video-card">
-<h4>Historia de la Computadora</h4>
+<h3>Evolución del Hardware</h3>
+
 <a class="video-link" target="_blank"
-href="https://www.youtube.com/watch?v=QxqXrZgZ5xQ">
-<img src="https://img.youtube.com/vi/QxqXrZgZ5xQ/hqdefault.jpg">
-<div class="play-btn">▶</div>
+   href="https://www.youtube.com/watch?v=GxX9Y0hYy2U">
+   <img src="https://img.youtube.com/vi/GxX9Y0hYy2U/hqdefault.jpg" alt="Hardware">
+   <div class="play">▶</div>
 </a>
 </div>
 
-<!-- VIDEO 3 -->
+<!-- ================================================= -->
+<!-- VIDEO 3 – SEGURIDAD EN INTERNET                   -->
+<!-- ================================================= -->
 <div class="video-card">
-<h4>Seguridad en Internet</h4>
+<h3>Seguridad en Internet</h3>
+
 <a class="video-link" target="_blank"
-href="https://www.youtube.com/watch?v=K7v1dA0QJZs">
-<img src="https://img.youtube.com/vi/K7v1dA0QJZs/hqdefault.jpg">
-<div class="play-btn">▶</div>
+   href="https://www.youtube.com/watch?v=HxySrSbSY7o">
+   <img src="https://img.youtube.com/vi/HxySrSbSY7o/hqdefault.jpg" alt="Seguridad">
+   <div class="play">▶</div>
 </a>
 </div>
 
-<!-- VIDEO 4 -->
+<!-- ================================================= -->
+<!-- VIDEO 4 – FUTURO DEL TRABAJO                      -->
+<!-- ================================================= -->
 <div class="video-card">
-<h4>Uso Responsable de la Tecnología</h4>
+<h3>El Futuro del Trabajo</h3>
+
 <a class="video-link" target="_blank"
-href="https://www.youtube.com/watch?v=3Q6bR5XjHZo">
-<img src="https://img.youtube.com/vi/3Q6bR5XjHZo/hqdefault.jpg">
-<div class="play-btn">▶</div>
+   href="https://www.youtube.com/watch?v=Y0aRrZlZ3Z8">
+   <img src="https://img.youtube.com/vi/Y0aRrZlZ3Z8/hqdefault.jpg" alt="Futuro">
+   <div class="play">▶</div>
 </a>
 </div>
 
 </div>
-</div>
+</section>
 
 </body>
 </html>
