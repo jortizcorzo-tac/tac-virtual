@@ -7,155 +7,200 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --azul-zafiro: linear-gradient(135deg, #004e92 0%, #000428 100%);
+            /* Colores mucho más llamativos y modernos */
+            --gradiente-azul: linear-gradient(135deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
             --amarillo: #FFD700;
             --blanco: #ffffff;
-            --fondo: #f0f2f5;
-            --sombra: 0 10px 30px rgba(0,0,0,0.1);
+            --fondo: #f0f4f8;
+            --azul-oscuro: #1a2a6c;
         }
 
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; color: #333; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; }
 
         .header-grado {
-            background: var(--azul-zafiro);
+            background: var(--gradiente-azul);
             color: var(--blanco);
             padding: 60px 20px;
-            border-bottom: 8px solid var(--amarillo);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border-bottom: 10px solid var(--amarillo);
+            box-shadow: 0 10px 30px rgba(0, 82, 212, 0.3);
+            position: relative;
         }
 
         .copyright-front {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 25px; border-radius: 50px;
-            font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;
-            border: 1px solid var(--amarillo); color: var(--amarillo);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 25px; border-radius: 50px;
+            font-size: 0.9rem; font-weight: bold; margin-bottom: 20px;
+            border: 2px solid var(--amarillo); color: var(--amarillo);
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
 
-        /* --- MOSAICO DE VIDEOS (SOLUCIÓN REAL) --- */
+        /* --- BOTONES DE BIMESTRE --- */
+        .grid-bimestres { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 50px; }
+        
+        .btn-bimestre {
+            display: flex; align-items: center; justify-content: space-between;
+            text-decoration: none; background: var(--blanco); color: var(--azul-oscuro);
+            padding: 22px 35px; border-radius: 15px; font-size: 1.5rem; font-weight: bold;
+            transition: 0.3s; border-left: 12px solid #4364F7;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+        }
+        
+        .btn-bimestre:hover { 
+            transform: scale(1.02) translateX(10px); 
+            background: #fff; 
+            border-left-color: var(--amarillo);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1); 
+        }
+
+        .numero-b { background: #eef2f3; color: #4364F7; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; display: inline-block; font-size: 1.3rem; }
+
+        /* --- SECCIÓN EXPLORADOR (NUEVA VISUALIZACIÓN) --- */
         .tv-seccion {
-            margin-top: 30px; background: #fff; padding: 40px 20px;
-            border-radius: 20px; box-shadow: var(--sombra);
+            margin-top: 50px; background: white; padding: 40px 20px;
+            border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 1px solid #e1e8ed;
         }
+
+        .tv-seccion h3 { color: #0052D4; font-size: 1.8rem; margin-bottom: 30px; }
 
         .grid-videos {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
-            margin-top: 30px;
         }
 
         @media (max-width: 768px) { .grid-videos { grid-template-columns: 1fr; } }
 
+        /* Tarjetas de video limpias y funcionales */
         .video-card {
-            background: #fdfdfd;
-            border-radius: 15px;
+            background: #f8fafc;
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid #eee;
-            transition: 0.3s;
             text-decoration: none;
-            display: block;
             color: inherit;
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+            display: block;
         }
 
-        .video-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        .video-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: #4364F7; }
 
-        .thumb-container {
-            width: 100%;
+        .thumb-box {
             position: relative;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+            padding-top: 56.25%; /* Relación 16:9 */
+            background-size: cover;
+            background-position: center;
         }
 
-        .thumb-container img { width: 100%; display: block; opacity: 0.8; }
-
-        .play-icon {
-            position: absolute;
-            font-size: 50px;
-            color: var(--amarillo);
-            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        .play-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 82, 212, 0.1);
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
         }
 
-        .video-info { padding: 15px; background: #fff; text-align: left; }
-        .video-info h4 { margin: 0; font-size: 1rem; color: #004e92; }
-        .video-info p { margin: 5px 0 0; font-size: 0.8rem; color: #777; }
+        .video-card:hover .play-overlay { background: rgba(0, 82, 212, 0.3); }
 
-        /* --- BOTONES BIMESTRE --- */
-        .btn-bimestre {
-            display: flex; align-items: center; justify-content: space-between;
-            text-decoration: none; background: #fff; color: #333;
-            padding: 20px 30px; border-radius: 12px; font-weight: bold;
-            margin-bottom: 15px; border-left: 10px solid #004e92;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s;
+        .play-overlay i { font-size: 50px; color: white; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+        .video-card h4 { 
+            padding: 15px; margin: 0; font-size: 1.1rem; color: var(--azul-oscuro);
+            background: white; border-top: 1px solid #eee;
         }
-        .btn-bimestre:hover { background: #004e92; color: #fff; }
 
-        .ws-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .ws-float {
+            position: fixed; bottom: 30px; right: 30px; background-color: #25d366;
+            color: white; width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 35px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 100;
+        }
+
+        .btn-volver { display: inline-block; margin-top: 50px; padding: 18px 50px; background: #e2e8f0; color: #475569; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .btn-volver:hover { background: #cbd5e1; }
     </style>
 </head>
 <body>
+
+    <a href="https://wa.me/50251688768" class="ws-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <div class="header-grado">
         <div class="copyright-front">
             <i class="far fa-copyright"></i> 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC
         </div>
-        <h1 style="font-size: 2.5rem; margin: 0;">PRIMERO BÁSICO</h1>
-        <p style="letter-spacing: 1px; opacity: 0.9;">INEB San Raymundo | 2026</p>
+        <h1 style="font-size: 3rem; margin: 0; letter-spacing: 1px;">PRIMERO BÁSICO</h1>
+        <p style="font-size: 1.2rem; opacity: 0.9;">INEB San Raymundo | Jornada Matutina</p>
     </div>
 
     <div class="container">
-        
-        <div style="margin-bottom: 40px;">
-            <a href="#" class="btn-bimestre"><span><i class="fas fa-file-pdf"></i> Guía Bimestre 1</span> <i class="fas fa-chevron-right"></i></a>
-            <a href="#" class="btn-bimestre"><span><i class="fas fa-file-pdf"></i> Guía Bimestre 2</span> <i class="fas fa-chevron-right"></i></a>
+        <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 30px; color: #334155;">Material de Apoyo Académico</p>
+
+        <div class="grid-bimestres">
+            <a href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view" target="_blank" class="btn-bimestre">
+                <span><i class="fas fa-file-pdf" style="color:#e11d48"></i> Bimestre 1</span>
+                <span class="numero-b">1</span>
+            </a>
+            <a href="https://drive.google.com/file/d/14BFVEuv1FVybBfqHrWhAghUtbr2yNI3y/view" target="_blank" class="btn-bimestre">
+                <span><i class="fas fa-file-pdf" style="color:#e11d48"></i> Bimestre 2</span>
+                <span class="numero-b">2</span>
+            </a>
+            <a href="https://drive.google.com/file/d/1cc6cdmF3QC_DCzLSL2T3PMzvEKWCQXhO/view" target="_blank" class="btn-bimestre">
+                <span><i class="fas fa-file-pdf" style="color:#e11d48"></i> Bimestre 3</span>
+                <span class="numero-b">3</span>
+            </a>
+            <a href="https://drive.google.com/file/d/1_2fDtMtX1QNK4JszYXFDrRksf9Fs9BF_/view" target="_blank" class="btn-bimestre">
+                <span><i class="fas fa-file-pdf" style="color:#e11d48"></i> Bimestre 4</span>
+                <span class="numero-b">4</span>
+            </a>
         </div>
 
         <div class="tv-seccion">
-            <h2 style="color: #004e92;"><i class="fas fa-play-circle"></i> BIBLIOTECA VIDEO-TAC</h2>
-            <p>Haz clic en cualquier video para abrir la lección tecnológica.</p>
+            <h3><i class="fas fa-play-circle"></i> EXPLORADOR TECNOLÓGICO 2026</h3>
+            <p style="color: #64748b; margin-bottom: 30px;">Selección de videos educativos (Clic para ver)</p>
             
-            <div class="grid-videos" id="mosaicoVideos">
+            <div class="grid-videos" id="videoGrid">
                 </div>
         </div>
 
+        <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
     </div>
 
-    <a href="https://wa.me/50251688768" class="ws-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
     <script>
-        const videos = [
-            { id: "XuWMWPwdlik", title: "Historia de la Computación", desc: "Desde el ábaco hasta hoy." },
-            { id: "wD8yJnIG7gI", title: "¿Cómo funciona el Internet?", desc: "La red de redes explicada." },
-            { id: "5U_8idp48rU", title: "Inteligencia Artificial", desc: "El futuro de las máquinas." },
-            { id: "S2p_f_v8L9E", title: "Hardware: Partes de la PC", desc: "Componentes internos." },
-            { id: "G7Pq8NIn7-U", title: "Ciberseguridad", desc: "Navega seguro en redes." },
-            { id: "vsc_VzS_B5U", title: "Robótica y Trabajo", desc: "Impacto en la sociedad." }
+        // Pool de videos con sus IDs de YouTube
+        const videoPool = [
+            { title: "¿Qué es la Inteligencia Artificial?", id: "5U_8idp48rU" },
+            { title: "Partes de la Computadora", id: "S2p_f_v8L9E" },
+            { title: "Seguridad en Internet", id: "G7Pq8NIn7-U" },
+            { title: "Historia de la Tecnología", id: "XuWMWPwdlik" },
+            { title: "El Futuro del Trabajo", id: "vsc_VzS_B5U" },
+            { title: "¿Cómo funciona el Internet?", id: "wD8yJnIG7gI" },
+            { title: "Algoritmos Explicados", id: "p7ApUREHF3A" },
+            { title: "Evolución de los Celulares", id: "C2Nbr4NNlzY" }
         ];
 
-        function cargarMosaico() {
-            const container = document.getElementById('mosaicoVideos');
-            // Mezclar videos
-            const seleccionados = videos.sort(() => 0.5 - Math.random()).slice(0, 4);
+        function cargarVideos() {
+            const grid = document.getElementById('videoGrid');
+            // Mezclamos y elegimos 4
+            const shuffle = videoPool.sort(() => 0.5 - Math.random()).slice(0, 4);
             
-            container.innerHTML = seleccionados.map(v => `
-                <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" class="video-card">
-                    <div class="thumb-container">
-                        <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="thumbnail">
-                        <i class="fas fa-play-circle play-icon"></i>
+            grid.innerHTML = shuffle.map(vid => `
+                <a href="https://www.youtube.com/watch?v=${vid.id}" target="_blank" class="video-card">
+                    <div class="thumb-box" style="background-image: url('https://img.youtube.com/vi/${vid.id}/mqdefault.jpg')">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
-                    <div class="video-info">
-                        <h4>${v.title}</h4>
-                        <p>${v.desc}</p>
-                    </div>
+                    <h4>${vid.title}</h4>
                 </a>
             `).join('');
         }
 
-        window.onload = cargarMosaico;
+        window.onload = cargarVideos;
     </script>
+
 </body>
 </html>
