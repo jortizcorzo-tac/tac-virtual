@@ -73,7 +73,8 @@
             margin-top: 15px;
             background: var(--gris-oscuro);
             color: var(--blanco);
-            padding: 12px 25px;            border-radius: 30px;
+            padding: 12px 25px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
@@ -167,19 +168,19 @@
         <h3>¡Bienvenido! Sigue estos 3 pasos:</h3>
         <ol>
             <li><b>Identifica</b> tu establecimiento abajo.</li>
-            <li><b>Consulta</b> las publicaciones oficiales.</li>
+            <li><b>Ingresa</b> a tu portal de guías y materiales.</li>
             <li><b>Mantente</b> al día con tus actividades.</li>
         </ol>
     </div>
 
     <div class="grid-establecimientos">
-        <a href="https://www.facebook.com/inebsanrayoficial/" class="btn-escuela" target="_blank">
-            <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" class="logo-escuela">
-            INEB SAN RAYMUNDO
+        <a href="ineb/index.html" class="btn-escuela">
+            <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" class="logo-escuela" alt="Logo INEB">
+            PORTAL INEB SAN RAYMUNDO
         </a>
-        <a href="https://www.facebook.com/inbacoocq/" class="btn-escuela" target="_blank">
-            <img src="https://drive.google.com/thumbnail?id=1BYDc46lNjDGs3Ct9WyP22mxXE3we5ple" class="logo-escuela">
-            INBACOO CD. QUETZAL
+        <a href="inbacoo/index.html" class="btn-escuela">
+            <img src="https://drive.google.com/thumbnail?id=1BYDc46lNjDGs3Ct9WyP22mxXE3we5ple" class="logo-escuela" alt="Logo INBACOO">
+            PORTAL INBACOO CD. QUETZAL
         </a>
     </div>
 
@@ -214,7 +215,6 @@
             "<b>Día 15:</b> La tecnología es una herramienta de respeto.",
             "<b>Día 30:</b> Pídele a Gemini que te explique temas difíciles."
         ];
-        // Simplificado para el ejemplo, se pueden añadir las 30.
         const hoy = new Date();
         const indice = (hoy.getDate() - 1) % capsulas.length;
         document.getElementById('texto-capsula').innerHTML = capsulas[indice];
