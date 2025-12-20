@@ -7,30 +7,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --gradiente-negro: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
+            /* Cambio a Colores Vibrantes */
+            --gradiente-encabezado: linear-gradient(135deg, #00308f 0%, #0076ce 100%);
             --amarillo: #FFD700;
             --blanco: #ffffff;
-            --fondo: #f3f4f6;
-            --texto-oscuro: #1a1a1a;
+            --fondo: #f4f7f9;
+            --texto-oscuro: #0a192f;
+            --azul-boton: #0056b3;
         }
 
         body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; }
 
         .header-grado {
-            background: var(--gradiente-negro);
+            background: var(--gradiente-encabezado);
             color: var(--blanco);
             padding: 50px 20px;
             border-bottom: 8px solid var(--amarillo);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0,48,143,0.3);
             position: relative;
         }
 
         .copyright-front {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             padding: 8px 25px; border-radius: 50px;
             font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.2); color: var(--amarillo);
+            border: 1px solid var(--amarillo); color: var(--amarillo);
         }
 
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
@@ -41,16 +43,17 @@
             display: flex; align-items: center; justify-content: space-between;
             text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
             padding: 20px 35px; border-radius: 12px; font-size: 1.4rem; font-weight: bold;
-            transition: 0.3s; border-left: 12px solid var(--amarillo);
+            transition: 0.3s; border-left: 12px solid var(--azul-boton);
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .btn-bimestre:hover { transform: translateX(8px); background: #fdfdfd; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .btn-bimestre:hover { transform: translateX(8px); border-left-color: var(--amarillo); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
         .numero-b { background: var(--amarillo); color: #000; width: 45px; height: 45px; line-height: 45px; border-radius: 50%; display: inline-block; font-size: 1.2rem; }
 
         /* --- GRID DE VIDEOS 2x2 --- */
         .tv-seccion {
-            margin-top: 50px; background: #111; padding: 30px 15px;
-            border-radius: 25px; color: white; box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            margin-top: 50px; background: #0a192f; padding: 30px 15px;
+            border-radius: 25px; color: white; box-shadow: 0 15px 40px rgba(0,48,143,0.4);
+            border: 2px solid #0076ce;
         }
         .grid-videos {
             display: grid;
@@ -61,7 +64,7 @@
         @media (max-width: 768px) {
             .grid-videos { grid-template-columns: 1fr; }
         }
-        .video-card { background: #222; padding: 10px; border-radius: 15px; border: 1px solid #333; }
+        .video-card { background: #112240; padding: 10px; border-radius: 15px; border: 1px solid #233554; }
         .video-card h4 { font-size: 0.9rem; margin: 10px 0; color: var(--amarillo); }
         .video-container {
             position: relative; padding-bottom: 56.25%; height: 0;
@@ -73,7 +76,7 @@
             position: fixed; bottom: 30px; right: 30px; background-color: #25d366;
             color: white; width: 60px; height: 60px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 30px; box-shadow: 2x 10px 20px rgba(0,0,0,0.3); z-index: 100;
+            font-size: 30px; box-shadow: 2px 10px 20px rgba(0,0,0,0.3); z-index: 100;
         }
 
         .btn-volver { display: inline-block; margin-top: 40px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
@@ -94,7 +97,7 @@
     </div>
 
     <div class="container">
-        <p style="font-size: 1.3rem; font-weight: bold; margin-bottom: 25px;">Guías y Material de Apoyo</p>
+        <p style="font-size: 1.3rem; font-weight: bold; margin-bottom: 25px; color: var(--azul-boton);">Guías y Material de Apoyo</p>
 
         <div class="grid-bimestres">
             <a href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view?usp=drive_link" target="_blank" class="btn-bimestre">
@@ -118,28 +121,24 @@
         <div class="tv-seccion">
             <h3><i class="fas fa-microchip"></i> EXPLORADOR TECNOLÓGICO 2026</h3>
             <div class="grid-videos">
-                <!-- Video 1 -->
                 <div class="video-card">
                     <h4>Exploración Tecnológica I</h4>
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/XuWMWPwdlik" allowfullscreen></iframe>
                     </div>
                 </div>
-                <!-- Video 2 -->
                 <div class="video-card">
                     <h4>Exploración Tecnológica II</h4>
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/wD8yJnIG7gI" allowfullscreen></iframe>
                     </div>
                 </div>
-                <!-- Video 3 -->
                 <div class="video-card">
                     <h4>Exploración Tecnológica III</h4>
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/p7ApUREHF3A" allowfullscreen></iframe>
                     </div>
                 </div>
-                <!-- Video 4 -->
                 <div class="video-card">
                     <h4>Exploración Tecnológica IV</h4>
                     <div class="video-container">
