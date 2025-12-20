@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            /* Cambio a Colores Vibrantes */
             --gradiente-encabezado: linear-gradient(135deg, #00308f 0%, #0076ce 100%);
             --amarillo: #FFD700;
             --blanco: #ffffff;
@@ -37,17 +36,35 @@
 
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
-        /* --- BOTONES DE BIMESTRE --- */
-        .grid-bimestres { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 50px; }
-        .btn-bimestre {
-            display: flex; align-items: center; justify-content: space-between;
-            text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
-            padding: 20px 35px; border-radius: 12px; font-size: 1.4rem; font-weight: bold;
-            transition: 0.3s; border-left: 12px solid var(--azul-boton);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        /* --- BOTONES DE BIMESTRE (AJUSTE DE ANCHO) --- */
+        .grid-bimestres { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; /* Centra los botones */
+            gap: 15px; 
+            margin-bottom: 50px; 
         }
+        
+        .btn-bimestre {
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            text-decoration: none; 
+            background: var(--blanco); 
+            color: var(--texto-oscuro);
+            padding: 15px 25px; 
+            border-radius: 12px; 
+            font-size: 1.2rem; 
+            font-weight: bold;
+            transition: 0.3s; 
+            border-left: 10px solid var(--azul-boton);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 400px; /* Limita el ancho máximo para que no sean tan anchos */
+        }
+
         .btn-bimestre:hover { transform: translateX(8px); border-left-color: var(--amarillo); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .numero-b { background: var(--amarillo); color: #000; width: 45px; height: 45px; line-height: 45px; border-radius: 50%; display: inline-block; font-size: 1.2rem; }
+        .numero-b { background: var(--amarillo); color: #000; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; display: inline-block; font-size: 1.1rem; }
 
         /* --- GRID DE VIDEOS 2x2 --- */
         .tv-seccion {
@@ -84,7 +101,7 @@
 </head>
 <body>
 
-    <a href="https://wa.me/50251688768?text=Hola%20Profe,%20soy%20de%20Primero%20Básico,%20Sección:____,%20Clave:____.%20Tengo%20la%20siguiente%20duda:" class="ws-float" target="_blank">
+    <a href="https://wa.me/50251688768?text=Hola%20Profe..." class="ws-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
