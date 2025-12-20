@@ -8,7 +8,6 @@
     <style>
         :root {
             --gradiente-azul: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            --gradiente-naranja: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
             --oro: #facc15;
             --gris-oscuro: #374151;
             --blanco: #ffffff;
@@ -23,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* --- VENTANILLA FLOTANTE OPTIMIZADA --- */
+        /* --- VENTANILLA FLOTANTE --- */
         .ventanilla-container {
             position: fixed;
             bottom: 20px;
@@ -46,12 +45,7 @@
             min-width: 90px;
         }
         .ventanilla-content i { font-size: 24px; margin-bottom: 5px; }
-        .ventanilla-text {
-            font-size: 0.65rem;
-            font-weight: bold;
-            text-align: center;
-            line-height: 1.1;
-        }
+        .ventanilla-text { font-size: 0.65rem; font-weight: bold; text-align: center; line-height: 1.1; }
         .ventanilla-content:hover { transform: scale(1.05); background: #3b82f6; }
 
         /* --- ENCABEZADO --- */
@@ -71,10 +65,10 @@
             margin-bottom: 10px;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; text-align: center; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; text-align: center; }
 
-        /* --- SECCIÓN DE CANAL OFICIAL Y SEGURIDAD --- */
-        .aviso-legal {
+        /* --- AVISO DE SEGURIDAD --- */
+        .aviso-inferior {
             background: #fff;
             border-radius: 15px;
             padding: 25px;
@@ -83,19 +77,15 @@
             border-left: 8px solid var(--rojo-aviso);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .aviso-legal h4 { color: var(--rojo-aviso); margin-top: 0; display: flex; align-items: center; gap: 10px; }
-        .aviso-legal p { font-size: 0.95rem; line-height: 1.6; color: var(--gris-oscuro); margin-bottom: 12px; }
+        .aviso-inferior h4 { color: var(--rojo-aviso); margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
+        .aviso-inferior p { font-size: 0.9rem; line-height: 1.4; color: var(--gris-oscuro); margin: 5px 0; }
 
         /* --- GRID DE GRADOS --- */
         .grid-grados {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin: 30px 0;
-        }
-
-        @media (max-width: 768px) {
-            .grid-grados { grid-template-columns: 1fr; }
         }
 
         .card-grado {
@@ -103,7 +93,7 @@
             text-decoration: none;
             color: var(--gris-oscuro);
             border-radius: 20px;
-            padding: 30px 15px;
+            padding: 35px 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             transition: 0.4s;
             border: 1px solid #ddd;
@@ -113,20 +103,41 @@
         }
 
         .card-grado i { font-size: 3rem; margin-bottom: 15px; color: #1e3a8a; }
-        .card-grado h3 { margin: 0; font-size: 1.2rem; }
-        .card-grado:hover { transform: translateY(-10px); background: var(--gradiente-azul); color: white; }
-        .card-grado:hover i { color: var(--oro); }
+        .card-grado h3 { margin: 0 0 5px 0; font-size: 1.4rem; color: #1e3a8a; text-transform: uppercase; }
+        
+        .docente-info {
+            font-size: 0.85rem;
+            color: #d35400; /* Color distintivo naranja */
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .secciones-tag {
+            background: #f3f4f6;
+            color: #4b5563;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-grado:hover { transform: translateY(-10px); background: var(--gradiente-azul); color: white; border-color: transparent; }
+        .card-grado:hover i, .card-grado:hover h3, .card-grado:hover .docente-info { color: var(--oro); }
+        .card-grado:hover .secciones-tag { background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3); }
 
         .btn-regresar {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 30px;
             color: var(--gris-oscuro);
             text-decoration: none;
             font-weight: bold;
-            padding: 10px 20px;
-            border: 1px solid var(--gris-oscuro);
-            border-radius: 8px;
+            padding: 12px 30px;
+            border: 2px solid var(--gris-oscuro);
+            border-radius: 10px;
+            transition: 0.3s;
         }
+        .btn-regresar:hover { background: var(--gris-oscuro); color: white; }
     </style>
 </head>
 <body>
@@ -141,9 +152,9 @@
 </div>
 
 <div class="banner-establecimiento">
-    <div class="copyright-front">© 2026 JOSÉ ANTONIO ORTIZ | CÁTEDRA DE TAC</div>
+    <div class="copyright-front">© 2026 CÁTEDRA DE TAC</div>
     <br>
-    <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" style="width: 70px; margin-bottom: 10px;" alt="Logo Establecimiento">
+    <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" style="width: 70px; margin-bottom: 10px;" alt="Logo INEB San Raymundo">
     <h1 style="margin:0; font-size: 1.8rem;">INEB SAN RAYMUNDO</h1>
     <p style="opacity: 0.9;">Recursos Educativos Digitales</p>
 </div>
@@ -152,28 +163,32 @@
     
     <div class="aviso-inferior">
         <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
-        <p><strong>Canal Oficial:</strong> Este es el único canal digital oficial de la cátedra de TAC. No se utiliza mensajería instantánea para resguardo de la privacidad.</p>
-        <p><strong>Protección al Menor:</strong> No se fomenta el uso de redes sociales para fines académicos obligatorios.</p>
-        <p><strong>Atención Presencial:</strong> Consultas en el establecimiento de <strong>7:30 - 12:30</strong>.</p>
+        <p><strong>Canal Oficial:</strong> Único medio digital autorizado para las secciones indicadas abajo.</p>
+        <p><strong>Atención Presencial:</strong> Lunes a Viernes de <strong>7:30 a 12:30</strong> horas.</p>
     </div>
 
-    <h2 style="color: var(--gris-oscuro); margin-top: 40px;">Selecciona tu Grado:</h2>
+    <h2 style="color: var(--gris-oscuro); margin-top: 40px;">Selecciona tu Grado y Sección:</h2>
 
     <div class="grid-grados">
         <a href="primero/index.html" class="card-grado">
             <i class="fas fa-laptop-code"></i>
             <h3>Primero Básico</h3>
-            <p style="font-size: 0.8rem; opacity: 0.7;">Introducción a TAC</p>
+            <div class="docente-info">Impartido por: Lic. José Antonio Ortiz</div>
+            <span class="secciones-tag">SECCIONES: A, B, C, D, E</span>
         </a>
+
         <a href="segundo/index.html" class="card-grado" style="border-top: 5px solid #10b981;">
             <i class="fas fa-microchip"></i>
             <h3>Segundo Básico</h3>
-            <p style="font-size: 0.8rem; opacity: 0.7;">Hardware y Software</p>
+            <div class="docente-info">Impartido por: Lic. José Antonio Ortiz</div>
+            <span class="secciones-tag">SECCIONES: A, B, C, D</span>
         </a>
+
         <a href="tercero/index.html" class="card-grado" style="border-top: 5px solid #e67e22;">
             <i class="fas fa-project-diagram"></i>
             <h3>Tercero Básico</h3>
-            <p style="font-size: 0.8rem; opacity: 0.7;">Ciudadanía Digital</p>
+            <div class="docente-info">Impartido por: Lic. José Antonio Ortiz</div>
+            <span class="secciones-tag">SECCIONES: A, B, C, D</span>
         </a>
     </div>
 
