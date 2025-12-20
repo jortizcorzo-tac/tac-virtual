@@ -31,3 +31,62 @@
         .num { font-size: 2.5rem; font-weight: 900; color: #0072ff; margin-top: 5px; }
         .card-temario { background: var(--temario-grad); color: white; border: 2px solid #e67e22; }
         .card-temario span { color: white !important; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div id="bloqueo">
+        <div class="login-box">
+            <h2 style="margin:0 0 10px 0;">🔐 Acceso TAC</h2>
+            <p style="color: #bbb;">Contraseña para Primero Básico (B2):</p>
+            <input type="text" id="passInput" placeholder="Contraseña aquí" onkeypress="if(event.key==='Enter') validar()">
+            <br>
+            <button onclick="validar()">INGRESAR</button>
+            <p id="errorMsg" style="color: #ff7675; display: none; margin-top: 15px; font-weight: bold;">⚠️ Contraseña incorrecta</p>
+        </div>
+    </div>
+
+    <div id="contenido">
+        <div class="banner">
+            <h1 style="margin:0;">PRIMERO BÁSICO</h1>
+            <h3 style="margin:5px 0 0; opacity: 0.9;">Bimestre II - INBACOO</h3>
+        </div>
+
+        <div class="container">
+            <div class="grid">
+                <a href="https://drive.google.com/file/d/1nJOcuX1V5bvUWGpkGd7VOzh-K5Pustlk/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">01</span></a>
+                <a href="https://drive.google.com/file/d/1gaSLSyHLrmjvPLTNiVDkvqVkKmIbbmW1/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">02</span></a>
+                <a href="https://drive.google.com/file/d/1BkDXlNuleP-tpe6CZTreL6z5KbFuIzTa/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">03</span></a>
+                <a href="https://drive.google.com/file/d/1f0zGqeTkLPuuBAlNtkUuC4YzmhptbtSR/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">04</span></a>
+                <a href="https://drive.google.com/file/d/1kMEogoRiC1JR9ehBefOGumQjf0BP1kow/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">05</span></a>
+                <a href="https://drive.google.com/file/d/1spDXNsTRN7kpIBjQPOcq1FT22s_iDjrn/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">06</span></a>
+                <a href="https://drive.google.com/file/d/16Cr-3ft861Cf7yEjt-8I9QC1qsa1QT1A/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">07</span></a>
+                <a href="https://drive.google.com/file/d/1LMygQzvwMZSc2Bu78vKG2pbW3re-MXpI/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">08</span></a>
+                <a href="https://drive.google.com/file/d/1-p0wAE3cC_XZJgSfWbbf2Jf_GsvO3Wic/view?usp=drive_link" target="_blank" class="card"><span>Semana</span><span class="num">09</span></a>
+                
+                <a href="https://drive.google.com/file/d/1WH7LnKq7h4KqK32WP5UGZ0f6iJMVh1cK/view?usp=drive_link" target="_blank" class="card card-temario">
+                    <span>TEMARIO</span>
+                    <span class="num" style="color: white; font-size: 1.1rem;">A DISTANCIA</span>
+                </a>
+            </div>
+            <br><br>
+            <a href="../index.html" style="color: #888; text-decoration: none; font-weight: bold;">⬅ Volver al menú anterior</a>
+        </div>
+    </div>
+
+    <script>
+        function validar() {
+            const passCorrecta = "TAC12CQ"; 
+            const inputVal = document.getElementById("passInput").value.toUpperCase();
+            
+            if(inputVal === passCorrecta) {
+                document.getElementById("bloqueo").style.display = "none";
+                document.getElementById("contenido").style.display = "block";
+            } else {
+                document.getElementById("errorMsg").style.display = "block";
+                document.getElementById("passInput").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
