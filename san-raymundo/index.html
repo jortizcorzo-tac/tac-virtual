@@ -40,25 +40,36 @@
             border-radius: 8px; font-weight: bold; cursor: pointer; color: #1e3a8a; 
         }
 
-        /* --- VENTANILLA FLOTANTE ARREGLADA --- */
+        /* --- VENTANILLA FLOTANTE OPTIMIZADA (VISIBLE EN MÓVIL) --- */
         .ventanilla-container {
-            position: fixed; bottom: 30px; right: 30px; 
-            display: flex; align-items: center; z-index: 100;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
         }
-        .ventanilla-tag {
-            background: #1e3a8a; color: white; padding: 12px 20px; 
-            border-radius: 30px 0 0 30px; font-weight: bold; font-size: 0.8rem; 
-            border: 3px solid var(--oro); border-right: none;
-            box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
+        .ventanilla-link { text-decoration: none; }
+        .ventanilla-content {
+            background: #1e3a8a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 15px;
+            border: 3px solid var(--oro);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: 0.3s ease;
+            min-width: 90px;
         }
-        .ventanilla-icon {
-            background: #1e3a8a; color: white; width: 65px; height: 65px; 
-            border-radius: 0 50% 50% 0; display: flex; align-items: center; 
-            justify-content: center; font-size: 26px; text-decoration: none; 
-            border: 3px solid var(--oro); box-shadow: 5px 5px 15px rgba(0,0,0,0.2); 
-            transition: 0.3s;
+        .ventanilla-content i { font-size: 24px; margin-bottom: 5px; }
+        .ventanilla-text {
+            font-size: 0.65rem;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.1;
         }
-        .ventanilla-icon:hover { background: #3b82f6; transform: scale(1.05); }
+        .ventanilla-content:hover { transform: scale(1.05); background: #3b82f6; }
 
         /* --- ENCABEZADO --- */
         .banner-establecimiento {
@@ -102,8 +113,6 @@
 
         @media (max-width: 768px) {
             .grid-grados { grid-template-columns: 1fr; }
-            .ventanilla-tag { display: none; } /* Ocultar texto en móviles para no tapar pantalla */
-            .ventanilla-icon { border-radius: 50%; }
         }
 
         .card-grado {
@@ -147,9 +156,11 @@
 </div>
 
 <div class="ventanilla-container">
-    <span class="ventanilla-tag">VENTANILLA DE ATENCIÓN</span>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-icon" target="_blank">
-        <i class="fas fa-landmark"></i>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-link" target="_blank">
+        <div class="ventanilla-content">
+            <i class="fas fa-landmark"></i>
+            <span class="ventanilla-text">VENTANILLA DE ATENCIÓN</span>
+        </div>
     </a>
 </div>
 
