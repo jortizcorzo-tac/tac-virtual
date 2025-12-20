@@ -20,83 +20,128 @@
             margin: 0; 
             font-family: 'Segoe UI', Tahoma, sans-serif; 
             background-color: var(--fondo); 
-            text-align: center; 
+            text-align: center;
+            min-height: 100vh;
         }
 
-        /* --- VENTANILLA FLOTANTE (VISIBLE EN MÓVIL) --- */
+        /* --- PANTALLA DE BLOQUEO (Asegura que no bloquee la carga) --- */
+        #bloqueo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--gradiente-encabezado); z-index: 10000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
+            text-align: center;
+        }
+        .input-pass { 
+            padding: 12px; border-radius: 8px; border: none; margin: 15px; 
+            width: 220px; text-align: center; font-size: 1.1rem; 
+            text-transform: uppercase;
+        }
+        .btn-pass { 
+            padding: 12px 30px; background: var(--amarillo); border: none; 
+            border-radius: 8px; font-weight: bold; cursor: pointer; color: #00308f; 
+        }
+
+        /* --- VENTANILLA FLOTANTE --- */
         .ventanilla-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
+            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
         }
         .ventanilla-link { text-decoration: none; }
         .ventanilla-content {
-            background: #00308f;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            border-radius: 15px;
-            border: 3px solid var(--amarillo);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: 0.3s ease;
-            min-width: 90px;
+            background: #00308f; color: white; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; padding: 10px;
+            border-radius: 15px; border: 3px solid var(--amarillo);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s ease; min-width: 90px;
         }
         .ventanilla-content i { font-size: 24px; margin-bottom: 5px; }
-        .ventanilla-text {
-            font-size: 0.65rem;
-            font-weight: bold;
-            text-align: center;
-            line-height: 1.1;
-        }
-        .ventanilla-content:hover { transform: scale(1.05); background: #0044cc; }
+        .ventanilla-text { font-size: 0.65rem; font-weight: bold; text-align: center; line-height: 1.1; }
 
-        /* --- ENCABEZADO --- */
+        /* --- CONTENIDO --- */
         .header-grado {
             background: var(--gradiente-encabezado);
-            color: var(--blanco);
-            padding: 50px 20px;
+            color: var(--blanco); padding: 50px 20px;
             border-bottom: 8px solid var(--amarillo);
-            box-shadow: 0 10px 25px rgba(0,48,143,0.3);
-            position: relative;
         }
-
-        .copyright-front {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 25px; border-radius: 50px;
-            font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;
-            border: 1px solid var(--amarillo); color: var(--amarillo);
-        }
-
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
-        /* --- BOTONES DE BIMESTRE --- */
-        .grid-bimestres { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 50px; }
         .btn-bimestre {
             display: flex; align-items: center; justify-content: space-between;
             text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
-            padding: 15px 25px; border-radius: 12px; font-size: 1.2rem; font-weight: bold;
-            transition: 0.3s; border-left: 10px solid var(--azul-boton);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%; max-width: 400px;
+            padding: 15px 25px; border-radius: 12px; font-weight: bold;
+            margin: 10px auto; border-left: 10px solid var(--azul-boton);
+            width: 100%; max-width: 400px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .btn-bimestre:hover { transform: translateX(8px); border-left-color: var(--amarillo); }
-        .numero-b { background: var(--amarillo); color: #000; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; display: inline-block; }
 
-        /* --- SECCIÓN VIDEOS --- */
         .tv-seccion {
             margin-top: 50px; background: #0a192f; padding: 30px 15px;
             border-radius: 25px; color: white; border: 2px solid #0076ce;
         }
         .grid-videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 25px; }
         @media (max-width: 768px) { .grid-videos { grid-template-columns: 1fr; } }
-        .video-card { background: #112240; padding: 10px; border-radius: 15px; border: 1px solid #233554; }
-        .video-card h4 { font-size: 0.9rem; margin: 10px 0; color: var(--amarillo); }
+        
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* --- AVISO LEGAL (DEBAJO DE VIDEOS) --- */
         .aviso-inferior {
+            background: #fff; border-radius: 15px; padding: 25px;
+            margin: 40px 0; text-align: left; border-left: 8px solid var(--rojo-aviso);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); color: var(--texto-oscuro);
+        }
+    </style>
+</head>
+<body>
+
+<div id="bloqueo">
+    <i class="fas fa-user-shield" style="font-size: 3rem; margin-bottom: 20px;"></i>
+    <h2>PORTAL INEB - 1RO BÁSICO</h2>
+    <input type="password" id="pass" class="input-pass" placeholder="Contraseña">
+    <button onclick="verificar()" class="btn-pass">ENTRAR</button>
+</div>
+
+<div class="ventanilla-container">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-link" target="_blank">
+        <div class="ventanilla-content">
+            <i class="fas fa-landmark"></i>
+            <span class="ventanilla-text">VENTANILLA DE ATENCIÓN</span>
+        </div>
+    </a>
+</div>
+
+<div class="header-grado">
+    <h1>PRIMERO BÁSICO</h1>
+    <p>INEB San Raymundo | Jornada Matutina</p>
+</div>
+
+<div class="container">
+    <div class="grid-bimestres">
+        <a href="#" class="btn-bimestre"><span>Bimestre 1</span><span style="background:var(--amarillo); padding:5px 10px; border-radius:50%;">1</span></a>
+        <a href="#" class="btn-bimestre"><span>Bimestre 2</span><span style="background:var(--amarillo); padding:5px 10px; border-radius:50%;">2</span></a>
+    </div>
+
+    <div class="tv-seccion">
+        <h3>EXPLORADOR TECNOLÓGICO</h3>
+        <div class="grid-videos">
+            <div class="video-container"><iframe src="https://www.youtube.com/embed/XuWMWPwdlik" allowfullscreen></iframe></div>
+            <div class="video-container"><iframe src="https://www.youtube.com/embed/wD8yJnIG7gI" allowfullscreen></iframe></div>
+        </div>
+    </div>
+
+    <div class="aviso-inferior">
+        <h4><i class="fas fa-shield-alt"></i> Seguridad Digital</h4>
+        <p><strong>Atención Presencial:</strong> 7:30 - 12:30.</p>
+        <p>Canal oficial de la cátedra de TAC.</p>
+    </div>
+</div>
+
+<script>
+    function verificar() {
+        if (document.getElementById("pass").value.toUpperCase() === "TAC2026") {
+            document.getElementById("bloqueo").style.display = "none";
+        } else {
+            alert("Clave incorrecta.");
+        }
+    }
+    document.getElementById("pass").addEventListener("keyup", (e) => { if(e.key === "Enter") verificar(); });
+</script>
+
+</body>
+</html>
