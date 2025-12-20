@@ -3,49 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3ro Básico - San Raymundo</title>
+    <title>3ro Básico - INEB San Raymundo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --amarillo: #FFD700;
-            --negro: #1a1a1a;
-            --naranja-btn: #e67e22;
+            /* Identidad Visual Tercero: Carbón y Oro */
+            --gradiente-encabezado: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            --oro: #D4AF37;
+            --amarillo-brillante: #FFD700;
+            --blanco: #ffffff;
+            --fondo: #f8f8f8;
+            --texto-oscuro: #1a1a1a;
         }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; text-align: center; }
-        .header-grado { background: var(--negro); color: white; padding: 40px 20px; border-bottom: 8px solid var(--amarillo); }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        .grid-bimestres { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; }
+
+        .header-grado {
+            background: var(--gradiente-encabezado);
+            color: var(--blanco);
+            padding: 50px 20px;
+            border-bottom: 8px solid var(--oro);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .copyright-front {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 8px 25px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: bold; margin-bottom: 15px;
+            border: 1px solid var(--oro); color: var(--oro);
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        /* --- BOTONES BIMESTRE COMPACTOS --- */
+        .grid-bimestres { 
+            display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 50px; 
+        }
+
         .btn-bimestre {
             display: flex; align-items: center; justify-content: space-between;
-            text-decoration: none; background: var(--negro); color: white;
-            padding: 25px 40px; border-radius: 15px; font-size: 1.5rem; font-weight: bold;
-            transition: 0.3s; border-left: 10px solid var(--naranja-btn);
+            text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
+            padding: 15px 25px; border-radius: 12px; font-size: 1.2rem; font-weight: bold;
+            transition: 0.3s; border-left: 10px solid var(--oro);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%; max-width: 400px; 
         }
-        .btn-bimestre:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .numero-b { background: var(--naranja-btn); color: white; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; display: inline-block; }
-        .btn-volver { display: inline-block; margin-top: 50px; padding: 15px 30px; background: #eee; color: #333; text-decoration: none; border-radius: 10px; font-weight: bold; }
+
+        .btn-bimestre:hover { transform: translateX(8px); border-left-color: var(--amarillo-brillante); }
+        .numero-b { background: var(--oro); color: black; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; display: inline-block; font-size: 1.1rem; }
+
+        /* --- GRID 2x1 SIN ETIQUETA ROTATIVO --- */
+        .tv-seccion {
+            margin-top: 50px; background: #1a1a1a; padding: 30px 15px;
+            border-radius: 25px; color: white; border: 2px solid var(--oro);
+        }
+
+        .grid-videos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) { .grid-videos { grid-template-columns: 1fr; } }
+
+        .video-card {
+            background: #2a2a2a; border-radius: 15px; overflow: hidden;
+            text-decoration: none; color: white; transition: 0.3s; border: 1px solid #444;
+        }
+
+        .video-card:hover { transform: scale(1.02); border-color: var(--oro); }
+
+        .thumb-wrap { position: relative; width: 100%; }
+        .thumb-wrap img { width: 100%; display: block; filter: grayscale(20%); }
+        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; color: var(--oro); }
+
+        .video-card h4 { padding: 10px; margin: 0; font-size: 0.85rem; color: var(--oro); }
+
+        .ws-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 100; text-decoration: none; }
+        .btn-volver { display: inline-block; margin-top: 40px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
     </style>
 </head>
 <body>
-<div class="header-grado">
-    <h1>TERCERO BÁSICO</h1>
-    <p>Guías de Trabajo y Documentación - TAC</p>
-</div>
-<div class="container">
-    <div class="grid-bimestres">
-        <a href="https://drive.google.com/file/d/1t06YTRhnXdyP5_K1b3OLg0QIiJ7Y5ThR/view?usp=sharing" target="_blank" class="btn-bimestre">
-            <span>Bimestre 1</span> <span class="numero-b">1</span>
-        </a>
-        <a href="https://drive.google.com/file/d/1WiTPgGMGcLFfPDpq5jwbABstqgTsKozy/view?usp=drive_link" target="_blank" class="btn-bimestre">
-            <span>Bimestre 2</span> <span class="numero-b">2</span>
-        </a>
-        <a href="https://drive.google.com/file/d/1zmJHibWeRVLPIT4QLOZBP5AIylCgJ2DF/view?usp=sharing" target="_blank" class="btn-bimestre">
-            <span>Bimestre 3</span> <span class="numero-b">3</span>
-        </a>
-        <a href="https://drive.google.com/file/d/16i4-Mc_eBfpZTl33zmQKpNchfRoAEWs1/view?usp=sharing" target="_blank" class="btn-bimestre">
-            <span>Bimestre 4</span> <span class="numero-b">4</span>
-        </a>
+
+    <a href="https://wa.me/50251688768" class="ws-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <div class="header-grado">
+        <div class="copyright-front">© 2026 JOSÉ ANTONIO ORTIZ | TAC</div>
+        <h1>TERCERO BÁSICO</h1>
+        <p>INEB San Raymundo | Jornada Matutina</p>
     </div>
-    <a href="../index.html" class="btn-volver">⬅ Volver a Grados</a>
-</div>
+
+    <div class="container">
+        <div class="grid-bimestres">
+            <a href="https://drive.google.com/file/d/1t06YTRhnXdyP5_K1b3OLg0QIiJ7Y5ThR/view?usp=sharing" target="_blank" class="btn-bimestre">
+                <span>Bimestre 1</span> <span class="numero-b">1</span>
+            </a>
+            <a href="https://drive.google.com/file/d/1WiTPgGMGcLFfPDpq5jwbABstqgTsKozy/view?usp=drive_link" target="_blank" class="btn-bimestre">
+                <span>Bimestre 2</span> <span class="numero-b">2</span>
+            </a>
+            <a href="https://drive.google.com/file/d/1zmJHibWeRVLPIT4QLOZBP5AIylCgJ2DF/view?usp=sharing" target="_blank" class="btn-bimestre">
+                <span>Bimestre 3</span> <span class="numero-b">3</span>
+            </a>
+            <a href="https://drive.google.com/file/d/16i4-Mc_eBfpZTl33zmQKpNchfRoAEWs1/view?usp=sharing" target="_blank" class="btn-bimestre">
+                <span>Bimestre 4</span> <span class="numero-b">4</span>
+            </a>
+        </div>
+
+        <div class="tv-seccion">
+            <h3><i class="fas fa-microchip"></i> EXPLORADOR TAC</h3>
+            <div class="grid-videos" id="videoGrid">
+                </div>
+        </div>
+
+        <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
+    </div>
+
+    <script>
+        const pool = [
+            { id: "XuWMWPwdlik", title: "Historia Tecnológica" },
+            { id: "wD8yJnIG7gI", title: "Funcionamiento Internet" },
+            { id: "p7ApUREHF3A", title: "Lógica y Algoritmos" },
+            { id: "C2Nbr4NNlzY", title: "Evolución Móvil" }
+        ];
+
+        function cargarVideos() {
+            const grid = document.getElementById('videoGrid');
+            const seleccion = pool.sort(() => 0.5 - Math.random()).slice(0, 2);
+            
+            grid.innerHTML = seleccion.map(v => `
+                <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" class="video-card">
+                    <div class="thumb-wrap">
+                        <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg">
+                        <i class="fas fa-play-circle play-btn"></i>
+                    </div>
+                    <h4>${v.title}</h4>
+                </a>
+            `).join('');
+        }
+        window.onload = cargarVideos;
+    </script>
 </body>
 </html>
