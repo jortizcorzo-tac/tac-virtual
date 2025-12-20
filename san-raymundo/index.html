@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INEB San Raymundo - TAC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
+            /* --- CONFIGURACIÓN DE COLORES (GRADIENTES MODERNOS) --- */
+            --gradiente-azul: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            --gradiente-naranja: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
             --gris-oscuro: #374151;
-            --naranja: #E67E22;
             --blanco: #ffffff;
             --fondo: #f3f4f6;
         }
@@ -19,16 +22,37 @@
             background-color: var(--fondo);
         }
 
-        /* Banner de Identificación */
-        .banner-establecimiento {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 40px 20px;
+        /* --- SEGURIDAD: PANTALLA DE BLOQUEO --- */
+        #bloqueo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--gradiente-azul); z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
             text-align: center;
-            border-bottom: 6px solid var(--naranja);
+        }
+        .input-pass { padding: 12px; border-radius: 8px; border: none; margin: 15px; width: 220px; text-align: center; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .btn-pass { padding: 12px 30px; background: #facc15; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #1e3a8a; transition: 0.3s; }
+        .btn-pass:hover { background: #ffffff; transform: scale(1.05); }
+
+        /* --- ENCABEZADO CON PROFUNDIDAD Y COPYRIGHT --- */
+        .banner-establecimiento {
+            background: var(--gradiente-azul);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 8px solid #e67e22;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .copyright-front {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .container {
@@ -41,11 +65,11 @@
         .instruccion-grado {
             font-size: 1.4rem;
             color: var(--gris-oscuro);
-            margin-bottom: 30px;
+            margin: 30px 0;
             font-weight: bold;
         }
 
-        /* Botones de Grado Estilo App */
+        /* --- BOTONES DE GRADO --- */
         .grid-grados {
             display: grid;
             grid-template-columns: 1fr;
@@ -57,72 +81,19 @@
             background: var(--blanco);
             color: var(--gris-oscuro);
             text-decoration: none;
-            padding: 30px;
+            padding: 25px 35px;
             border-radius: 15px;
             font-size: 1.5rem;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-left: 10px solid var(--naranja);
-            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 12px solid #E67E22;
+            transition: 0.4s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .btn-grado:hover {
-            transform: scale(1.02);
-            background: var(--gris-oscuro);
+            transform: translateX(10px);
+            background: var(--gradiente-naranja);
             color: white;
-        }
-
-        .btn-regresar {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--gris-oscuro);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-    </style>
-</head>
-<body>
-
-<div class="banner-establecimiento">
-    <img src="https://drive.google.com/thumbnail?id=1tHpqx2cirAH6SeyYPKEsW1oCaor2GKkr" style="width: 80px; margin-bottom: 10px;">
-    <h1>INEB SAN RAYMUNDO</h1>
-    <p>Selecciona tu grado para ver contenidos</p>
-</div>
-
-<div class="container">
-    <p class="instruccion-grado">¿En qué grado estás inscrito?</p>
-
-    <div class="grid-grados">
-        <a href="primero/index.html" class="btn-grado">
-            <span>Primero Básico</span>
-            <span>➔</span>
-        </a>
-        <a href="segundo/index.html" class="btn-grado" style="border-left-color: var(--gris-oscuro);">
-            <span>Segundo Básico</span>
-            <span>➔</span>
-        </a>
-        <a href="tercero/index.html" class="btn-grado">
-            <span>Tercero Básico</span>
-            <span>➔</span>
-        </a>
-    </div>
-
-    <a href="../index.html" class="btn-regresar">⬅ Volver al Inicio</a>
-</div>
-
-<footer>
-    Cátedra de TAC | José Antonio Ortiz
-</footer>
-
-</body>
-</html>
