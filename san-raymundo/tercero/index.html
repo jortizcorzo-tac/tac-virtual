@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3ro Básico - INEB San Raymundo</title>
+    
+    <link rel="icon" type="image/png" href="../../img/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
             /* Identidad Visual Tercero: Carbón y Oro */
@@ -16,23 +19,35 @@
             --texto-oscuro: #1a1a1a;
             --azul-institucional: #1a3a3a;
             --rojo-institucional: #8b0000;
+            /* Colores diferenciados para botones */
+            --b1: #D4AF37; /* Oro */
+            --b2: #3498db; /* Azul */
+            --b3: #e67e22; /* Naranja */
+            --b4: #9b59b6; /* Púrpura */
         }
 
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; color: #333; }
+        /* Modo Lectura */
+        body.modo-lectura {
+            --fondo: #121212;
+            --blanco: #262626;
+            --texto-oscuro: #e2e8f0;
+            --oro: #FFD700;
+        }
 
-        /* --- PANTALLA DE BLOQUEO --- */
-        #bloqueo {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--gradiente-encabezado); z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background-color: var(--fondo); 
+            text-align: center; 
+            color: var(--texto-oscuro);
+            transition: background 0.3s, color 0.3s;
         }
-        .input-pass { 
-            padding: 12px; border-radius: 8px; border: none; margin: 15px; 
-            width: 220px; text-align: center; font-size: 1.1rem; text-transform: uppercase;
-        }
-        .btn-pass { 
-            padding: 12px 30px; background: var(--oro); border: none; 
-            border-radius: 8px; font-weight: bold; cursor: pointer; color: #1a1a1a; 
+
+        .btn-modo-lectura {
+            position: fixed; top: 10px; right: 10px;
+            background: #374151; color: white; border: 2px solid var(--oro);
+            padding: 8px 15px; border-radius: 20px; cursor: pointer;
+            font-size: 0.8rem; font-weight: bold; z-index: 2000;
         }
 
         /* --- VENTANILLA FLOTANTE --- */
@@ -64,43 +79,61 @@
         .grid-bimestres { display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 30px 0; }
         .btn-bimestre {
             display: flex; align-items: center; justify-content: space-between;
-            text-decoration: none; background: var(--blanco); color: #444;
+            text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
             padding: 15px 25px; border-radius: 12px; font-weight: bold; font-size: 1.1rem;
-            transition: 0.2s; border-left: 10px solid var(--oro);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; max-width: 400px; 
+            transition: 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; max-width: 400px; 
         }
+
+        /* Clases de diferenciación */
+        .btn-b1 { border-left: 10px solid var(--b1); }
+        .btn-b2 { border-left: 10px solid var(--b2); }
+        .btn-b3 { border-left: 10px solid var(--b3); }
+        .btn-b4 { border-left: 10px solid var(--b4); }
+
+        .btn-bimestre:hover { transform: translateX(8px); background: #fdfdfd; }
         .numero-b { background: var(--oro); color: #000; width: 35px; height: 35px; line-height: 35px; border-radius: 50%; display: inline-block; }
 
         /* --- EXPLORADOR TAC --- */
         .tv-seccion {
             margin: 40px 0; background: #0f172a; padding: 25px; border-radius: 15px; color: white;
+            border: 1px solid var(--oro);
         }
-        .tv-seccion h3 { margin-bottom: 20px; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; }
         .grid-videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         @media (max-width: 600px) { .grid-videos { grid-template-columns: 1fr; } }
 
         .video-card {
             background: #1e293b; border-radius: 10px; overflow: hidden;
-            text-decoration: none; color: white; border: 1px solid #334155;
+            text-decoration: none; color: white; border: 1px solid #334155; transition: 0.3s;
         }
+        .video-card:hover { border-color: var(--oro); transform: scale(1.02); }
         .thumb-wrap { position: relative; }
         .thumb-wrap img { width: 100%; display: block; }
-        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: #ef4444; }
+        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: var(--oro); }
 
-        /* --- SECCIÓN DE AVISOS (Forma unificada con 1ro Básico) --- */
+        /* --- SECCIÓN DE AVISOS Y ÉTICA --- */
         .aviso-inferior {
-            background: #fff; border-radius: 15px; padding: 25px;
+            background: var(--blanco); border-radius: 15px; padding: 25px;
             margin: 40px 0; text-align: left; border-left: 8px solid var(--rojo-institucional);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .aviso-inferior h4 { color: var(--rojo-institucional); margin-top: 0; display: flex; align-items: center; gap: 10px; }
-        .aviso-inferior p { font-size: 0.9rem; line-height: 1.6; color: var(--texto-oscuro); margin-bottom: 8px; }
+        .aviso-inferior p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
 
-        /* --- BOTÓN VOLVER --- */
+        .manifiesto-etica {
+            margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ccc;
+            font-style: italic; font-weight: 500;
+        }
+
         .btn-volver {
             display: inline-block; margin-top: 20px; padding: 15px 40px; 
             background: #ddd; color: #333; text-decoration: none; 
             border-radius: 50px; font-weight: bold;
+        }
+
+        #bloqueo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--gradiente-encabezado); z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
         }
     </style>
 </head>
@@ -109,9 +142,11 @@
     <div id="bloqueo">
         <i class="fas fa-user-shield" style="font-size: 3rem; margin-bottom: 20px; color: var(--oro);"></i>
         <h2>ACCESO TERCERO BÁSICO</h2>
-        <input type="password" id="pass" class="input-pass" placeholder="Contraseña">
-        <button onclick="verificar()" class="btn-pass">ENTRAR</button>
+        <input type="password" id="pass" style="padding: 12px; border-radius: 8px; border: none; margin: 15px; width: 220px; text-align: center; text-transform: uppercase;" placeholder="Contraseña">
+        <button onclick="verificar()" style="padding: 12px 30px; background: var(--oro); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #1a1a1a;">ENTRAR</button>
     </div>
+
+    <button class="btn-modo-lectura" onclick="toggleModo()">🌓 Modo Lectura</button>
 
     <div class="ventanilla-container">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-link" target="_blank">
@@ -129,18 +164,17 @@
     </div>
 
     <div class="container">
-        
         <div class="grid-bimestres">
-            <a href="https://drive.google.com/file/d/1t06YTRhnXdyP5_K1b3OLg0QIiJ7Y5ThR/view?usp=sharing" target="_blank" class="btn-bimestre">
+            <a href="URL_B1" target="_blank" class="btn-bimestre btn-b1">
                 <span>Bimestre 1</span> <span class="numero-b">1</span>
             </a>
-            <a href="https://drive.google.com/file/d/1WiTPgGMGcLFfPDpq5jwbABstqgTsKozy/view?usp=drive_link" target="_blank" class="btn-bimestre">
+            <a href="URL_B2" target="_blank" class="btn-bimestre btn-b2">
                 <span>Bimestre 2</span> <span class="numero-b">2</span>
             </a>
-            <a href="https://drive.google.com/file/d/1zmJHibWeRVLPIT4QLOZBP5AIylCgJ2DF/view?usp=sharing" target="_blank" class="btn-bimestre">
+            <a href="URL_B3" target="_blank" class="btn-bimestre btn-b3">
                 <span>Bimestre 3</span> <span class="numero-b">3</span>
             </a>
-            <a href="https://drive.google.com/file/d/16i4-Mc_eBfpZTl33zmQKpNchfRoAEWs1/view?usp=sharing" target="_blank" class="btn-bimestre">
+            <a href="URL_B4" target="_blank" class="btn-bimestre btn-b4">
                 <span>Bimestre 4</span> <span class="numero-b">4</span>
             </a>
         </div>
@@ -152,9 +186,11 @@
 
         <div class="aviso-inferior">
             <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
-            <p><strong>Canal Oficial:</strong> Este es el único canal digital oficial de la cátedra de TAC. No se utiliza mensajería instantánea para resguardo de la privacidad.</p>
-            <p><strong>Protección al Menor:</strong> No se fomenta el uso de redes sociales para fines académicos obligatorios.</p>
-            <p><strong>Atención Presencial:</strong> Consultas en el establecimiento de <strong>7:30 - 12:30</strong>.</p>
+            <p><strong>Canal Oficial:</strong> Único medio digital oficial de la cátedra.</p>
+            <p><strong>Atención Presencial:</strong> De <strong>7:30 - 12:30</strong>.</p>
+            <div class="manifiesto-etica">
+                <strong>Compromiso de Ética Digital:</strong> La Inteligencia Artificial es una herramienta de apoyo. No se aceptarán tareas generadas íntegramente por IA; el análisis y aporte personal del estudiante son indispensables.
+            </div>
         </div>
 
         <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
@@ -174,6 +210,8 @@
             } else { alert("Clave incorrecta."); }
         }
 
+        function toggleModo() { document.body.classList.toggle('modo-lectura'); }
+
         function cargarVideos() {
             const grid = document.getElementById('videoGrid');
             const seleccion = pool.sort(() => 0.5 - Math.random()).slice(0, 2);
@@ -186,6 +224,7 @@
                 </a>
             `).join('');
         }
+        
         window.onload = cargarVideos;
         document.getElementById("pass").addEventListener("keyup", (e) => { if(e.key === "Enter") verificar(); });
     </script>
