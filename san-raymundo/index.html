@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INEB San Raymundo - TAC</title>
+    
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -13,13 +16,40 @@
             --blanco: #ffffff;
             --fondo: #f3f4f6;
             --rojo-aviso: #991b1b;
+            --texto-principal: #111827;
+        }
+
+        /* Estilos para Modo Lectura */
+        body.modo-lectura {
+            --fondo: #1a1a1a;
+            --blanco: #2d2d2d;
+            --texto-principal: #e5e7eb;
+            --gris-oscuro: #f3f4f6;
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--fondo);
+            color: var(--texto-principal);
             overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Botón Modo Lectura */
+        .btn-modo-lectura {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: var(--gradiente-azul);
+            color: white;
+            border: 2px solid var(--oro);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2000;
         }
 
         /* --- VENTANILLA FLOTANTE --- */
@@ -67,9 +97,9 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; text-align: center; }
 
-        /* --- AVISO DE SEGURIDAD --- */
+        /* --- SECCIÓN DE AVISOS Y ÉTICA --- */
         .aviso-inferior {
-            background: #fff;
+            background: var(--blanco);
             border-radius: 15px;
             padding: 25px;
             margin: 20px 0;
@@ -78,7 +108,15 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .aviso-inferior h4 { color: var(--rojo-aviso); margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
-        .aviso-inferior p { font-size: 0.9rem; line-height: 1.4; color: var(--gris-oscuro); margin: 5px 0; }
+        .aviso-inferior p { font-size: 0.9rem; line-height: 1.4; color: var(--texto-principal); margin: 8px 0; }
+
+        .manifiesto-etico-mini {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
 
         /* --- GRID DE GRADOS --- */
         .grid-grados {
@@ -91,7 +129,7 @@
         .card-grado {
             background: var(--blanco);
             text-decoration: none;
-            color: var(--gris-oscuro);
+            color: var(--texto-principal);
             border-radius: 20px;
             padding: 35px 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
@@ -129,7 +167,7 @@
         .btn-regresar {
             display: inline-block;
             margin-top: 30px;
-            color: var(--gris-oscuro);
+            color: var(--texto-principal);
             text-decoration: none;
             font-weight: bold;
             padding: 12px 30px;
@@ -141,6 +179,8 @@
     </style>
 </head>
 <body>
+
+<button class="btn-modo-lectura" onclick="toggleModoLectura()">🌓 Modo Lectura</button>
 
 <div class="ventanilla-container">
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-link" target="_blank">
@@ -165,6 +205,9 @@
         <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
         <p><strong>Canal Oficial:</strong> Único medio digital autorizado para las secciones indicadas abajo.</p>
         <p><strong>Atención Presencial:</strong> Lunes a Viernes de <strong>7:30 a 12:30</strong> horas.</p>
+        <div class="manifiesto-etico-mini">
+            <strong>Compromiso Ético:</strong> La Inteligencia Artificial es una herramienta de apoyo. No se aceptarán tareas generadas íntegramente por IA sin el debido análisis y aporte personal del estudiante.
+        </div>
     </div>
 
     <h2 style="color: var(--gris-oscuro); margin-top: 40px;">Selecciona tu Grado y Sección:</h2>
@@ -194,6 +237,12 @@
 
     <a href="../index.html" class="btn-regresar">⬅ Volver al Inicio General</a>
 </div>
+
+<script>
+    function toggleModoLectura() {
+        document.body.classList.toggle('modo-lectura');
+    }
+</script>
 
 </body>
 </html>
