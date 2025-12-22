@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INBACOO - Portal TAC</title>
+    
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+
     <style>
         :root {
             /* Paleta institucional basada en los grados */
@@ -17,12 +20,36 @@
             --fondo-sitio: #f3f4f6; /* Gris neutro suave, menos brillante */
         }
 
+        /* Variables para Modo Lectura */
+        body.modo-lectura {
+            --fondo-sitio: #1a1a1a;
+            --blanco: #2d2d2d;
+            --texto-titulo: #e5e7eb;
+            --texto-cuerpo: #9ca3af;
+        }
+
         body { 
             margin: 0; 
             font-family: 'Segoe UI', system-ui, sans-serif; 
             background-color: var(--fondo-sitio); 
             color: var(--texto-titulo);
             text-align: center; 
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Botón Modo Lectura */
+        .btn-modo-lectura {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #374151;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            z-index: 1000;
         }
 
         /* --- ENCABEZADO --- */
@@ -91,7 +118,7 @@
         /* --- PIE DE TARJETA --- */
         .footer-card {
             padding: 25px;
-            background: white;
+            background: var(--blanco);
         }
 
         .nombre-grado { 
@@ -105,12 +132,12 @@
         .secciones-pill { 
             display: inline-block;
             font-size: 0.8rem; 
-            background: #f3f4f6;
+            background: rgba(0,0,0,0.05);
             padding: 6px 15px;
             border-radius: 50px;
-            color: #6b7280;
+            color: var(--texto-cuerpo);
             font-weight: bold;
-            border: 1px solid #e5e7eb;
+            border: 1px solid rgba(0,0,0,0.1);
         }
 
         /* --- BOTÓN INFERIOR --- */
@@ -134,10 +161,12 @@
 </head>
 <body>
 
+<button class="btn-modo-lectura" onclick="toggleModo()">🌓 Modo Lectura</button>
+
 <div class="header-fresh">
     <img src="../img/logo-inbacoo.png" style="width: 80px; margin-bottom: 15px;" alt="Logo INBACOO">
     <h1>INBACOO - Ciudad Quetzal</h1>
-    <p style="margin: 8px 0 0; color: #6b7280; font-size: 0.9rem;">Cátedra de TAC | Jornada Vespertina</p>
+    <p style="margin: 8px 0 0; color: var(--texto-cuerpo); font-size: 0.9rem;">Cátedra de TAC | Jornada Vespertina</p>
 </div>
 
 <div class="container">
@@ -171,6 +200,12 @@
 
     <a href="../index.html" class="btn-inicio">🏠 VOLVER AL PORTAL PRINCIPAL</a>
 </div>
+
+<script>
+    function toggleModo() {
+        document.body.classList.toggle('modo-lectura');
+    }
+</script>
 
 </body>
 </html>
