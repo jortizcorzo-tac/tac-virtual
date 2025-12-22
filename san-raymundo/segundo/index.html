@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2do Básico - INEB San Raymundo</title>
+    
+    <link rel="icon" type="image/png" href="../../img/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
             /* Identidad Visual Segundo: Verdes Tecnológicos */
@@ -15,15 +18,36 @@
             --texto-oscuro: #064e3b;
             --verde-acento: #10b981;
             --rojo-aviso: #991b1b;
+            /* Colores diferenciados para botones */
+            --b1: #059669;
+            --b2: #0284c7;
+            --b3: #d97706;
+            --b4: #7c3aed;
         }
 
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--fondo); text-align: center; }
+        /* Variables para Modo Lectura */
+        body.modo-lectura {
+            --fondo: #121212;
+            --blanco: #1e293b;
+            --texto-oscuro: #f1f5f9;
+            --verde-acento: #34d399;
+        }
 
-        /* --- PANTALLA DE BLOQUEO --- */
-        #bloqueo {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--gradiente-encabezado); z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background-color: var(--fondo); 
+            color: var(--texto-oscuro);
+            text-align: center; 
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Botón Modo Lectura */
+        .btn-modo-lectura {
+            position: fixed; top: 10px; right: 10px;
+            background: #374151; color: white; border: 2px solid var(--amarillo);
+            padding: 8px 15px; border-radius: 20px; cursor: pointer;
+            font-size: 0.8rem; font-weight: bold; z-index: 2000;
         }
 
         /* --- VENTANILLA FLOTANTE --- */
@@ -35,8 +59,7 @@
             border-radius: 15px; border: 3px solid var(--amarillo);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s ease; min-width: 90px;
         }
-        .ventanilla-content i { font-size: 24px; margin-bottom: 5px; }
-        .ventanilla-text { font-size: 0.65rem; font-weight: bold; text-align: center; line-height: 1.1; }
+        .ventanilla-content:hover { transform: scale(1.05); background: #065f46; }
 
         .header-grado {
             background: var(--gradiente-encabezado);
@@ -60,11 +83,16 @@
             display: flex; align-items: center; justify-content: space-between;
             text-decoration: none; background: var(--blanco); color: var(--texto-oscuro);
             padding: 15px 25px; border-radius: 12px; font-size: 1.2rem; font-weight: bold;
-            transition: 0.3s; border-left: 10px solid var(--verde-acento);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%; max-width: 400px; 
+            transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%; max-width: 400px; 
         }
 
-        .btn-bimestre:hover { transform: translateX(8px); border-left-color: var(--amarillo); }
+        /* Clases para diferenciación */
+        .btn-b1 { border-left: 10px solid var(--b1); }
+        .btn-b2 { border-left: 10px solid var(--b2); }
+        .btn-b3 { border-left: 10px solid var(--b3); }
+        .btn-b4 { border-left: 10px solid var(--b4); }
+
+        .btn-bimestre:hover { transform: translateX(8px); background: #fdfdfd; }
         .numero-b { background: var(--amarillo); color: #000; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; display: inline-block; font-size: 1.1rem; }
 
         .tv-seccion {
@@ -85,16 +113,27 @@
         .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; color: var(--amarillo); }
         .video-card h4 { padding: 10px; margin: 0; font-size: 0.85rem; }
 
-        /* --- AVISO LEGAL (Corregido según referencia 1ro Básico) --- */
+        /* --- AVISO LEGAL Y ÉTICA --- */
         .aviso-inferior {
-            background: #fff; border-radius: 15px; padding: 25px;
+            background: var(--blanco); border-radius: 15px; padding: 25px;
             margin: 40px 0; text-align: left; border-left: 8px solid var(--rojo-aviso);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .aviso-inferior h4 { color: var(--rojo-aviso); margin-top: 0; display: flex; align-items: center; gap: 10px; }
         .aviso-inferior p { font-size: 0.9rem; line-height: 1.6; color: var(--texto-oscuro); margin-bottom: 8px; }
 
+        .manifiesto-etica {
+            margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ccc;
+            font-style: italic; font-weight: 500;
+        }
+
         .btn-volver { display: inline-block; margin-top: 20px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
+
+        #bloqueo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--gradiente-encabezado); z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +144,8 @@
         <input type="password" id="pass" style="padding: 12px; border-radius: 8px; border: none; margin: 15px; width: 220px; text-align: center; text-transform: uppercase;" placeholder="Contraseña">
         <button onclick="verificar()" style="padding: 12px 30px; background: var(--amarillo); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #064e3b;">ENTRAR</button>
     </div>
+
+    <button class="btn-modo-lectura" onclick="toggleModo()">🌓 Modo Lectura</button>
 
     <div class="ventanilla-container">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLgVR1w08oPbH64Y-H_zuEUIfjb4x9UFjK-9LXBayeg3-Njg/viewform" class="ventanilla-link" target="_blank">
@@ -123,16 +164,16 @@
 
     <div class="container">
         <div class="grid-bimestres">
-            <a href="https://drive.google.com/file/d/1BxoYuWBL1kZWGi1R-zPSIFZK2tbySpbo/view" target="_blank" class="btn-bimestre">
+            <a href="https://drive.google.com/file/d/1BxoYuWBL1kZWGi1R-zPSIFZK2tbySpbo/view" target="_blank" class="btn-bimestre btn-b1">
                 <span>Bimestre 1</span> <span class="numero-b">1</span>
             </a>
-            <a href="https://drive.google.com/file/d/1UQHnG-Cy9B-YzncmBCOqMJGzD0xXARzz/view" target="_blank" class="btn-bimestre">
+            <a href="https://drive.google.com/file/d/1UQHnG-Cy9B-YzncmBCOqMJGzD0xXARzz/view" target="_blank" class="btn-bimestre btn-b2">
                 <span>Bimestre 2</span> <span class="numero-b">2</span>
             </a>
-            <a href="https://drive.google.com/file/d/1wg4iAXUPbdrmlbvSv8N7GWYalnrjjN-z/view" target="_blank" class="btn-bimestre">
+            <a href="https://drive.google.com/file/d/1wg4iAXUPbdrmlbvSv8N7GWYalnrjjN-z/view" target="_blank" class="btn-bimestre btn-b3">
                 <span>Bimestre 3</span> <span class="numero-b">3</span>
             </a>
-            <a href="https://drive.google.com/file/d/1jWMv3oppmiU4vJNf8i9BJhsrrRpApMa4/view" target="_blank" class="btn-bimestre">
+            <a href="https://drive.google.com/file/d/1jWMv3oppmiU4vJNf8i9BJhsrrRpApMa4/view" target="_blank" class="btn-bimestre btn-b4">
                 <span>Bimestre 4</span> <span class="numero-b">4</span>
             </a>
         </div>
@@ -144,9 +185,12 @@
 
         <div class="aviso-inferior">
             <h4><i class="fas fa-shield-alt"></i> Seguridad Digital y Comunicación Oficial</h4>
-            <p><strong>Canal Oficial:</strong> Este es el único canal digital oficial de la cátedra de TAC. No se utiliza mensajería instantánea para resguardo de la privacidad.</p>
-            <p><strong>Protección al Menor:</strong> No se fomenta el uso de redes sociales para fines académicos obligatorios.</p>
-            <p><strong>Atención Presencial:</strong> Consultas en el establecimiento de <strong>7:30 - 12:30</strong>.</p>
+            <p><strong>Canal Oficial:</strong> Único medio oficial de la cátedra de TAC.</p>
+            <p><strong>Protección al Menor:</strong> No se fomenta el uso de redes sociales para fines académicos.</p>
+            <p><strong>Atención Presencial:</strong> De <strong>7:30 a 12:30</strong> en el establecimiento.</p>
+            <div class="manifiesto-etica">
+                <strong>Compromiso de Ética Digital:</strong> La Inteligencia Artificial es una herramienta de apoyo. No se aceptarán tareas generadas íntegramente por IA; el análisis y aporte personal del estudiante son indispensables.
+            </div>
         </div>
 
         <a href="../index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
@@ -177,9 +221,11 @@
         function verificar() {
             if (document.getElementById("pass").value.toUpperCase() === "TAC2026") {
                 document.getElementById("bloqueo").style.display = "none";
-            } else {
-                alert("Clave incorrecta.");
-            }
+            } else { alert("Clave incorrecta."); }
+        }
+
+        function toggleModo() {
+            document.body.classList.toggle('modo-lectura');
         }
 
         window.onload = rotarVideos;
