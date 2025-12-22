@@ -4,15 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2do Básico - INBACOO</title>
+    
+    <link rel="icon" type="image/png" href="../../img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
-            /* Verde Tecnológico: más profundo y elegante */
+            /* Verde Tecnológico: Identidad Segundo Básico */
             --verde-primario: #064e3b;
             --verde-acento: #059669;
-            --verde-grad: linear-gradient(135deg, #064e3b 0%, #059669 100%);
-            --fondo: #f3f4f6; /* Gris neutro coherente con el portal */
+            --fondo: #f3f4f6;
             --blanco: #ffffff;
             --texto: #1f2937;
+            /* Gradientes diferenciados para cada bimestre */
+            --grad-b1: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+            --grad-b2: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+            --grad-b3: linear-gradient(135deg, #14532d 0%, #22c55e 100%);
+            --grad-b4: linear-gradient(135deg, #022c22 0%, #0d9488 100%);
+        }
+
+        /* Modo Lectura */
+        body.modo-lectura {
+            --fondo: #0f172a;
+            --blanco: #1e293b;
+            --texto: #f1f5f9;
+            --verde-acento: #34d399;
         }
 
         body { 
@@ -21,6 +37,14 @@
             background-color: var(--fondo); 
             color: var(--texto);
             text-align: center; 
+            transition: 0.3s;
+        }
+
+        .btn-modo-lectura {
+            position: fixed; top: 10px; right: 10px;
+            background: #374151; color: white; border: 1px solid var(--verde-acento);
+            padding: 8px 15px; border-radius: 20px; cursor: pointer;
+            font-size: 0.8rem; font-weight: bold; z-index: 2000;
         }
 
         .header-grado { 
@@ -59,11 +83,16 @@
         .numero-romano {
             font-size: 3.5rem;
             font-weight: 900;
-            background: var(--verde-grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 5px;
         }
+
+        /* Asignación de gradientes únicos */
+        .rom-1 { background-image: var(--grad-b1); }
+        .rom-2 { background-image: var(--grad-b2); }
+        .rom-3 { background-image: var(--grad-b3); }
+        .rom-4 { background-image: var(--grad-b4); }
 
         .nombre-bimestre {
             font-weight: 800; 
@@ -73,9 +102,20 @@
             letter-spacing: 0.5px;
         }
 
+        .aviso-etica {
+            background: var(--blanco);
+            margin-top: 40px;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--verde-primario);
+            text-align: left;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
         .btn-volver { 
             display: inline-block; 
-            margin-top: 50px; 
+            margin-top: 40px; 
             padding: 15px 45px; 
             background: #374151; 
             color: white; 
@@ -85,40 +125,73 @@
             transition: 0.3s;
         }
 
-        .btn-volver:hover { 
-            background: #111827; 
-            transform: scale(1.02);
+        #bloqueo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--verde-primario); z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
         }
     </style>
 </head>
 <body>
 
-    <div class="header-grado">
-        <h1 style="margin:0; letter-spacing: 1px; color: #064e3b;">SEGUNDO BÁSICO</h1>
-        <p style="color: #6b7280; font-weight: 500; margin: 8px 0 0; text-transform: uppercase; font-size: 0.9rem;">INBACOO | Material de Apoyo</p>
+<div id="bloqueo">
+    <i class="fas fa-lock" style="font-size: 3rem; margin-bottom: 20px;"></i>
+    <h2>ACCESO SEGUNDO BÁSICO</h2>
+    <input type="password" id="pass" style="padding: 12px; border-radius: 8px; border: none; margin: 15px; width: 220px; text-align: center; text-transform: uppercase;" placeholder="Contraseña">
+    <button onclick="verificar()" style="padding: 12px 30px; background: #fbbf24; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #064e3b;">ENTRAR</button>
+</div>
+
+<button class="btn-modo-lectura" onclick="toggleModo()">🌓 Modo Lectura</button>
+
+<div class="header-grado">
+    <h1 style="margin:0; letter-spacing: 1px; color: #064e3b;">SEGUNDO BÁSICO</h1>
+    <p style="color: #6b7280; font-weight: 500; margin: 8px 0 0; text-transform: uppercase; font-size: 0.9rem;">INBACOO | Material de Apoyo</p>
+</div>
+
+<div class="container">
+    <div class="grid-bimestres">
+        <a href="segundo/b1.html" class="card-bimestre">
+            <span class="numero-romano rom-1">I</span>
+            <span class="nombre-bimestre">Bimestre 1</span>
+        </a>
+        <a href="segundo/b2.html" class="card-bimestre">
+            <span class="numero-romano rom-2">II</span>
+            <span class="nombre-bimestre">Bimestre 2</span>
+        </a>
+        <a href="segundo/b3.html" class="card-bimestre">
+            <span class="numero-romano rom-3">III</span>
+            <span class="nombre-bimestre">Bimestre 3</span>
+        </a>
+        <a href="segundo/b4.html" class="card-bimestre">
+            <span class="numero-romano rom-4">IV</span>
+            <span class="nombre-bimestre">Bimestre 4</span>
+        </a>
     </div>
 
-    <div class="container">
-        <div class="grid-bimestres">
-            <a href="segundo/b1.html" class="card-bimestre">
-                <span class="numero-romano">I</span>
-                <span class="nombre-bimestre">Bimestre 1</span>
-            </a>
-            <a href="segundo/b2.html" class="card-bimestre">
-                <span class="numero-romano">II</span>
-                <span class="nombre-bimestre">Bimestre 2</span>
-            </a>
-            <a href="segundo/b3.html" class="card-bimestre">
-                <span class="numero-romano">III</span>
-                <span class="nombre-bimestre">Bimestre 3</span>
-            </a>
-            <a href="segundo/b4.html" class="card-bimestre">
-                <span class="numero-romano">IV</span>
-                <span class="nombre-bimestre">Bimestre 4</span>
-            </a>
-        </div>
-        <a href="index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
+    <div class="aviso-etica">
+        <i class="fas fa-microchip"></i> <strong>Compromiso de Ética Digital:</strong> El uso de herramientas tecnológicas debe potenciar el aprendizaje, no sustituir el pensamiento crítico. Las entregas deben reflejar la autoría y análisis del estudiante.
     </div>
+
+    <a href="index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
+</div>
+
+<script>
+    function verificar() {
+        if (document.getElementById("pass").value.toUpperCase() === "TAC2026") {
+            document.getElementById("bloqueo").style.display = "none";
+        } else {
+            alert("Contraseña incorrecta.");
+        }
+    }
+
+    function toggleModo() {
+        document.body.classList.toggle('modo-lectura');
+    }
+
+    document.getElementById("pass").addEventListener("keyup", (e) => {
+        if(e.key === "Enter") verificar();
+    });
+</script>
 
 </body>
 </html>
