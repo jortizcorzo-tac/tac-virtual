@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3ro Básico - INBACOO</title>
+    
+    <link rel="icon" type="image/png" href="../../img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
-            /* Paleta Carbón y Oro: Elegancia y Madurez */
+            /* Paleta Carbón y Oro: Madurez Académica */
             --carbon: #1a1a1a;
             --oro: #D4AF37;
-            --oro-claro: #f1d56e;
-            --oro-grad: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
             --fondo: #f3f4f6;
             --blanco: #ffffff;
             --texto: #1f2937;
+            /* Gradientes de Oro Diferenciados */
+            --grad-b1: linear-gradient(135deg, #D4AF37 0%, #F1D56E 100%);
+            --grad-b2: linear-gradient(135deg, #B8860B 0%, #D4AF37 100%);
+            --grad-b3: linear-gradient(135deg, #8B4513 0%, #CD7F32 100%); /* Bronce/Oro viejo */
+            --grad-b4: linear-gradient(135deg, #1a1a1a 0%, #4d4d4d 100%); /* Carbón Premium */
+        }
+
+        /* Modo Lectura de Alto Contraste */
+        body.modo-lectura {
+            --fondo: #0a0a0a;
+            --blanco: #1a1a1a;
+            --texto: #e5e7eb;
+            --oro: #f1d56e;
         }
 
         body { 
@@ -22,6 +37,14 @@
             background-color: var(--fondo); 
             color: var(--texto);
             text-align: center; 
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .btn-modo-lectura {
+            position: fixed; top: 10px; right: 10px;
+            background: #262626; color: white; border: 1px solid var(--oro);
+            padding: 8px 15px; border-radius: 20px; cursor: pointer;
+            font-size: 0.8rem; font-weight: bold; z-index: 2000;
         }
 
         .header-grado { 
@@ -53,11 +76,10 @@
             overflow: hidden;
         }
 
-        /* Indicador sutil de grado superior */
         .card-bimestre::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
+            top: 0; left: 0; width: 100%; height: 5px;
             background: var(--oro);
             opacity: 0;
             transition: 0.3s;
@@ -74,12 +96,17 @@
         .numero-romano {
             font-size: 4rem;
             font-weight: 900;
-            background: var(--oro-grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 5px;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.1));
         }
+
+        /* Variaciones de Oro */
+        .rom-1 { background-image: var(--grad-b1); }
+        .rom-2 { background-image: var(--grad-b2); }
+        .rom-3 { background-image: var(--grad-b3); }
+        .rom-4 { background-image: var(--grad-b4); }
 
         .nombre-bimestre {
             font-weight: 800; 
@@ -88,6 +115,19 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+
+        .aviso-docente {
+            background: var(--blanco);
+            margin-top: 40px;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid var(--carbon);
+            text-align: left;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .aviso-docente h4 { margin-top: 0; color: var(--carbon); display: flex; align-items: center; gap: 10px; }
 
         .btn-volver { 
             display: inline-block; 
@@ -101,40 +141,75 @@
             transition: 0.3s;
         }
 
-        .btn-volver:hover { 
-            background: #111827; 
-            transform: scale(1.02);
+        #bloqueo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--carbon); z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
         }
     </style>
 </head>
 <body>
 
-    <div class="header-grado">
-        <h1 style="margin:0; letter-spacing: 1px; color: var(--carbon);">TERCERO BÁSICO</h1>
-        <p style="color: #6b7280; font-weight: 500; margin: 8px 0 0; text-transform: uppercase; font-size: 0.9rem;">INBACOO | Portal de Recursos</p>
+<div id="bloqueo">
+    <i class="fas fa-user-tie" style="font-size: 3.5rem; margin-bottom: 20px; color: var(--oro);"></i>
+    <h2 style="letter-spacing: 2px;">EGRESO TERCERO BÁSICO</h2>
+    <input type="password" id="pass" style="padding: 12px; border-radius: 8px; border: none; margin: 15px; width: 220px; text-align: center; text-transform: uppercase;" placeholder="Contraseña">
+    <button onclick="verificar()" style="padding: 12px 30px; background: var(--oro); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: var(--carbon);">DESBLOQUEAR</button>
+</div>
+
+<button class="btn-modo-lectura" onclick="toggleModo()">🌓 Modo Lectura</button>
+
+<div class="header-grado">
+    <h1 style="margin:0; letter-spacing: 1px; color: var(--carbon);">TERCERO BÁSICO</h1>
+    <p style="color: #6b7280; font-weight: 500; margin: 8px 0 0; text-transform: uppercase; font-size: 0.9rem;">INBACOO | Portal de Recursos</p>
+</div>
+
+<div class="container">
+    <div class="grid-bimestres">
+        <a href="tercero/b1.html" class="card-bimestre">
+            <span class="numero-romano rom-1">I</span>
+            <span class="nombre-bimestre">Bimestre 1</span>
+        </a>
+        <a href="tercero/b2.html" class="card-bimestre">
+            <span class="numero-romano rom-2">II</span>
+            <span class="nombre-bimestre">Bimestre 2</span>
+        </a>
+        <a href="tercero/b3.html" class="card-bimestre">
+            <span class="numero-romano rom-3">III</span>
+            <span class="nombre-bimestre">Bimestre 3</span>
+        </a>
+        <a href="tercero/b4.html" class="card-bimestre">
+            <span class="numero-romano rom-4">IV</span>
+            <span class="nombre-bimestre">Bimestre 4</span>
+        </a>
     </div>
 
-    <div class="container">
-        <div class="grid-bimestres">
-            <a href="tercero/b1.html" class="card-bimestre">
-                <span class="numero-romano">I</span>
-                <span class="nombre-bimestre">Bimestre 1</span>
-            </a>
-            <a href="tercero/b2.html" class="card-bimestre">
-                <span class="numero-romano">II</span>
-                <span class="nombre-bimestre">Bimestre 2</span>
-            </a>
-            <a href="tercero/b3.html" class="card-bimestre">
-                <span class="numero-romano">III</span>
-                <span class="nombre-bimestre">Bimestre 3</span>
-            </a>
-            <a href="tercero/b4.html" class="card-bimestre">
-                <span class="numero-romano">IV</span>
-                <span class="nombre-bimestre">Bimestre 4</span>
-            </a>
-        </div>
-        <a href="index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
+    <div class="aviso-docente">
+        <h4><i class="fas fa-graduation-cap"></i> Preparación para el Nivel Medio</h4>
+        <p>Como estudiantes de último año, el rigor académico y el uso ético de la tecnología son fundamentales. Este portal centraliza el material oficial para asegurar una transición exitosa hacia sus futuras carreras.</p>
+        <p style="font-style: italic; border-top: 1px solid #eee; padding-top: 10px; margin-top: 10px;"><strong>Nota Ética:</strong> La originalidad en sus proyectos digitales define su integridad profesional futura.</p>
     </div>
+
+    <a href="index.html" class="btn-volver">⬅ VOLVER A GRADOS</a>
+</div>
+
+<script>
+    function verificar() {
+        if (document.getElementById("pass").value.toUpperCase() === "TAC2026") {
+            document.getElementById("bloqueo").style.display = "none";
+        } else {
+            alert("Acceso denegado.");
+        }
+    }
+
+    function toggleModo() {
+        document.body.classList.toggle('modo-lectura');
+    }
+
+    document.getElementById("pass").addEventListener("keyup", (e) => {
+        if(e.key === "Enter") verificar();
+    });
+</script>
 
 </body>
 </html>
