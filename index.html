@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC Virtual - Portal Educativo</title>
+    
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
     <style>
         :root {
             --gris-oscuro: #374151;
@@ -11,6 +14,15 @@
             --blanco: #ffffff;
             --fondo: #f3f4f6;
             --negro-banner: #1a1a1a;
+            --texto-principal: #111827;
+        }
+
+        /* Estilos para Modo Lectura */
+        body.modo-lectura {
+            --fondo: #1a1a1a;
+            --blanco: #2d2d2d;
+            --texto-principal: #e5e7eb;
+            --gris-oscuro: #f3f4f6;
         }
 
         body {
@@ -18,11 +30,29 @@
             padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--fondo);
-            color: #111827;
+            color: var(--texto-principal);
             line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
         }
 
-        /* --- ENCABEZADO INSPIRADO EN LA IMAGEN --- */
+        /* Botón Modo Lectura */
+        .btn-modo-lectura {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: var(--naranja);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* --- ENCABEZADO --- */
         .header-banner {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200');
@@ -57,7 +87,7 @@
             margin: 20px 0;
         }
 
-        /* --- TARJETAS SUPERIORES (Cápsula e IA) --- */
+        /* --- TARJETAS SUPERIORES --- */
         .grid-superior {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -86,16 +116,17 @@
 
         .btn-gemini:hover { background: #000000; transform: scale(1.03); }
 
-        /* --- SECCIÓN DE INSTRUCCIONES --- */
+        /* --- INSTRUCCIONES --- */
         .instrucciones {
             background: #fffbeb;
             border-left: 6px solid #f59e0b;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 35px;
+            color: #111827;
         }
 
-        /* --- BOTONES DE ESTABLECIMIENTO --- */
+        /* --- ESTABLECIMIENTOS --- */
         .grid-establecimientos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -120,9 +151,8 @@
         }
 
         .btn-escuela:hover { background: #4b5563; transform: translateY(-3px); }
-        .logo-escuela { width: 50px; height: 50px; object-fit: contain; border-radius: 5px; }
 
-        /* --- SECCIÓN INFO 24/7 --- */
+        /* --- INFO BOXES --- */
         .grid-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -138,7 +168,18 @@
             text-align: center;
         }
 
-        /* --- AVISO OFICIAL ROJO --- */
+        /* --- MANIFIESTO ÉTICO --- */
+        .manifiesto-etico {
+            background: var(--blanco);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            border: 1px dashed var(--naranja);
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* --- AVISO ROJO --- */
         .aviso-institucional {
             background: #fee2e2;
             border: 1px solid #ef4444;
@@ -146,9 +187,7 @@
             padding: 25px;
             border-radius: 12px;
             margin-bottom: 50px;
-            font-size: 1rem;
             text-align: center;
-            line-height: 1.5;
         }
 
         /* --- PIE DE PÁGINA --- */
@@ -158,18 +197,17 @@
             text-align: center;
             border-radius: 20px 20px 0 0;
             font-size: 0.95rem;
+            color: #374151;
         }
 
-        .social-links { margin-bottom: 20px; }
         .social-links a {
             margin: 5px 15px;
             text-decoration: none;
-            color: var(--gris-oscuro);
+            color: #374151;
             font-weight: bold;
             display: inline-block;
         }
 
-        /* --- AJUSTES CELULAR --- */
         @media (max-width: 600px) {
             .header-banner h1 { font-size: 1.3rem; }
             #saludo { font-size: 1.5rem; }
@@ -178,6 +216,8 @@
     </style>
 </head>
 <body>
+
+<button class="btn-modo-lectura" onclick="toggleModoLectura()">🌓 Modo Lectura</button>
 
 <div class="header-banner">
     <h1>Tecnologías del Aprendizaje y la Comunicación</h1>
@@ -235,9 +275,13 @@
         </div>
     </div>
 
+    <div class="manifiesto-etico">
+        <strong>Compromiso de Ética Digital:</strong> Este portal educativo no recolecta datos personales de los estudiantes para resguardo de la privacidad. El uso de Inteligencia Artificial se promueve exclusivamente como herramienta de apoyo; la entrega de trabajos generados íntegramente por IA sin análisis propio invalidará la tarea.
+    </div>
+
     <div class="aviso-institucional">
         <strong>⚠️ AVISO OFICIAL IMPORTANTE</strong><br>
-        Este es el único canal digital oficial de la cátedra TAC. No se utiliza WhatsApp ni otras redes sociales para fines académicos obligatorios para resguardo de la privacidad. <br><br>
+        Este es el único canal digital oficial de la cátedra TAC. No se utiliza WhatsApp ni otras redes sociales para fines académicos obligatorios. <br><br>
         <b>Horarios de atención presencial:</b><br>
         INEB San Raymundo: 7:30 a 12:30 | INBACOO: 13:30 a 17:30.
     </div>
@@ -255,6 +299,11 @@
 </footer>
 
 <script>
+    // Función para alternar Modo Lectura
+    function toggleModoLectura() {
+        document.body.classList.toggle('modo-lectura');
+    }
+
     function actualizarContenido() {
         const hora = new Date().getHours();
         let mensaje = (hora >= 6 && hora < 12) ? "¡Buenos días, estudiante! ☀️" : 
