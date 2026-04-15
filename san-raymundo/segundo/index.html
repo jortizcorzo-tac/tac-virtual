@@ -129,21 +129,21 @@
 
         .btn-volver { display: inline-block; margin-top: 20px; padding: 15px 40px; background: #ddd; color: #333; text-decoration: none; border-radius: 50px; font-weight: bold; }
 
-        #bloqueo {
+        /* #bloqueo {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--gradiente-encabezado); z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
-        }
+        } */
     </style>
 </head>
 <body>
 
-    <div id="bloqueo">
+    <!-- <div id="bloqueo">
         <i class="fas fa-user-shield" style="font-size: 3rem; margin-bottom: 20px;"></i>
         <h2>PORTAL INEB - TAC</h2>
         <input type="password" id="pass" style="padding: 12px; border-radius: 8px; border: none; margin: 15px; width: 220px; text-align: center; text-transform: uppercase;" placeholder="Contraseña">
         <button onclick="verificar()" style="padding: 12px 30px; background: var(--amarillo); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #064e3b;">ENTRAR</button>
-    </div>
+    </div> -->
 
     <button class="btn-modo-lectura" onclick="toggleModo()">🌓 Modo Lectura</button>
 
@@ -218,7 +218,7 @@
             `).join('');
         }
 
-        function verificar() {
+        /* function verificar() {
             if (document.getElementById("pass").value.toUpperCase() === "TAC2026") {
                 document.getElementById("bloqueo").style.display = "none";
             } else { alert("Clave incorrecta."); }
@@ -229,7 +229,13 @@
         }
 
         window.onload = rotarVideos;
-        document.getElementById("pass").addEventListener("keyup", (e) => { if(e.key === "Enter") verificar(); });
+        document.getElementById("pass").addEventListener("keyup", (e) => { if(e.key === "Enter") verificar(); }); */
+        
+        function toggleModo() {
+            document.body.classList.toggle('modo-lectura');
+        }
+
+        window.onload = rotarVideos;
     </script>
 </body>
 </html>
