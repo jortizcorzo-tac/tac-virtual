@@ -130,21 +130,21 @@
             border-radius: 50px; font-weight: bold;
         }
 
-        #bloqueo {
+        /* #bloqueo {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--gradiente-encabezado); z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
-        }
+        } */
     </style>
 </head>
 <body>
 
-    <div id="bloqueo">
+    <!-- <div id="bloqueo">
         <i class="fas fa-user-shield" style="font-size: 3rem; margin-bottom: 20px; color: var(--oro);"></i>
         <h2>ACCESO TERCERO BÁSICO</h2>
         <input type="password" id="pass" style="padding: 12px; border-radius: 8px; border: none; margin: 15px; width: 220px; text-align: center; text-transform: uppercase;" placeholder="Contraseña">
         <button onclick="verificar()" style="padding: 12px 30px; background: var(--oro); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #1a1a1a;">ENTRAR</button>
-    </div>
+    </div> -->
 
     <button class="btn-modo-lectura" onclick="toggleModo()">🌓 Modo Lectura</button>
 
@@ -204,7 +204,7 @@
             { id: "C2Nbr4NNlzY", title: "Evolución Móvil" }
         ];
 
-        function verificar() {
+        /* function verificar() {
             if (document.getElementById("pass").value.toUpperCase() === "TAC2026") {
                 document.getElementById("bloqueo").style.display = "none";
             } else { alert("Clave incorrecta."); }
@@ -226,7 +226,24 @@
         }
         
         window.onload = cargarVideos;
-        document.getElementById("pass").addEventListener("keyup", (e) => { if(e.key === "Enter") verificar(); });
+        document.getElementById("pass").addEventListener("keyup", (e) => { if(e.key === "Enter") verificar(); }); */
+
+        function toggleModo() { document.body.classList.toggle('modo-lectura'); }
+
+        function cargarVideos() {
+            const grid = document.getElementById('videoGrid');
+            const seleccion = pool.sort(() => 0.5 - Math.random()).slice(0, 2);
+            grid.innerHTML = seleccion.map(v => `
+                <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" class="video-card">
+                    <div class="thumb-wrap">
+                        <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg">
+                        <i class="fas fa-play-circle play-btn"></i>
+                    </div>
+                </a>
+            `).join('');
+        }
+        
+        window.onload = cargarVideos;
     </script>
 </body>
 </html>
