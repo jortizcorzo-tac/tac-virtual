@@ -140,6 +140,13 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .btn-extra:hover { transform: translateX(5px); background: #fdfdfd; border-left-color: var(--amarillo); }
+
+        .btn-desactivado {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: default;
+            filter: grayscale(100%);
+        }
     </style>
 </head>
 <body>
@@ -172,7 +179,7 @@
     <p style="font-size: 1.3rem; font-weight: bold; margin-bottom: 25px; color: var(--azul-boton);">Guías y Material de Apoyo</p>
 
     <div class="grid-bimestres">
-        <a href="URL B1" target="_blank" class="btn-bimestre">
+        <a <!-- href="https://drive.google.com/file/d/17DorJYSqUGy47HLwqgM94irOFCq3yTkI/view?usp=drive_link" --> href="#" target="_blank" class="btn-bimestre btn-desactivado">
             <span><i class="fas fa-file-pdf"></i> Bimestre 1</span>
             <span class="numero-b">1</span>
         </a>
@@ -181,9 +188,7 @@
                 <span><i class="fas fa-file-pdf"></i> Bimestre 2</span>
                 <span class="numero-b">2</span>
             </a>
-            <div class="recursos-extra">
-                <!-- RECURSOS EXTRA PARA BIMESTRE 2 -->
-                <!-- Para cambiar los enlaces, sustituye el '#' por tu link de Drive o YouTube -->
+            <!-- <div class="recursos-extra">
                 <a href="#" target="_blank" class="btn-extra">
                     <i class="fas fa-link"></i> [AGREGAR ENLACE DRIVE AQUÍ]
                 </a>
@@ -193,13 +198,13 @@
                 <a href="#" target="_blank" class="btn-extra">
                     <i class="fas fa-video"></i> [AGREGAR VIDEO 2 AQUÍ]
                 </a>
-            </div>
+            </div> -->
         </div>
-        <a href="URL B3" target="_blank" class="btn-bimestre">
+        <a <!-- href="https://drive.google.com/file/d/1cc6cdmF3QC_DCzLSL2T3PMzvEKWCQXhO/view?usp=sharing" --> href="#" target="_blank" class="btn-bimestre btn-desactivado">
             <span><i class="fas fa-file-pdf"></i> Bimestre 3</span>
             <span class="numero-b">3</span>
         </a>
-        <a href="URL B4" target="_blank" class="btn-bimestre">
+        <a <!-- href="https://drive.google.com/file/d/1_2fDtMtX1QNK4JszYXFDrRksf9Fs9BF_/view?usp=sharing" --> href="#" target="_blank" class="btn-bimestre btn-desactivado">
             <span><i class="fas fa-file-pdf"></i> Bimestre 4</span>
             <span class="numero-b">4</span>
         </a>
