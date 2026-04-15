@@ -134,6 +134,18 @@
             background: var(--gradiente-encabezado); z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
         } */
+
+        /* --- ESTILOS RECURSOS EXTRA --- */
+        .bimestre-container { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 8px; }
+        .recursos-extra { display: flex; flex-direction: column; gap: 8px; padding-left: 20px; margin-top: -5px; margin-bottom: 10px; }
+        .btn-extra {
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+            background: var(--blanco); color: var(--texto-oscuro);
+            padding: 10px 15px; border-radius: 10px; font-size: 0.9rem; font-weight: bold;
+            transition: 0.3s; border-left: 5px solid var(--b2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .btn-extra:hover { transform: translateX(5px); background: #fdfdfd; border-left-color: var(--amarillo); }
     </style>
 </head>
 <body>
@@ -167,9 +179,24 @@
             <a href="https://drive.google.com/file/d/1BxoYuWBL1kZWGi1R-zPSIFZK2tbySpbo/view" target="_blank" class="btn-bimestre btn-b1">
                 <span>Bimestre 1</span> <span class="numero-b">1</span>
             </a>
+        <div class="bimestre-container">
             <a href="https://drive.google.com/file/d/1DXajy5nJV1sgK3mSjVM8H-16zpOX_2EF/view" target="_blank" class="btn-bimestre btn-b2">
                 <span>Bimestre 2</span> <span class="numero-b">2</span>
             </a>
+            <div class="recursos-extra">
+                <!-- RECURSOS EXTRA PARA BIMESTRE 2 -->
+                <!-- Para cambiar los enlaces, sustituye el '#' por tu link de Drive o YouTube -->
+                <a href="#" target="_blank" class="btn-extra">
+                    <i class="fas fa-link"></i> [AGREGAR ENLACE DRIVE AQUÍ]
+                </a>
+                <a href="#" target="_blank" class="btn-extra">
+                    <i class="fas fa-video"></i> [AGREGAR VIDEO 1 AQUÍ]
+                </a>
+                <a href="#" target="_blank" class="btn-extra">
+                    <i class="fas fa-video"></i> [AGREGAR VIDEO 2 AQUÍ]
+                </a>
+            </div>
+        </div>
             <a href="https://drive.google.com/file/d/1wg4iAXUPbdrmlbvSv8N7GWYalnrjjN-z/view" target="_blank" class="btn-bimestre btn-b3">
                 <span>Bimestre 3</span> <span class="numero-b">3</span>
             </a>
