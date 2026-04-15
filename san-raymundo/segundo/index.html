@@ -146,6 +146,13 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .btn-extra:hover { transform: translateX(5px); background: #fdfdfd; border-left-color: var(--amarillo); }
+
+        .btn-desactivado {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: default;
+            filter: grayscale(100%);
+        }
     </style>
 </head>
 <body>
@@ -176,16 +183,14 @@
 
     <div class="container">
         <div class="grid-bimestres">
-            <a href="URL_B1" target="_blank" class="btn-bimestre btn-b1">
+            <a <!-- href="https://drive.google.com/file/d/1BxoYuWBL1kZWGi1R-zPSIFZK2tbySpbo/view" --> href="#" target="_blank" class="btn-bimestre btn-b1 btn-desactivado">
                 <span>Bimestre 1</span> <span class="numero-b">1</span>
             </a>
         <div class="bimestre-container">
             <a href="https://drive.google.com/file/d/1DXajy5nJV1sgK3mSjVM8H-16zpOX_2EF/view" target="_blank" class="btn-bimestre btn-b2">
                 <span>Bimestre 2</span> <span class="numero-b">2</span>
             </a>
-            <div class="recursos-extra">
-                <!-- RECURSOS EXTRA PARA BIMESTRE 2 -->
-                <!-- Para cambiar los enlaces, sustituye el '#' por tu link de Drive o YouTube -->
+            <!-- <div class="recursos-extra">
                 <a href="#" target="_blank" class="btn-extra">
                     <i class="fas fa-link"></i> [AGREGAR ENLACE DRIVE AQUÍ]
                 </a>
@@ -195,12 +200,12 @@
                 <a href="#" target="_blank" class="btn-extra">
                     <i class="fas fa-video"></i> [AGREGAR VIDEO 2 AQUÍ]
                 </a>
-            </div>
+            </div> -->
         </div>
-            <a href="URL B3" target="_blank" class="btn-bimestre btn-b3">
+            <a <!-- href="https://drive.google.com/file/d/1wg4iAXUPbdrmlbvSv8N7GWYalnrjjN-z/view" --> href="#" target="_blank" class="btn-bimestre btn-b3 btn-desactivado">
                 <span>Bimestre 3</span> <span class="numero-b">3</span>
             </a>
-            <a href="URL B3" target="_blank" class="btn-bimestre btn-b4">
+            <a <!-- href="https://drive.google.com/file/d/1lH_t7vVlq-86h57mYVlM9w_D7E3_R7B_/view?usp=sharing" --> href="#" target="_blank" class="btn-bimestre btn-b4 btn-desactivado">
                 <span>Bimestre 4</span> <span class="numero-b">4</span>
             </a>
         </div>
