@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Horarios | INEB San Raymundo</title>
     <meta name="description" content="Portal de consulta y descarga de horarios para docentes y grados.">
-
     <link rel="icon" type="image/png" href="../../img/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --gradiente-azul: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
@@ -19,1126 +15,380 @@
             --gris-oscuro: #374151;
             --blanco: #ffffff;
             --fondo: #f0f4ff;
-            --rojo-aviso: #991b1b;
             --texto-principal: #111827;
             --azul-principal: #1e3a8a;
             --azul-claro: #3b82f6;
-            --verde: #10b981;
             --naranja: #e67e22;
-            --card-shadow: 0 8px 30px rgba(30, 58, 138, 0.10);
+            --card-shadow: 0 8px 30px rgba(30,58,138,0.10);
         }
-
         body.modo-lectura {
-            --fondo: #181c24;
-            --blanco: #232b3a;
-            --texto-principal: #e5e7eb;
-            --gris-oscuro: #f3f4f6;
-            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--fondo);
-            color: var(--texto-principal);
-            overflow-x: hidden;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        /* ── MODO LECTURA ── */
-        .btn-modo-lectura {
-            position: fixed;
-            top: 12px;
-            right: 12px;
-            background: var(--gradiente-azul);
-            color: white;
-            border: 2px solid var(--oro);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.78rem;
-            font-weight: 700;
-            z-index: 2000;
-            transition: transform 0.2s;
-        }
-
-        .btn-modo-lectura:hover {
-            transform: scale(1.05);
-        }
-
-        /* ── ENCABEZADO ── */
-        .banner-establecimiento {
-            background: var(--gradiente-azul);
-            color: white;
-            padding: 45px 20px 35px;
-            text-align: center;
-            border-bottom: 6px solid var(--naranja);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .banner-establecimiento::before {
-            content: '';
-            position: absolute;
-            top: -60px;
-            right: -60px;
-            width: 220px;
-            height: 220px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-        }
-
-        .banner-establecimiento::after {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            left: -40px;
-            width: 180px;
-            height: 180px;
-            background: rgba(250, 204, 21, 0.08);
-            border-radius: 50%;
-        }
-
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 24px 16px;
-            text-align: center;
-        }
-
-        /* ── SECCIÓN HORARIOS ── */
-        .seccion-horarios {
-            margin: 20px 0 40px;
-            text-align: left;
-        }
-
-        .horarios-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 28px;
-            padding-bottom: 16px;
-            border-bottom: 3px solid transparent;
-            border-image: var(--gradiente-azul) 1;
-        }
-
-        .horarios-icon-wrap {
-            width: 56px;
-            height: 56px;
-            background: var(--gradiente-azul);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.3);
-        }
-
-        .horarios-icon-wrap i {
-            color: white;
-            font-size: 1.6rem;
-        }
-
-        .horarios-header-text h2 {
-            margin: 0;
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: var(--azul-principal);
-        }
-
-        .horarios-header-text p {
-            margin: 4px 0 0;
-            font-size: 0.88rem;
-            color: #6b7280;
-        }
-
-        body.modo-lectura .horarios-header-text p {
-            color: #9ca3af;
-        }
-
-        /* ── PESTAÑAS ── */
-        .horarios-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 28px;
-            background: var(--blanco);
-            padding: 6px;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #6b7280;
-            background: transparent;
-        }
-
-        .tab-btn i {
-            font-size: 1.1rem;
-        }
-
-        .tab-btn.active {
-            background: var(--gradiente-azul);
-            color: white;
-            box-shadow: 0 4px 16px rgba(30, 58, 138, 0.35);
-            transform: translateY(-1px);
-        }
-
-        .tab-btn:not(.active):hover {
-            background: #f0f4ff;
-            color: var(--azul-principal);
-        }
-
-        body.modo-lectura .tab-btn:not(.active):hover {
-            background: #2a3447;
-        }
-
-        .tab-counter {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 2px 9px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-        }
-
-        .tab-btn:not(.active) .tab-counter {
-            background: #e5e7eb;
-            color: #374151;
-        }
-
-        .tab-panel {
-            display: none;
-            animation: fadeSlide 0.35s ease;
-        }
-
-        .tab-panel.active {
-            display: block;
-        }
-
-        @keyframes fadeSlide {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ── BUSCADOR ── */
-        .buscador-wrap {
-            position: relative;
-            margin-bottom: 24px;
-        }
-
-        .buscador-wrap i {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af;
-            font-size: 1rem;
-            pointer-events: none;
-        }
-
-        .buscador-input {
-            width: 100%;
-            padding: 14px 20px 14px 50px;
-            border: 2px solid #e5e7eb;
-            border-radius: 14px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            background: var(--blanco);
-            color: var(--texto-principal);
-            transition: border-color 0.25s, box-shadow 0.25s;
-            outline: none;
-        }
-
-        .buscador-input:focus {
-            border-color: var(--azul-claro);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-        }
-
-        .buscador-input::placeholder {
-            color: #9ca3af;
-        }
-
-        /* ── GRID DE FICHAS ── */
-        .fichas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .ficha-card {
-            background: var(--blanco);
-            border-radius: 20px;
-            padding: 0;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-            overflow: hidden;
-            border: 1px solid rgba(30, 58, 138, 0.08);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .ficha-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(30, 58, 138, 0.18);
-        }
-
-        .ficha-top {
-            background: var(--gradiente-azul);
-            padding: 22px 16px 16px;
-            text-align: center;
-            position: relative;
-        }
-
-        .ficha-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 3px solid rgba(255, 255, 255, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            font-size: 1.6rem;
-        }
-
-        .ficha-avatar.grado-avatar {
-            background: rgba(250, 204, 21, 0.2);
-            border-color: var(--oro);
-        }
-
-        .ficha-nombre {
-            color: white;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin: 0;
-            line-height: 1.3;
-        }
-
-        .ficha-body {
-            padding: 14px 16px;
-            flex: 1;
-        }
-
-        .ficha-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 12px;
-        }
-
-        .tag {
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
-        .tag-materia {
-            background: #eff6ff;
-            color: #1e40af;
-            border: 1px solid #bfdbfe;
-        }
-
-        .tag-pendiente {
-            background: #fef2f2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-        }
-
-        .tag-incompleto {
-            background: #fffbeb;
-            color: #b45309;
-            border: 1px solid #fde68a;
-        }
-
-        .tag-completo {
-            background: #f0fdf4;
-            color: #166534;
-            border: 1px solid #bbf7d0;
-        }
-
-        .ficha-actions {
-            display: flex;
-            gap: 8px;
-            padding: 0 16px 16px;
-        }
-
-        .btn-semana {
-            flex: 1;
-            padding: 10px 6px;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: all 0.25s;
-        }
-
-        .btn-semana-activa {
-            background: #f0f4ff;
-            color: var(--azul-principal);
-            border: 1.5px solid #c7d7f8;
-        }
-
-        .btn-semana-activa:hover {
-            background: var(--azul-principal);
-            color: white;
-            transform: scale(1.03);
-        }
-
-        .btn-semana:disabled {
-            background: #e5e7eb !important;
-            color: #9ca3af !important;
-            border-color: #e5e7eb !important;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .no-resultados {
-            text-align: center;
-            padding: 50px 20px;
-            color: #9ca3af;
-            font-size: 1rem;
-        }
-
-        .no-resultados i {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        /* ── LIGHTBOX ── */
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(5, 10, 25, 0.92);
-            z-index: 9000;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.25s ease;
-            backdrop-filter: blur(6px);
-        }
-
-        .lightbox-overlay.open {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .lightbox-box {
-            background: #0f172a;
-            border-radius: 24px;
-            max-width: 90vw;
-            max-height: 92vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes scaleIn {
-            from {
-                transform: scale(0.85);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .lightbox-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 22px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.04);
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .lightbox-title {
-            color: white;
-            font-weight: 700;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .lightbox-title i {
-            color: var(--oro);
-        }
-
-        .lightbox-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .lb-btn {
-            padding: 8px 18px;
-            border-radius: 10px;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 0.82rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            transition: all 0.2s;
-        }
-
-        .lb-btn-download {
-            background: var(--oro);
-            color: #1a1a1a;
-        }
-
-        .lb-btn-download:hover {
-            background: #fbbf24;
-            transform: scale(1.04);
-        }
-
-        .lb-btn-close {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .lb-btn-close:hover {
-            background: #ef4444;
-        }
-
-        .lightbox-body {
-            overflow: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            min-height: 200px;
-        }
-
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: 12px;
-            object-fit: contain;
-        }
-
-        /* ── ADMIN PANEL ── */
-        #admin-trigger {
-            position: fixed;
-            bottom: 30px;
-            right: 20px;
-            width: 42px;
-            height: 42px;
-            background: rgba(30, 58, 138, 0.15);
-            border: 2px dashed rgba(30, 58, 138, 0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: rgba(30, 58, 138, 0.4);
-            transition: all 0.3s;
-        }
-
-        #admin-trigger:hover {
-            background: var(--azul-principal);
-            border-color: var(--azul-principal);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 8000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-box {
-            background: white;
-            border-radius: 20px;
-            padding: 32px;
-            max-width: 480px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .modal-box h3 {
-            margin: 0 0 6px;
-            color: var(--azul-principal);
-            font-size: 1.3rem;
-        }
-
-        .modal-box p {
-            color: #6b7280;
-            font-size: 0.88rem;
-            margin: 0 0 20px;
-        }
-
-        .modal-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            outline: none;
-            margin-bottom: 14px;
-        }
-
-        .modal-input:focus {
-            border-color: var(--azul-claro);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-        }
-
-        .modal-btns {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-modal-ok {
-            flex: 1;
-            padding: 12px;
-            background: var(--gradiente-azul);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        .btn-modal-cancel {
-            padding: 12px 20px;
-            background: #f3f4f6;
-            color: #374151;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        .modal-error {
-            color: #dc2626;
-            font-size: 0.82rem;
-            margin-top: -8px;
-            margin-bottom: 10px;
-            display: none;
-        }
-
-        .admin-panel {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 8500;
-            overflow-y: auto;
-            backdrop-filter: blur(6px);
-        }
-
-        .admin-panel.open {
-            display: block;
-        }
-
-        .admin-panel-inner {
-            max-width: 950px;
-            margin: 30px auto;
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-        }
-
-        .admin-header {
-            background: var(--gradiente-azul);
-            padding: 28px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: white;
-        }
-
-        .admin-header h2 {
-            margin: 0;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .admin-close-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: none;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-
-        .admin-body {
-            padding: 28px 30px;
-        }
-
-        .admin-subtitle {
-            background: #fef9e7;
-            border: 1px solid #fbbf24;
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin-bottom: 24px;
-            font-size: 0.88rem;
-            color: #92400e;
-            line-height: 1.5;
-        }
-
-        .admin-tabs-mini {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .admin-tab-btn {
-            padding: 9px 20px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #374151;
-        }
-
-        .admin-tab-btn.active {
-            background: var(--gradiente-azul);
-            color: white;
-            border-color: transparent;
-        }
-
-        .admin-tab-panel {
-            display: none;
-        }
-
-        .admin-tab-panel.active {
-            display: block;
-        }
-
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.82rem;
-        }
-
-        .admin-table th {
-            background: #f8faff;
-            color: var(--azul-principal);
-            font-weight: 700;
-            padding: 12px 14px;
-            text-align: left;
-            border-bottom: 2px solid #e5e7eb;
-        }
-
-        .admin-table td {
-            padding: 11px 14px;
-            border-bottom: 1px solid #f3f4f6;
-            color: #374151;
-            vertical-align: middle;
-        }
-
-        .file-name-chip {
-            background: #1e3a8a;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 4px;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.7rem;
-        }
-
-        .st-ok {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .st-pend {
-            background: #fef2f2;
-            color: #991b1b;
-        }
-
-        .btn-regresar {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--texto-principal);
-            text-decoration: none;
-            font-weight: bold;
-            padding: 12px 30px;
-            border: 2px solid var(--gris-oscuro);
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-
-        .btn-regresar:hover {
-            background: var(--gris-oscuro);
-            color: white;
-        }
+            --fondo: #181c24; --blanco: #232b3a; --texto-principal: #e5e7eb;
+            --gris-oscuro: #f3f4f6; --card-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', Roboto, sans-serif; background-color: var(--fondo); color: var(--texto-principal); overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+
+        .btn-modo-lectura { position: fixed; top: 12px; right: 12px; background: var(--gradiente-azul); color: white; border: 2px solid var(--oro); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.78rem; font-weight: 700; z-index: 2000; transition: transform 0.2s; }
+        .btn-modo-lectura:hover { transform: scale(1.05); }
+
+        .banner-establecimiento { background: var(--gradiente-azul); color: white; padding: 45px 20px 35px; text-align: center; border-bottom: 6px solid var(--naranja); position: relative; overflow: hidden; }
+        .banner-establecimiento::before { content: ''; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+        .banner-establecimiento::after { content: ''; position: absolute; bottom: -80px; left: -40px; width: 180px; height: 180px; background: rgba(250,204,21,0.08); border-radius: 50%; }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 24px 16px; text-align: center; }
+
+        .seccion-horarios { margin: 20px 0 40px; text-align: left; }
+        .horarios-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 3px solid transparent; border-image: var(--gradiente-azul) 1; }
+        .horarios-icon-wrap { width: 56px; height: 56px; background: var(--gradiente-azul); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 14px rgba(30,58,138,0.3); }
+        .horarios-icon-wrap i { color: white; font-size: 1.6rem; }
+        .horarios-header-text h2 { margin: 0; font-size: 1.7rem; font-weight: 800; color: var(--azul-principal); }
+        .horarios-header-text p { margin: 4px 0 0; font-size: 0.88rem; color: #6b7280; }
+        body.modo-lectura .horarios-header-text p { color: #9ca3af; }
+
+        .horarios-tabs { display: flex; gap: 8px; margin-bottom: 28px; background: var(--blanco); padding: 6px; border-radius: 16px; box-shadow: var(--card-shadow); }
+        .tab-btn { flex: 1; padding: 14px 20px; border: none; border-radius: 12px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); color: #6b7280; background: transparent; }
+        .tab-btn i { font-size: 1.1rem; }
+        .tab-btn.active { background: var(--gradiente-azul); color: white; box-shadow: 0 4px 16px rgba(30,58,138,0.35); transform: translateY(-1px); }
+        .tab-btn:not(.active):hover { background: #f0f4ff; color: var(--azul-principal); }
+        body.modo-lectura .tab-btn:not(.active):hover { background: #2a3447; }
+        .tab-counter { background: rgba(255,255,255,0.25); padding: 2px 9px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
+        .tab-btn:not(.active) .tab-counter { background: #e5e7eb; color: #374151; }
+
+        .tab-panel { display: none; animation: fadeSlide 0.35s ease; }
+        .tab-panel.active { display: block; }
+        @keyframes fadeSlide { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+        .buscador-wrap { position: relative; margin-bottom: 24px; }
+        .buscador-wrap i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 1rem; pointer-events: none; }
+        .buscador-input { width: 100%; padding: 14px 20px 14px 50px; border: 2px solid #e5e7eb; border-radius: 14px; font-family: 'Inter', sans-serif; font-size: 0.95rem; background: var(--blanco); color: var(--texto-principal); transition: border-color 0.25s, box-shadow 0.25s; outline: none; }
+        .buscador-input:focus { border-color: var(--azul-claro); box-shadow: 0 0 0 4px rgba(59,130,246,0.15); }
+        .buscador-input::placeholder { color: #9ca3af; }
+
+        .fichas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+        .ficha-card { background: var(--blanco); border-radius: 20px; padding: 0; box-shadow: var(--card-shadow); transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; border: 1px solid rgba(30,58,138,0.08); display: flex; flex-direction: column; }
+        .ficha-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(30,58,138,0.18); }
+        .ficha-top { background: var(--gradiente-azul); padding: 22px 16px 16px; text-align: center; }
+        .ficha-avatar { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 3px solid rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 1.6rem; }
+        .ficha-avatar.grado-avatar { background: rgba(250,204,21,0.2); border-color: var(--oro); }
+        .ficha-nombre { color: white; font-weight: 700; font-size: 0.95rem; margin: 0; line-height: 1.3; }
+        .ficha-body { padding: 14px 16px; flex: 1; }
+        .ficha-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+        .tag { padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
+        .tag-materia { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+        .tag-pendiente { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+        .tag-incompleto { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+        .tag-completo { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+        .ficha-actions { display: flex; gap: 8px; padding: 0 16px 16px; }
+        .btn-semana { flex: 1; padding: 10px 6px; border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.25s; }
+        .btn-semana-activa { background: #f0f4ff; color: var(--azul-principal); border: 1.5px solid #c7d7f8; }
+        .btn-semana-activa:hover { background: var(--azul-principal); color: white; transform: scale(1.03); }
+        .btn-semana:disabled { background: #e5e7eb !important; color: #9ca3af !important; border-color: #e5e7eb !important; cursor: not-allowed; transform: none !important; }
+
+        .no-resultados { text-align: center; padding: 50px 20px; color: #9ca3af; font-size: 1rem; }
+        .no-resultados i { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+
+        .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(5,10,25,0.92); z-index: 9000; align-items: center; justify-content: center; animation: fadeIn 0.25s ease; backdrop-filter: blur(6px); }
+        .lightbox-overlay.open { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .lightbox-box { background: #0f172a; border-radius: 24px; max-width: 90vw; max-height: 92vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 30px 80px rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.1); animation: scaleIn 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+        @keyframes scaleIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .lightbox-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); flex-wrap: wrap; gap: 12px; }
+        .lightbox-title { color: white; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+        .lightbox-title i { color: var(--oro); }
+        .lightbox-actions { display: flex; gap: 10px; }
+        .lb-btn { padding: 8px 18px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.2s; }
+        .lb-btn-download { background: var(--oro); color: #1a1a1a; }
+        .lb-btn-download:hover { background: #fbbf24; transform: scale(1.04); }
+        .lb-btn-close { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.15); }
+        .lb-btn-close:hover { background: #ef4444; }
+        .lightbox-body { overflow: auto; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 200px; }
+        .lightbox-img { max-width: 100%; max-height: 70vh; border-radius: 12px; object-fit: contain; }
+
+        #admin-trigger { position: fixed; bottom: 30px; right: 20px; width: 42px; height: 42px; background: rgba(30,58,138,0.15); border: 2px dashed rgba(30,58,138,0.3); border-radius: 50%; cursor: pointer; z-index: 1500; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: rgba(30,58,138,0.4); transition: all 0.3s; }
+        #admin-trigger:hover { background: var(--azul-principal); border-color: var(--azul-principal); color: white; transform: scale(1.1); }
+
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 8000; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal-overlay.open { display: flex; }
+        .modal-box { background: white; border-radius: 20px; padding: 32px; max-width: 480px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: scaleIn 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+        .modal-box h3 { margin: 0 0 6px; color: var(--azul-principal); font-size: 1.3rem; }
+        .modal-box p { color: #6b7280; font-size: 0.88rem; margin: 0 0 20px; }
+        .modal-input { width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none; margin-bottom: 14px; }
+        .modal-input:focus { border-color: var(--azul-claro); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+        .modal-btns { display: flex; gap: 10px; }
+        .btn-modal-ok { flex: 1; padding: 12px; background: var(--gradiente-azul); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
+        .btn-modal-cancel { padding: 12px 20px; background: #f3f4f6; color: #374151; border: none; border-radius: 10px; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+        .modal-error { color: #dc2626; font-size: 0.82rem; margin-top: -8px; margin-bottom: 10px; display: none; }
+
+        .admin-panel { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 8500; overflow-y: auto; backdrop-filter: blur(6px); }
+        .admin-panel.open { display: block; }
+        .admin-panel-inner { max-width: 950px; margin: 30px auto; background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+        .admin-header { background: var(--gradiente-azul); padding: 28px 30px; display: flex; align-items: center; justify-content: space-between; color: white; }
+        .admin-header h2 { margin: 0; font-size: 1.4rem; display: flex; align-items: center; gap: 12px; }
+        .admin-close-btn { background: rgba(255,255,255,0.15); border: none; color: white; padding: 8px 14px; border-radius: 10px; cursor: pointer; font-size: 1.1rem; }
+        .admin-body { padding: 28px 30px; }
+        .admin-subtitle { background: #fef9e7; border: 1px solid #fbbf24; border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; font-size: 0.88rem; color: #92400e; line-height: 1.5; }
+        .admin-tabs-mini { display: flex; gap: 8px; margin-bottom: 20px; }
+        .admin-tab-btn { padding: 9px 20px; border: 2px solid #e5e7eb; border-radius: 10px; background: white; cursor: pointer; font-weight: 600; font-size: 0.85rem; color: #374151; }
+        .admin-tab-btn.active { background: var(--gradiente-azul); color: white; border-color: transparent; }
+        .admin-tab-panel { display: none; }
+        .admin-tab-panel.active { display: block; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+        .admin-table th { background: #f8faff; color: var(--azul-principal); font-weight: 700; padding: 12px 14px; text-align: left; border-bottom: 2px solid #e5e7eb; }
+        .admin-table td { padding: 11px 14px; border-bottom: 1px solid #f3f4f6; color: #374151; vertical-align: middle; }
+        .file-name-chip { background: #1e3a8a; color: white; padding: 3px 8px; border-radius: 12px; font-size: 0.7rem; font-family: 'Courier New', monospace; font-weight: 600; display: inline-block; margin-bottom: 4px; }
+        .status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 20px; font-weight: 700; font-size: 0.7rem; }
+        .st-ok { background: #dcfce7; color: #166534; }
+        .st-pend { background: #fef2f2; color: #991b1b; }
+
+        .btn-regresar { display: inline-block; margin-top: 20px; color: var(--texto-principal); text-decoration: none; font-weight: bold; padding: 12px 30px; border: 2px solid var(--gris-oscuro); border-radius: 10px; transition: 0.3s; }
+        .btn-regresar:hover { background: var(--gris-oscuro); color: white; }
 
         @media (max-width: 640px) {
-            .fichas-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .lightbox-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .admin-panel-inner {
-                margin: 10px;
-                border-radius: 16px;
-            }
+            .fichas-grid { grid-template-columns: 1fr; }
+            .lightbox-header { flex-direction: column; align-items: flex-start; }
+            .admin-panel-inner { margin: 10px; border-radius: 16px; }
         }
     </style>
 </head>
-
 <body>
 
-    <button class="btn-modo-lectura" onclick="toggleModoLectura()">🌓 Modo Lectura</button>
+<button class="btn-modo-lectura" onclick="toggleModoLectura()">🌓 Modo Lectura</button>
 
-    <div id="admin-trigger" onclick="mostrarLoginAdmin()" title="Panel de administración">
-        <i class="fas fa-cog"></i>
-    </div>
+<div id="admin-trigger" onclick="mostrarLoginAdmin()" title="Panel de administración">
+    <i class="fas fa-cog"></i>
+</div>
 
-    <div class="banner-establecimiento">
-        <img src="../../img/logo-ineb.png" style="width: 60px; margin-bottom: 10px;" alt="Logo INEB">
-        <h1 style="margin:0; font-size: 1.8rem;">Portal de Horarios</h1>
-        <p style="opacity: 0.9;">INEB San Raymundo</p>
-    </div>
+<div class="banner-establecimiento">
+    <img src="../../img/logo-ineb.png" style="width: 60px; margin-bottom: 10px;" alt="Logo INEB">
+    <h1 style="margin:0; font-size: 1.8rem;">Portal de Horarios</h1>
+    <p style="opacity: 0.9;">INEB San Raymundo</p>
+</div>
 
-    <div class="container">
-
-        <div class="seccion-horarios" id="horarios">
-            <div class="horarios-header">
-                <div class="horarios-icon-wrap"><i class="fas fa-calendar-alt"></i></div>
-                <div class="horarios-header-text">
-                    <h2>Buscador de Horarios</h2>
-                    <p>Consulta y descarga tu horario — (Semanas 1 y 2)</p>
-                </div>
-            </div>
-
-            <div class="horarios-tabs" role="tablist">
-                <button class="tab-btn active" id="tab-docentes-btn" onclick="cambiarTab('docentes')">
-                    <i class="fas fa-chalkboard-teacher"></i> Horarios Docentes <span class="tab-counter">28</span>
-                </button>
-                <button class="tab-btn" id="tab-grados-btn" onclick="cambiarTab('grados')">
-                    <i class="fas fa-graduation-cap"></i> Horarios por Grado <span class="tab-counter">19</span>
-                </button>
-            </div>
-
-            <div class="tab-panel active" id="panel-docentes">
-                <div class="buscador-wrap">
-                    <i class="fas fa-search"></i>
-                    <input type="text" class="buscador-input" id="buscador-docentes"
-                        placeholder="Buscar docente o materia…" oninput="filtrarFichas('docentes')" autocomplete="off">
-                </div>
-                <div class="fichas-grid" id="grid-docentes"></div>
-                <div class="no-resultados" id="no-resultados-docentes" style="display:none;"><i
-                        class="fas fa-search"></i> No se encontraron resultados.</div>
-            </div>
-
-            <div class="tab-panel" id="panel-grados">
-                <div class="buscador-wrap">
-                    <i class="fas fa-search"></i>
-                    <input type="text" class="buscador-input" id="buscador-grados" placeholder="Buscar grado o sección…"
-                        oninput="filtrarFichas('grados')" autocomplete="off">
-                </div>
-                <div class="fichas-grid" id="grid-grados-horarios"></div>
-                <div class="no-resultados" id="no-resultados-grados" style="display:none;"><i class="fas fa-search"></i>
-                    No se encontraron resultados.</div>
+<div class="container">
+    <div class="seccion-horarios" id="horarios">
+        <div class="horarios-header">
+            <div class="horarios-icon-wrap"><i class="fas fa-calendar-alt"></i></div>
+            <div class="horarios-header-text">
+                <h2>Buscador de Horarios</h2>
+                <p>Consulta y descarga tu horario — (Semanas 1 y 2)</p>
             </div>
         </div>
 
-        <a href="../index.html" class="btn-regresar">⬅ Volver a San Raymundo</a>
-    </div>
+        <div class="horarios-tabs" role="tablist">
+            <button class="tab-btn active" id="tab-docentes-btn" onclick="cambiarTab('docentes')">
+                <i class="fas fa-chalkboard-teacher"></i> Horarios Docentes <span class="tab-counter">28</span>
+            </button>
+            <button class="tab-btn" id="tab-grados-btn" onclick="cambiarTab('grados')">
+                <i class="fas fa-graduation-cap"></i> Horarios por Grado <span class="tab-counter">20</span>
+            </button>
+        </div>
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox-overlay" id="lightbox" onclick="cerrarLightbox(event)">
-        <div class="lightbox-box" onclick="event.stopPropagation()">
-            <div class="lightbox-header">
-                <div class="lightbox-title">
-                    <i class="fas fa-calendar-check"></i>
-                    <span id="lb-nombre">Horario</span>
-                </div>
-                <div class="lightbox-actions">
-                    <a id="lb-download-link" href="#" download class="lb-btn lb-btn-download"><i
-                            class="fas fa-download"></i> Descargar</a>
-                    <button class="lb-btn lb-btn-close" onclick="cerrarLightbox()"><i class="fas fa-times"></i>
-                        Cerrar</button>
-                </div>
+        <div class="tab-panel active" id="panel-docentes">
+            <div class="buscador-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" class="buscador-input" id="buscador-docentes" placeholder="Buscar docente o materia…" oninput="filtrarFichas('docentes')" autocomplete="off">
             </div>
-            <div class="lightbox-body">
-                <img class="lightbox-img" id="lb-img" src="" alt="Horario">
+            <div class="fichas-grid" id="grid-docentes"></div>
+            <div class="no-resultados" id="no-resultados-docentes" style="display:none;"><i class="fas fa-search"></i> No se encontraron resultados.</div>
+        </div>
+
+        <div class="tab-panel" id="panel-grados">
+            <div class="buscador-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" class="buscador-input" id="buscador-grados" placeholder="Buscar grado o sección…" oninput="filtrarFichas('grados')" autocomplete="off">
             </div>
+            <div class="fichas-grid" id="grid-grados-horarios"></div>
+            <div class="no-resultados" id="no-resultados-grados" style="display:none;"><i class="fas fa-search"></i> No se encontraron resultados.</div>
         </div>
     </div>
 
-    <!-- MODAL LOGIN -->
-    <div class="modal-overlay" id="modal-login">
-        <div class="modal-box">
-            <h3><i class="fas fa-lock" style="color:#1e3a8a;"></i> Acceso Administrativo</h3>
-            <p>Ingresa la contraseña para acceder al panel.</p>
-            <input type="password" class="modal-input" id="admin-pass-input" placeholder="Contraseña…"
-                onkeydown="if(event.key==='Enter')verificarAdmin()">
-            <div class="modal-error" id="admin-error">Contraseña incorrecta.</div>
-            <div class="modal-btns">
-                <button class="btn-modal-ok" onclick="verificarAdmin()"><i class="fas fa-sign-in-alt"></i>
-                    Ingresar</button>
-                <button class="btn-modal-cancel" onclick="cerrarModalLogin()">Cancelar</button>
+    <a href="../index.html" class="btn-regresar">⬅ Volver a San Raymundo</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="cerrarLightbox(event)">
+    <div class="lightbox-box" onclick="event.stopPropagation()">
+        <div class="lightbox-header">
+            <div class="lightbox-title">
+                <i class="fas fa-calendar-check"></i>
+                <span id="lb-nombre">Horario</span>
+            </div>
+            <div class="lightbox-actions">
+                <a id="lb-download-link" href="#" download class="lb-btn lb-btn-download"><i class="fas fa-download"></i> Descargar</a>
+                <button class="lb-btn lb-btn-close" onclick="cerrarLightbox()"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+        <div class="lightbox-body">
+            <img class="lightbox-img" id="lb-img" src="" alt="Horario">
+        </div>
+    </div>
+</div>
+
+<!-- MODAL LOGIN -->
+<div class="modal-overlay" id="modal-login">
+    <div class="modal-box">
+        <h3><i class="fas fa-lock" style="color:#1e3a8a;"></i> Acceso Administrativo</h3>
+        <p>Ingresa la contraseña para acceder al panel.</p>
+        <input type="password" class="modal-input" id="admin-pass-input" placeholder="Contraseña…" onkeydown="if(event.key==='Enter')verificarAdmin()">
+        <div class="modal-error" id="admin-error">Contraseña incorrecta.</div>
+        <div class="modal-btns">
+            <button class="btn-modal-ok" onclick="verificarAdmin()"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+            <button class="btn-modal-cancel" onclick="cerrarModalLogin()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL ADMIN -->
+<div class="admin-panel" id="admin-panel">
+    <div class="admin-panel-inner">
+        <div class="admin-header">
+            <h2><i class="fas fa-tools"></i> Gestión de Horarios (Semana 1 y 2)</h2>
+            <button class="admin-close-btn" onclick="cerrarAdminPanel()">✕ Cerrar</button>
+        </div>
+        <div class="admin-body">
+            <div class="admin-subtitle">
+                <strong>📂 Reglas de subida:</strong>
+                Sube las imágenes a <code>horarios/docentes/</code> o <code>horarios/grados/</code>. Nombra cada imagen añadiendo <code>_s1</code> o <code>_s2</code> al final del nombre base.
+            </div>
+            <div class="admin-tabs-mini">
+                <button class="admin-tab-btn active" onclick="cambiarAdminTab('docentes-admin')"><i class="fas fa-chalkboard-teacher"></i> Docentes</button>
+                <button class="admin-tab-btn" onclick="cambiarAdminTab('grados-admin')"><i class="fas fa-graduation-cap"></i> Grados</button>
+            </div>
+            <div class="admin-tab-panel active" id="panel-docentes-admin">
+                <table class="admin-table">
+                    <thead><tr><th>Docente</th><th>Semana 1 (Archivo / Estado)</th><th>Semana 2 (Archivo / Estado)</th></tr></thead>
+                    <tbody id="tabla-docentes-admin"></tbody>
+                </table>
+            </div>
+            <div class="admin-tab-panel" id="panel-grados-admin">
+                <table class="admin-table">
+                    <thead><tr><th>Grado</th><th>Semana 1 (Archivo / Estado)</th><th>Semana 2 (Archivo / Estado)</th></tr></thead>
+                    <tbody id="tabla-grados-admin"></tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- PANEL ADMIN -->
-    <div class="admin-panel" id="admin-panel">
-        <div class="admin-panel-inner">
-            <div class="admin-header">
-                <h2><i class="fas fa-tools"></i> Gestión de Horarios (Semana 1 y 2)</h2>
-                <button class="admin-close-btn" onclick="cerrarAdminPanel()">✕ Cerrar</button>
-            </div>
-            <div class="admin-body">
-                <div class="admin-subtitle">
-                    <strong>📂 Reglas de subida:</strong>
-                    Sube las imágenes a `horarios/docentes/` o `horarios/grados/`. Nombra cada imagen añadiendo
-                    <code>_s1</code> o <code>_s2</code> al final del nombre base.
-                </div>
+<script>
+const ADMIN_PASS = 'ineb2026';
 
-                <div class="admin-tabs-mini">
-                    <button class="admin-tab-btn active" onclick="cambiarAdminTab('docentes-admin')"><i
-                            class="fas fa-chalkboard-teacher"></i> Docentes</button>
-                    <button class="admin-tab-btn" onclick="cambiarAdminTab('grados-admin')"><i
-                            class="fas fa-graduation-cap"></i> Grados</button>
-                </div>
+const DOCENTES = [
+    { id: 1, nombre: "Docente Abel Choy", archivo: "abel_choy" },
+    { id: 2, nombre: "Docente Ana Chamalé", archivo: "ana_chamale" },
+    { id: 3, nombre: "Docente Angélica Ajvix", archivo: "angelica_ajvix" },
+    { id: 4, nombre: "Docente Angel Yoc", archivo: "angel_yoc" },
+    { id: 5, nombre: "Docente Carmen Vargas", archivo: "carmen_vargas" },
+    { id: 6, nombre: "Docente Casilda Morales", archivo: "casilda_morales" },
+    { id: 7, nombre: "Docente Celso Chavac", archivo: "celso_chavac" },
+    { id: 8, nombre: "Docente César Xiquitá", archivo: "cesar_xiquita" },
+    { id: 9, nombre: "Docente Yesenia Ruano", archivo: "yesenia_ruano" },
+    { id: 10, nombre: "Docente Elena Turuy", archivo: "elena_turuy" },
+    { id: 11, nombre: "Docente Eswin Coc", archivo: "eswin_coc" },
+    { id: 12, nombre: "Docente Geremías López", archivo: "geremias_lopez" },
+    { id: 13, nombre: "Docente Héctor Choy", archivo: "hector_choy" },
+    { id: 14, nombre: "Docente Hugo Palacios", archivo: "hugo_palacios" },
+    { id: 15, nombre: "Docente Ingrid Sián", archivo: "ingrid_sian" },
+    { id: 16, nombre: "Docente Jorge Ortiz", archivo: "jorge_ortiz" },
+    { id: 17, nombre: "Docente Marco Peinado", archivo: "marco_peinado" },
+    { id: 18, nombre: "Docente Nora Paxtor", archivo: "nora_paxtor" },
+    { id: 19, nombre: "Docente Oscar Chajón", archivo: "oscar_chajon" },
+    { id: 20, nombre: "Docente Sandra Ajvix", archivo: "sandra_ajvix" },
+    { id: 21, nombre: "Docente Silvia Sandoval", archivo: "silvia_sandoval" },
+    { id: 22, nombre: "Docente Yadira Solís", archivo: "yadira_solis" },
+    { id: 23, nombre: "Docente Dina Vallejo", archivo: "dina_vallejo" },
+    { id: 24, nombre: "Docente Valeria Pocón", archivo: "valeria_pocon" },
+    { id: 25, nombre: "Docente Gabriela Pelico", archivo: "gabriela_pelico" },
+    { id: 26, nombre: "Docente Luz Maria Chavac", archivo: "luz_maria_chavac" },
+    { id: 27, nombre: "Docente Angeles Montiel", archivo: "angeles_montiel" },
+    { id: 28, nombre: "Docente José Antonio Ortiz", archivo: "jose_antonio_ortiz" }
+];
 
-                <div class="admin-tab-panel active" id="panel-docentes-admin">
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Docente</th>
-                                <th>Semana 1 (Archivo / Estado)</th>
-                                <th>Semana 2 (Archivo / Estado)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-docentes-admin"></tbody>
-                    </table>
-                </div>
+const GRADOS = [
+    { id: 1, nombre: "Primero A", archivo: "primero_a", color: "#3b82f6" },
+    { id: 2, nombre: "Primero B", archivo: "primero_b", color: "#3b82f6" },
+    { id: 3, nombre: "Primero C", archivo: "primero_c", color: "#3b82f6" },
+    { id: 4, nombre: "Primero D", archivo: "primero_d", color: "#3b82f6" },
+    { id: 5, nombre: "Primero E", archivo: "primero_e", color: "#3b82f6" },
+    { id: 6, nombre: "Primero F", archivo: "primero_f", color: "#3b82f6" },
+    { id: 7, nombre: "Primero G", archivo: "primero_g", color: "#3b82f6" },
+    { id: 8, nombre: "Primero H", archivo: "primero_h", color: "#3b82f6" },
+    { id: 9, nombre: "Segundo A", archivo: "segundo_a", color: "#10b981" },
+    { id: 10, nombre: "Segundo B", archivo: "segundo_b", color: "#10b981" },
+    { id: 11, nombre: "Segundo C", archivo: "segundo_c", color: "#10b981" },
+    { id: 12, nombre: "Segundo D", archivo: "segundo_d", color: "#10b981" },
+    { id: 13, nombre: "Segundo E", archivo: "segundo_e", color: "#10b981" },
+    { id: 14, nombre: "Segundo F", archivo: "segundo_f", color: "#10b981" },
+    { id: 15, nombre: "Segundo G", archivo: "segundo_g", color: "#10b981" },
+    { id: 16, nombre: "Tercero A", archivo: "tercero_a", color: "#e67e22" },
+    { id: 17, nombre: "Tercero B", archivo: "tercero_b", color: "#e67e22" },
+    { id: 18, nombre: "Tercero C", archivo: "tercero_c", color: "#e67e22" },
+    { id: 19, nombre: "Tercero D", archivo: "tercero_d", color: "#e67e22" },
+    { id: 20, nombre: "Tercero E", archivo: "tercero_e", color: "#e67e22" }
+];
 
-                <div class="admin-tab-panel" id="panel-grados-admin">
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Grado</th>
-                                <th>Semana 1 (Archivo / Estado)</th>
-                                <th>Semana 2 (Archivo / Estado)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-grados-admin"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+const EXTS = ['jpg','jpeg','png','webp'];
 
-    <script>
-        const ADMIN_PASS = 'ineb2026';
+function checkImgExists(src) {
+    return new Promise(resolve => {
+        const img = new Image();
+        img.onload  = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+    });
+}
 
-        const DOCENTES = [
-            { id: 1, nombre: "Docente Abel Choy", archivo: "abel_choy", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 2, nombre: "Docente Ana Chamalé", archivo: "ana_chamale", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 3, nombre: "Docente Angélica Ajvix", archivo: "angelica_ajvix", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 4, nombre: "Docente Angel Yoc", archivo: "angel_yoc", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 5, nombre: "Docente Carmen Vargas", archivo: "carmen_vargas", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 6, nombre: "Docente Casilda Morales", archivo: "casilda_morales", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 7, nombre: "Docente Celso Chavac", archivo: "celso_chavac", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 8, nombre: "Docente César Xiquitá", archivo: "cesar_xiquita", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 9, nombre: "Docente Yesenia Ruano", archivo: "yesenia_ruano", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 10, nombre: "Docente Elena Turuy", archivo: "elena_turuy", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 11, nombre: "Docente Eswin Coc", archivo: "eswin_coc", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 12, nombre: "Docente Geremías López", archivo: "geremias_lopez", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 13, nombre: "Docente Héctor Choy", archivo: "hector_choy", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 14, nombre: "Docente Hugo Palacios", archivo: "hugo_palacios", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 15, nombre: "Docente Ingrid Sián", archivo: "ingrid_sian", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 16, nombre: "Docente Jorge Ortiz", archivo: "jorge_ortiz", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 17, nombre: "Docente Marco Peinado", archivo: "marco_peinado", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 18, nombre: "Docente Nora Paxtor", archivo: "nora_paxtor", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 19, nombre: "Docente Oscar Chajón", archivo: "oscar_chajon", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 20, nombre: "Docente Sandra Ajvix", archivo: "sandra_ajvix", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 21, nombre: "Docente Silvia Sandoval", archivo: "silvia_sandoval", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 22, nombre: "Docente Yadira Solís", archivo: "yadira_solis", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 23, nombre: "Docente Dina Vallejo", archivo: "dina_vallejo", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 24, nombre: "Docente Valeria Pocón", archivo: "valeria_pocon", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 25, nombre: "Docente Gabriela Pelico", archivo: "gabriela_pelico", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 26, nombre: "Docente Luz Maria Chavac", archivo: "luz_maria_chavac", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 27, nombre: "Docente Angeles Montiel", archivo: "angeles_montiel", materias: ["Área asignada"], grados: ["Varios"] },
-            { id: 28, nombre: "Docente José Antonio Ortiz", archivo: "jose_antonio_ortiz", materias: ["Área asignada"], grados: ["Varios"] }
-        ];
+async function resolverHorario(tipo, nombre_base, semana) {
+    const base = `${tipo}/${nombre_base}_${semana}`;
+    for (const ext of EXTS) {
+        const url = `${base}.${ext}`;
+        if (await checkImgExists(url)) return url;
+    }
+    return null;
+}
 
-        const GRADOS = [
-            { id: 1, nombre: "Primero A", archivo: "primero_a", color: "#3b82f6" },
-            { id: 2, nombre: "Primero B", archivo: "primero_b", color: "#3b82f6" },
-            { id: 3, nombre: "Primero C", archivo: "primero_c", color: "#3b82f6" },
-            { id: 4, nombre: "Primero D", archivo: "primero_d", color: "#3b82f6" },
-            { id: 5, nombre: "Primero E", archivo: "primero_e", color: "#3b82f6" },
-            { id: 6, nombre: "Primero F", archivo: "primero_f", color: "#3b82f6" },
-            { id: 7, nombre: "Primero G", archivo: "primero_g", color: "#3b82f6" },
-            { id: 8, nombre: "Primero H", archivo: "primero_h", color: "#3b82f6" },
-            { id: 9, nombre: "Segundo A", archivo: "segundo_a", color: "#10b981" },
-            { id: 10, nombre: "Segundo B", archivo: "segundo_b", color: "#10b981" },
-            { id: 11, nombre: "Segundo C", archivo: "segundo_c", color: "#10b981" },
-            { id: 12, nombre: "Segundo D", archivo: "segundo_d", color: "#10b981" },
-            { id: 13, nombre: "Segundo E", archivo: "segundo_e", color: "#10b981" },
-            { id: 14, nombre: "Segundo F", archivo: "segundo_f", color: "#10b981" },
-            { id: 15, nombre: "Tercero A", archivo: "tercero_a", color: "#e67e22" },
-            { id: 16, nombre: "Tercero B", archivo: "tercero_b", color: "#e67e22" },
-            { id: 17, nombre: "Tercero C", archivo: "tercero_c", color: "#e67e22" },
-            { id: 18, nombre: "Tercero D", archivo: "tercero_d", color: "#e67e22" },
-            { id: 19, nombre: "Tercero E", archivo: "tercero_e", color: "#e67e22" }
-        ];
+const ICONOS_DOCENTE = ['👨‍🏫','👩‍🏫','🧑‍🏫'];
 
-        const EXTS = ['jpg', 'jpeg', 'png', 'webp'];
+async function renderDocentes() {
+    const grid = document.getElementById('grid-docentes');
+    grid.innerHTML = '';
+    for (const d of DOCENTES) {
+        const urlS1 = await resolverHorario('docentes', d.archivo, 's1');
+        const urlS2 = await resolverHorario('docentes', d.archivo, 's2');
+        const icono = ICONOS_DOCENTE[d.id % ICONOS_DOCENTE.length];
+        grid.appendChild(crearFicha(d.nombre, urlS1, urlS2, icono, null));
+    }
+}
 
-        function checkImgExists(src) {
-            return new Promise(resolve => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = src;
-            });
-        }
+async function renderGrados() {
+    const grid = document.getElementById('grid-grados-horarios');
+    grid.innerHTML = '';
+    for (const g of GRADOS) {
+        const urlS1 = await resolverHorario('grados', g.archivo, 's1');
+        const urlS2 = await resolverHorario('grados', g.archivo, 's2');
+        grid.appendChild(crearFicha(g.nombre, urlS1, urlS2, '🏫', g.color));
+    }
+}
 
-        // Ojo: como este archivo está en horarios/index.html, 
-        // la ruta relativa a las carpetas 'docentes' y 'grados' es directamente:
-        async function resolverHorario(tipo, nombre_base, semana) {
-            const base = `${tipo}/${nombre_base}_${semana}`;
-            for (const ext of EXTS) {
-                const url = `${base}.${ext}`;
-                if (await checkImgExists(url)) return url;
-            }
-            return null;
-        }
+function crearFicha(nombre, urlS1, urlS2, icono, color) {
+    const card = document.createElement('div');
+    card.className = 'ficha-card';
+    card.dataset.nombre = nombre.toLowerCase();
 
-        const ICONOS_DOCENTE = ['👨‍🏫', '👩‍🏫', '🧑‍🏫'];
+    let estadoTag = `<span class="tag tag-pendiente"><i class="fas fa-clock"></i> Pendiente</span>`;
+    if (urlS1 && urlS2) estadoTag = `<span class="tag tag-completo"><i class="fas fa-check-double"></i> Sem 1 y 2</span>`;
+    else if (urlS1 || urlS2) estadoTag = `<span class="tag tag-incompleto"><i class="fas fa-exclamation-circle"></i> Incompleto</span>`;
 
-        async function renderDocentes() {
-            const grid = document.getElementById('grid-docentes');
-            grid.innerHTML = '';
-            for (const d of DOCENTES) {
-                const urlS1 = await resolverHorario('docentes', d.archivo, 's1');
-                const urlS2 = await resolverHorario('docentes', d.archivo, 's2');
-                const icono = ICONOS_DOCENTE[d.id % ICONOS_DOCENTE.length];
-                grid.appendChild(crearFicha(d.nombre, d.materias, d.grados, urlS1, urlS2, icono, null));
-            }
-        }
+    const bgTop = color ? `background: linear-gradient(135deg, ${color}cc, ${color});` : '';
+    const avatarClass = color ? 'grado-avatar' : '';
 
-        async function renderGrados() {
-            const grid = document.getElementById('grid-grados-horarios');
-            grid.innerHTML = '';
-            for (const g of GRADOS) {
-                const urlS1 = await resolverHorario('grados', g.archivo, 's1');
-                const urlS2 = await resolverHorario('grados', g.archivo, 's2');
-                grid.appendChild(crearFicha(g.nombre, [g.nombre.split(' ')[0]], [`Sec. ${g.nombre.split(' ')[1]}`], urlS1, urlS2, '🏫', g.color));
-            }
-        }
-
-        function crearFicha(nombre, materias, grados, urlS1, urlS2, icono, color) {
-            const card = document.createElement('div');
-            card.className = 'ficha-card';
-            card.dataset.nombre = nombre.toLowerCase();
-            card.dataset.materias = materias.join(' ').toLowerCase();
-
-            let estadoTag = `<span class="tag tag-pendiente"><i class="fas fa-clock"></i> Pendiente</span>`;
-            if (urlS1 && urlS2) estadoTag = `<span class="tag tag-completo"><i class="fas fa-check-double"></i> Sem 1 y 2</span>`;
-            else if (urlS1 || urlS2) estadoTag = `<span class="tag tag-incompleto"><i class="fas fa-exclamation-circle"></i> Incompleto</span>`;
-
-            const bgTop = color ? `background: linear-gradient(135deg, ${color}cc, ${color});` : '';
-            const avatarClass = color ? 'grado-avatar' : '';
-
-            card.innerHTML = `
+    card.innerHTML = `
         <div class="ficha-top" style="${bgTop}">
             <div class="ficha-avatar ${avatarClass}">${icono}</div>
             <p class="ficha-nombre">${nombre}</p>
         </div>
         <div class="ficha-body">
-            <div class="ficha-tags">${materias.map(m => `<span class="tag tag-materia">${m}</span>`).join('')}</div>
             <div class="ficha-tags">${estadoTag}</div>
         </div>
         <div class="ficha-actions">
@@ -1150,95 +400,87 @@
             </button>
         </div>
     `;
-            return card;
-        }
+    return card;
+}
 
-        function abrirLightbox(titulo, url) {
-            if (!url) return;
-            document.getElementById('lb-nombre').textContent = titulo;
-            const img = document.getElementById('lb-img');
-            const dlLink = document.getElementById('lb-download-link');
+function abrirLightbox(titulo, url) {
+    if (!url) return;
+    document.getElementById('lb-nombre').textContent = titulo;
+    const img = document.getElementById('lb-img');
+    const dlLink = document.getElementById('lb-download-link');
+    img.src = url;
+    dlLink.href = url;
+    dlLink.download = titulo + '.' + url.split('.').pop();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
 
-            img.src = url;
-            dlLink.href = url;
-            dlLink.download = titulo + '.' + url.split('.').pop();
+function cerrarLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox')) {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
 
-            document.getElementById('lightbox').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
+function filtrarFichas(tipo) {
+    const q = document.getElementById(`buscador-${tipo}`).value.toLowerCase().trim();
+    const gridId = tipo === 'docentes' ? 'grid-docentes' : 'grid-grados-horarios';
+    const cards = document.querySelectorAll(`#${gridId} .ficha-card`);
+    let visible = 0;
+    cards.forEach(card => {
+        const match = card.dataset.nombre.includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+    });
+    document.getElementById(`no-resultados-${tipo}`).style.display = (visible === 0 && q !== '') ? 'block' : 'none';
+}
 
-        function cerrarLightbox(e) {
-            if (!e || e.target === document.getElementById('lightbox')) {
-                document.getElementById('lightbox').classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        }
+function cambiarTab(cual) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(`panel-${cual}`).classList.add('active');
+    document.getElementById(`tab-${cual}-btn`).classList.add('active');
+}
 
-        function filtrarFichas(tipo) {
-            const q = document.getElementById(`buscador-${tipo}`).value.toLowerCase().trim();
-            const gridId = tipo === 'docentes' ? 'grid-docentes' : 'grid-grados-horarios';
-            const cards = document.querySelectorAll(`#${gridId} .ficha-card`);
-            let visible = 0;
-            cards.forEach(card => {
-                const match = (card.dataset.nombre + ' ' + card.dataset.materias).includes(q);
-                card.style.display = match ? '' : 'none';
-                if (match) visible++;
-            });
-            document.getElementById(`no-resultados-${tipo}`).style.display = (visible === 0 && q !== '') ? 'block' : 'none';
-        }
+function mostrarLoginAdmin() { document.getElementById('modal-login').classList.add('open'); setTimeout(()=>document.getElementById('admin-pass-input').focus(), 100); }
+function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('open'); document.getElementById('admin-error').style.display='none'; }
+function verificarAdmin() {
+    if (document.getElementById('admin-pass-input').value === ADMIN_PASS) { cerrarModalLogin(); abrirAdminPanel(); }
+    else document.getElementById('admin-error').style.display='block';
+}
+function abrirAdminPanel() { renderTablaAdmin(); document.getElementById('admin-panel').classList.add('open'); document.body.style.overflow='hidden'; }
+function cerrarAdminPanel() { document.getElementById('admin-panel').classList.remove('open'); document.body.style.overflow=''; }
+function cambiarAdminTab(cual) {
+    document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(`panel-${cual}`).classList.add('active');
+    event.target.classList.add('active');
+}
 
-        function cambiarTab(cual) {
-            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`panel-${cual}`).classList.add('active');
-            document.getElementById(`tab-${cual}-btn`).classList.add('active');
-        }
-
-        /* ADMIN PANEL */
-        function mostrarLoginAdmin() { document.getElementById('modal-login').classList.add('open'); setTimeout(() => document.getElementById('admin-pass-input').focus(), 100); }
-        function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('open'); document.getElementById('admin-error').style.display = 'none'; }
-        function verificarAdmin() {
-            if (document.getElementById('admin-pass-input').value === ADMIN_PASS) { cerrarModalLogin(); abrirAdminPanel(); }
-            else document.getElementById('admin-error').style.display = 'block';
-        }
-        function abrirAdminPanel() { renderTablaAdmin(); document.getElementById('admin-panel').classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function cerrarAdminPanel() { document.getElementById('admin-panel').classList.remove('open'); document.body.style.overflow = ''; }
-        function cambiarAdminTab(cual) {
-            document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`panel-${cual}`).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        async function renderTablaAdmin() {
-            const renderRow = async (nombre, base, tipo) => {
-                const urlS1 = await resolverHorario(tipo, base, 's1');
-                const urlS2 = await resolverHorario(tipo, base, 's2');
-                const st1 = urlS1 ? '<span class="status-badge st-ok">✅ Subido</span>' : '<span class="status-badge st-pend">⏳ Falta</span>';
-                const st2 = urlS2 ? '<span class="status-badge st-ok">✅ Subido</span>' : '<span class="status-badge st-pend">⏳ Falta</span>';
-                return `<tr>
+async function renderTablaAdmin() {
+    const renderRow = async (nombre, base, tipo) => {
+        const urlS1 = await resolverHorario(tipo, base, 's1');
+        const urlS2 = await resolverHorario(tipo, base, 's2');
+        const st1 = urlS1 ? '<span class="status-badge st-ok">✅ Subido</span>' : '<span class="status-badge st-pend">⏳ Falta</span>';
+        const st2 = urlS2 ? '<span class="status-badge st-ok">✅ Subido</span>' : '<span class="status-badge st-pend">⏳ Falta</span>';
+        return `<tr>
             <td><strong>${nombre}</strong></td>
-            <td><div class="file-name-chip">${base}_s1.jpg</div> <br>${st1}</td>
-            <td><div class="file-name-chip">${base}_s2.jpg</div> <br>${st2}</td>
+            <td><div class="file-name-chip">${base}_s1.jpg</div><br>${st1}</td>
+            <td><div class="file-name-chip">${base}_s2.jpg</div><br>${st2}</td>
         </tr>`;
-            };
+    };
+    let htmlDoc = '';
+    for (const d of DOCENTES) htmlDoc += await renderRow(d.nombre, d.archivo, 'docentes');
+    document.getElementById('tabla-docentes-admin').innerHTML = htmlDoc;
+    let htmlGra = '';
+    for (const g of GRADOS) htmlGra += await renderRow(g.nombre, g.archivo, 'grados');
+    document.getElementById('tabla-grados-admin').innerHTML = htmlGra;
+}
 
-            let htmlDoc = '';
-            for (const d of DOCENTES) {
-                htmlDoc += await renderRow(d.nombre, d.archivo, 'docentes');
-            }
-            document.getElementById('tabla-docentes-admin').innerHTML = htmlDoc;
+function toggleModoLectura() { document.body.classList.toggle('modo-lectura'); }
 
-            let htmlGra = '';
-            for (const g of GRADOS) htmlGra += await renderRow(g.nombre, g.archivo, 'grados');
-            document.getElementById('tabla-grados-admin').innerHTML = htmlGra;
-        }
-
-        function toggleModoLectura() { document.body.classList.toggle('modo-lectura'); }
-
-        document.addEventListener('DOMContentLoaded', () => { renderDocentes(); renderGrados(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarLightbox(); cerrarAdminPanel(); cerrarModalLogin(); } });
-    </script>
+document.addEventListener('DOMContentLoaded', () => { renderDocentes(); renderGrados(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarLightbox(); cerrarAdminPanel(); cerrarModalLogin(); } });
+</script>
 </body>
-
 </html>
