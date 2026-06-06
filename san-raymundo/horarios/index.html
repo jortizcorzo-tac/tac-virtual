@@ -45,14 +45,17 @@
         .horarios-header-text p { margin: 4px 0 0; font-size: 0.88rem; color: #6b7280; }
         body.modo-lectura .horarios-header-text p { color: #9ca3af; }
 
-        .horarios-tabs { display: flex; gap: 8px; margin-bottom: 28px; background: var(--blanco); padding: 6px; border-radius: 16px; box-shadow: var(--card-shadow); }
-        .tab-btn { flex: 1; padding: 14px 20px; border: none; border-radius: 12px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); color: #6b7280; background: transparent; }
-        .tab-btn i { font-size: 1.1rem; }
-        .tab-btn.active { background: var(--gradiente-azul); color: white; box-shadow: 0 4px 16px rgba(30,58,138,0.35); transform: translateY(-1px); }
-        .tab-btn:not(.active):hover { background: #f0f4ff; color: var(--azul-principal); }
-        body.modo-lectura .tab-btn:not(.active):hover { background: #2a3447; }
-        .tab-counter { background: rgba(255,255,255,0.25); padding: 2px 9px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
-        .tab-btn:not(.active) .tab-counter { background: #e5e7eb; color: #374151; }
+        .horarios-tabs { display: flex; gap: 10px; margin-bottom: 28px; background: var(--blanco); padding: 8px; border-radius: 20px; box-shadow: 0 4px 20px rgba(30,58,138,0.15); border: 2px solid #e0e8ff; }
+        .tab-btn { flex: 1; padding: 18px 20px; border: none; border-radius: 14px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); color: var(--azul-principal); background: #eef2ff; border: 2px solid #c7d7f8; }
+        .tab-btn i { font-size: 1.3rem; }
+        .tab-btn.active { background: var(--gradiente-azul); color: white; box-shadow: 0 6px 20px rgba(30,58,138,0.4); transform: translateY(-2px); border-color: transparent; }
+        .tab-btn:not(.active) { animation: pulseTabHint 2.5s ease-in-out infinite; }
+        .tab-btn:not(.active):hover { background: #d1e0ff; color: var(--azul-principal); transform: translateY(-2px); border-color: var(--azul-claro); animation: none; }
+        body.modo-lectura .tab-btn:not(.active) { background: #2a3447; border-color: #3b4a6b; color: #9ca3af; }
+        body.modo-lectura .tab-btn:not(.active):hover { background: #3b4a6b; }
+        @keyframes pulseTabHint { 0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); } 50% { box-shadow: 0 0 0 6px rgba(59,130,246,0.18); } }
+        .tab-counter { background: rgba(255,255,255,0.25); padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; }
+        .tab-btn:not(.active) .tab-counter { background: #1e3a8a; color: white; }
 
         .tab-panel { display: none; animation: fadeSlide 0.35s ease; }
         .tab-panel.active { display: block; }
