@@ -343,6 +343,8 @@ function checkImgExists(src) {
     });
 }
 
+const CACHE_VERSION = Math.floor(Date.now() / 3600000); // Cambia automáticamente cada hora
+
 // Busca primero con _s1 (compatible con archivos ya subidos), luego sin sufijo
 async function resolverHorario(tipo, nombre_base) {
     const intentos = [
@@ -351,7 +353,7 @@ async function resolverHorario(tipo, nombre_base) {
     ];
     for (const base of intentos) {
         for (const ext of EXTS) {
-            const url = `${base}.${ext}`;
+            const url = `${base}.${ext}?v=${CACHE_VERSION}`;
             if (await checkImgExists(url)) return url;
         }
     }
@@ -415,7 +417,8 @@ function abrirLightbox(titulo, url) {
     const dlLink = document.getElementById('lb-download-link');
     img.src = url;
     dlLink.href = url;
-    dlLink.download = titulo + '.' + url.split('.').pop();
+    const ext = url.split('?')[0].split('.').pop();
+    dlLink.download = titulo + '.' + ext;
     document.getElementById('lightbox').classList.add('open');
     document.body.style.overflow = 'hidden';
 }
@@ -487,7 +490,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarLigh
 </script>
 
 <div style="text-align: center; padding: 15px; font-size: 0.85rem; color: rgba(107, 114, 128, 0.7); font-weight: 500; font-family: 'Inter', sans-serif; letter-spacing: 0.02em;">
-    &copy; 2021-2027 Desarrollado por Lic. Jos&eacute; Antonio Ortiz Corzo / ProfeTools GT
+    &copy; 2021-2027 Desarrollado por Lic. Jos&eacute; Antonio Ortiz Corzo / ProfeTools GT<br><br>
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjortizcorzo-tac.github.io%2Ftac-virtual%2Fsan-raymundo%2Fhorarios&count_bg=%233b82f6&title_bg=%231e3a8a&icon=&icon_color=%23E7E7E7&title=Visitas&edge_flat=true" alt="Contador de visitas" style="border-radius: 5px;">
 </div>
 </body>
 </html>

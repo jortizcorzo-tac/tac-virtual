@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAC Virtual - Portal Educativo</title>
-    
+
     <link rel="icon" type="image/png" href="img/favicon.png">
 
     <style>
@@ -49,13 +50,13 @@
             font-size: 0.8rem;
             font-weight: bold;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* --- ENCABEZADO --- */
         .header-banner {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200');
             background-size: cover;
             background-position: center;
             color: white;
@@ -69,7 +70,7 @@
             font-size: 2.2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
         }
 
         .container {
@@ -99,7 +100,7 @@
             background: var(--blanco);
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
         .btn-gemini {
@@ -114,7 +115,10 @@
             transition: 0.3s;
         }
 
-        .btn-gemini:hover { background: #000000; transform: scale(1.03); }
+        .btn-gemini:hover {
+            background: #000000;
+            transform: scale(1.03);
+        }
 
         /* --- INSTRUCCIONES --- */
         .instrucciones {
@@ -147,10 +151,13 @@
             font-size: 1.2rem;
             font-weight: bold;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        .btn-escuela:hover { background: #4b5563; transform: translateY(-3px); }
+        .btn-escuela:hover {
+            background: #4b5563;
+            transform: translateY(-3px);
+        }
 
         /* --- INFO BOXES --- */
         .grid-info {
@@ -209,150 +216,167 @@
         }
 
         @media (max-width: 600px) {
-            .header-banner h1 { font-size: 1.3rem; }
-            #saludo { font-size: 1.5rem; }
-            .btn-escuela { font-size: 1rem; padding: 20px; }
+            .header-banner h1 {
+                font-size: 1.3rem;
+            }
+
+            #saludo {
+                font-size: 1.5rem;
+            }
+
+            .btn-escuela {
+                font-size: 1rem;
+                padding: 20px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<button class="btn-modo-lectura" onclick="toggleModoLectura()">🌓 Modo Lectura</button>
+    <button class="btn-modo-lectura" onclick="toggleModoLectura()">🌓 Modo Lectura</button>
 
-<div class="header-banner">
-    <h1>Tecnologías del Aprendizaje y la Comunicación</h1>
-</div>
+    <div class="header-banner">
+        <h1>Tecnologías del Aprendizaje y la Comunicación</h1>
+    </div>
 
-<div class="container">
-    <div id="saludo">Cargando saludo...</div>
+    <div class="container">
+        <div id="saludo">Cargando saludo...</div>
 
-    <div class="grid-superior">
-        <div class="tarjeta">
-            <h3>💡 Cápsula TAC del día</h3>
-            <p id="texto-capsula" style="font-size: 1.1rem;"></p>
+        <div class="grid-superior">
+            <div class="tarjeta">
+                <h3>💡 Cápsula TAC del día</h3>
+                <p id="texto-capsula" style="font-size: 1.1rem;"></p>
+            </div>
+
+            <div class="tarjeta" style="text-align: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini"
+                    style="width: 110px; margin-bottom: 10px;">
+                <p><b>Asistente de IA Educativo</b></p>
+                <p style="font-size: 0.9rem; color: #4b5563;">Consulta tus dudas de clase de forma segura.</p>
+                <a href="https://gemini.google.com/" target="_blank" class="btn-gemini">Abrir Gemini</a>
+            </div>
         </div>
 
-        <div class="tarjeta" style="text-align: center;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini" style="width: 110px; margin-bottom: 10px;">
-            <p><b>Asistente de IA Educativo</b></p>
-            <p style="font-size: 0.9rem; color: #4b5563;">Consulta tus dudas de clase de forma segura.</p>
-            <a href="https://gemini.google.com/" target="_blank" class="btn-gemini">Abrir Gemini</a>
+        <div class="instrucciones">
+            <h3 style="margin-top: 0;">¡Bienvenido! Sigue estos 3 pasos:</h3>
+            <ol style="font-size: 1.1rem;">
+                <li><b>Identifica</b> tu establecimiento en los botones de abajo.</li>
+                <li><b>Descarga</b> el archivo (PDF/JPG/Word) según tu grado y bimestre.</li>
+                <li><b>Continúa</b> tu aprendizaje y entrega tus tareas a tiempo.</li>
+            </ol>
+        </div>
+
+        <div class="grid-establecimientos">
+            <a href="https://jortizcorzo-tac.github.io/tac-virtual/san-raymundo/index.html" class="btn-escuela">
+                <img src="img/logo-ineb.png" style="width: 70px;" alt="Logo INEB">
+                INEB SAN RAYMUNDO
+            </a>
+            <a href="https://jortizcorzo-tac.github.io/tac-virtual/inbacoo/index.html" class="btn-escuela">
+                <img src="img/logo-inbacoo.png" style="width: 70px;" alt="Logo INBACOO">
+                INBACOO CD. QUETZAL
+            </a>
+        </div>
+
+        <div class="grid-info">
+            <div class="info-box">
+                <h3>📥 Acceso Total</h3>
+                <p>Tus guías y recursos disponibles para descarga inmediata.</p>
+            </div>
+            <div class="info-box" style="border-top-color: var(--gris-oscuro);">
+                <h3>⏱️ Tu Ritmo</h3>
+                <p>Avanza en tus contenidos de forma organizada y constante.</p>
+            </div>
+            <div class="info-box">
+                <h3>📱 24/7</h3>
+                <p>Accede desde tu celular o computadora en cualquier horario.</p>
+            </div>
+        </div>
+
+        <div class="manifiesto-etico">
+            <strong>Compromiso de Ética Digital:</strong> Este portal educativo no recolecta datos personales de los
+            estudiantes para resguardo de la privacidad. El uso de Inteligencia Artificial se promueve exclusivamente
+            como herramienta de apoyo; la entrega de trabajos generados íntegramente por IA sin análisis propio
+            invalidará la tarea.
+        </div>
+
+        <div class="aviso-institucional">
+            <strong>⚠️ AVISO OFICIAL IMPORTANTE</strong><br>
+            Este es el único canal digital oficial de la cátedra TAC. No se utiliza WhatsApp ni otras redes sociales
+            para fines académicos obligatorios. <br><br>
+            <b>Horarios de atención presencial:</b><br>
+            INEB San Raymundo: 7:30 a 12:30 | INBACOO: 13:30 a 17:30.
         </div>
     </div>
 
-    <div class="instrucciones">
-        <h3 style="margin-top: 0;">¡Bienvenido! Sigue estos 3 pasos:</h3>
-        <ol style="font-size: 1.1rem;">
-            <li><b>Identifica</b> tu establecimiento en los botones de abajo.</li>
-            <li><b>Descarga</b> el archivo (PDF/JPG/Word) según tu grado y bimestre.</li>
-            <li><b>Continúa</b> tu aprendizaje y entrega tus tareas a tiempo.</li>
-        </ol>
-    </div>
-
-    <div class="grid-establecimientos">
-        <a href="https://jortizcorzo-tac.github.io/tac-virtual/san-raymundo/index.html" class="btn-escuela">
-            <img src="img/logo-ineb.png" style="width: 70px;" alt="Logo INEB">
-            INEB SAN RAYMUNDO
-        </a>
-        <a href="https://jortizcorzo-tac.github.io/tac-virtual/inbacoo/index.html" class="btn-escuela">
-            <img src="img/logo-inbacoo.png" style="width: 70px;" alt="Logo INBACOO">
-            INBACOO CD. QUETZAL
-        </a>
-    </div>
-
-    <div class="grid-info">
-        <div class="info-box">
-            <h3>📥 Acceso Total</h3>
-            <p>Tus guías y recursos disponibles para descarga inmediata.</p>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/inebsanrayoficial/" target="_blank">Facebook INEB San Raymundo</a> |
+            <a href="https://www.youtube.com/" target="_blank">YouTube Oficial</a> |
+            <a href="https://www.facebook.com/inbacoocq/" target="_blank">Facebook INBACOO CD. Quetzal</a>
         </div>
-        <div class="info-box" style="border-top-color: var(--gris-oscuro);">
-            <h3>⏱️ Tu Ritmo</h3>
-            <p>Avanza en tus contenidos de forma organizada y constante.</p>
-        </div>
-        <div class="info-box">
-            <h3>📱 24/7</h3>
-            <p>Accede desde tu celular o computadora en cualquier horario.</p>
-        </div>
+        <p><b>Contacto y Aviso Legal</b><br>
+            Administrador: Lic. José Antonio Ortiz Corzo | compuinebsanray@gmail.com</p>
+        <p>Copyright © 2025. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Función para alternar Modo Lectura
+        function toggleModoLectura() {
+            document.body.classList.toggle('modo-lectura');
+        }
+
+        function actualizarContenido() {
+            const hora = new Date().getHours();
+            let mensaje = (hora >= 6 && hora < 12) ? "¡Buenos días, estudiante! ☀️" :
+                (hora >= 12 && hora < 18) ? "¡Buenas tardes! ¿Listo para aprender? 💻" :
+                    "¡Buenas noches! No olvides descansar. 🌙";
+            document.getElementById('saludo').innerText = mensaje;
+
+            const capsulas = [
+                "</b> Protege tus cuentas usando contraseñas largas con números y símbolos.",
+                "</b> 'Ctrl + C' copia y 'Ctrl + V' pega. Son comandos básicos para ahorrar tiempo.",
+                "</b> Respeta la privacidad de otros: no compartas fotos sin su consentimiento.",
+                "</b> Verifica siempre las fuentes de información antes de compartir una noticia.",
+                "</b> 'Alt + Tab' te permite saltar entre ventanas abiertas rápidamente.",
+                "</b> Usa la IA para entender conceptos difíciles, no para que haga todo por ti.",
+                "</b> Mantén tu área de trabajo limpia para cuidar la vida útil de tus dispositivos.",
+                "</b> Nombra tus archivos claramente (ej: Tarea_B1_Nombre) para encontrarlos siempre.",
+                "</b> Nunca abras enlaces de correos desconocidos; podrían ser intentos de estafa.",
+                "</b> El modo incógnito no oculta tu actividad a tu proveedor, solo no guarda historial local.",
+                "</b> Google Drive te permite editar documentos desde cualquier lugar sin memorias USB.",
+                "</b> Cuida tu postura: espalda recta y pantalla a la altura de tus ojos.",
+                "</b> Usa comillas en Google para buscar frases exactas y obtener mejores resultados.",
+                "</b> Cierra tus sesiones si usas computadoras en laboratorios públicos o colegios.",
+                "</b> La ciudadanía digital consiste en comportarse con respeto y ética en internet.",
+                "</b> Piensa dos veces antes de imprimir un documento; cuidemos el medio ambiente.",
+                "</b> El ciberacoso es un delito. Si ves algo incorrecto, repórtalo con tus maestros.",
+                "</b> 'Ctrl + Z' deshace tu último error en casi cualquier programa. ¡Es muy útil!",
+                "</b> Mantener actualizado tu sistema operativo protege tu equipo de virus.",
+                "</b> No publiques datos sensibles como tu dirección o teléfono en redes sociales.",
+                "</b> Si una página web te pide instalar algo raro para ver un video, ¡sal de ahí!",
+                "</b> Aprender TAC te abre puertas laborales en cualquier profesión del futuro.",
+                "</b> Desconéctate un momento: el descanso visual es vital después de horas de pantalla.",
+                "</b> Canva es excelente para hacer infografías creativas para tus exposiciones.",
+                "</b> Revisa los términos y condiciones antes de instalar aplicaciones nuevas.",
+                "</b> Crea carpetas en tu computadora para cada materia y mantén el orden.",
+                "</b> El plagio académico invalida tus tareas. Siempre cita tus fuentes.",
+                "</b> La verificación en dos pasos en tu correo es la mejor barrera contra hackers.",
+                "</b> Desconfía de los anuncios que dicen que ganaste un premio por ser el visitante 1,000.",
+                "</b> Explora Gemini y pídele ejemplos prácticos sobre el tema que estés estudiando."
+            ];
+
+            const hoy = new Date();
+            const indice = (hoy.getDate() - 1) % capsulas.length;
+            document.getElementById('texto-capsula').innerHTML = capsulas[indice];
+        }
+        actualizarContenido();
+    </script>
+
+    <div
+        style="text-align: center; padding: 15px; font-size: 0.85rem; color: rgba(107, 114, 128, 0.7); font-weight: 500; font-family: 'Inter', sans-serif; letter-spacing: 0.02em;">
+        &copy; 2021-2027 Desarrollado por Lic. Jos&eacute; Antonio Ortiz Corzo / ProfeTools GT
     </div>
-
-    <div class="manifiesto-etico">
-        <strong>Compromiso de Ética Digital:</strong> Este portal educativo no recolecta datos personales de los estudiantes para resguardo de la privacidad. El uso de Inteligencia Artificial se promueve exclusivamente como herramienta de apoyo; la entrega de trabajos generados íntegramente por IA sin análisis propio invalidará la tarea.
-    </div>
-
-    <div class="aviso-institucional">
-        <strong>⚠️ AVISO OFICIAL IMPORTANTE</strong><br>
-        Este es el único canal digital oficial de la cátedra TAC. No se utiliza WhatsApp ni otras redes sociales para fines académicos obligatorios. <br><br>
-        <b>Horarios de atención presencial:</b><br>
-        INEB San Raymundo: 7:30 a 12:30 | INBACOO: 13:30 a 17:30.
-    </div>
-</div>
-
-<footer>
-    <div class="social-links">
-        <a href="https://www.facebook.com/inebsanrayoficial/" target="_blank">Facebook INEB San Raymundo</a> | 
-        <a href="https://www.youtube.com/" target="_blank">YouTube Oficial</a> | 
-        <a href="https://www.facebook.com/inbacoocq/" target="_blank">Facebook INBACOO CD. Quetzal</a>
-    </div>
-    <p><b>Contacto y Aviso Legal</b><br>
-    Administrador: Lic. José Antonio Ortiz Corzo | compuinebsanray@gmail.com</p>
-    <p>Copyright © 2025. Todos los derechos reservados.</p>
-</footer>
-
-<script>
-    // Función para alternar Modo Lectura
-    function toggleModoLectura() {
-        document.body.classList.toggle('modo-lectura');
-    }
-
-    function actualizarContenido() {
-        const hora = new Date().getHours();
-        let mensaje = (hora >= 6 && hora < 12) ? "¡Buenos días, estudiante! ☀️" : 
-                      (hora >= 12 && hora < 18) ? "¡Buenas tardes! ¿Listo para aprender? 💻" : 
-                      "¡Buenas noches! No olvides descansar. 🌙";
-        document.getElementById('saludo').innerText = mensaje;
-
-        const capsulas = [
-            "</b> Protege tus cuentas usando contraseñas largas con números y símbolos.",
-            "</b> 'Ctrl + C' copia y 'Ctrl + V' pega. Son comandos básicos para ahorrar tiempo.",
-            "</b> Respeta la privacidad de otros: no compartas fotos sin su consentimiento.",
-            "</b> Verifica siempre las fuentes de información antes de compartir una noticia.",
-            "</b> 'Alt + Tab' te permite saltar entre ventanas abiertas rápidamente.",
-            "</b> Usa la IA para entender conceptos difíciles, no para que haga todo por ti.",
-            "</b> Mantén tu área de trabajo limpia para cuidar la vida útil de tus dispositivos.",
-            "</b> Nombra tus archivos claramente (ej: Tarea_B1_Nombre) para encontrarlos siempre.",
-            "</b> Nunca abras enlaces de correos desconocidos; podrían ser intentos de estafa.",
-            "</b> El modo incógnito no oculta tu actividad a tu proveedor, solo no guarda historial local.",
-            "</b> Google Drive te permite editar documentos desde cualquier lugar sin memorias USB.",
-            "</b> Cuida tu postura: espalda recta y pantalla a la altura de tus ojos.",
-            "</b> Usa comillas en Google para buscar frases exactas y obtener mejores resultados.",
-            "</b> Cierra tus sesiones si usas computadoras en laboratorios públicos o colegios.",
-            "</b> La ciudadanía digital consiste en comportarse con respeto y ética en internet.",
-            "</b> Piensa dos veces antes de imprimir un documento; cuidemos el medio ambiente.",
-            "</b> El ciberacoso es un delito. Si ves algo incorrecto, repórtalo con tus maestros.",
-            "</b> 'Ctrl + Z' deshace tu último error en casi cualquier programa. ¡Es muy útil!",
-            "</b> Mantener actualizado tu sistema operativo protege tu equipo de virus.",
-            "</b> No publiques datos sensibles como tu dirección o teléfono en redes sociales.",
-            "</b> Si una página web te pide instalar algo raro para ver un video, ¡sal de ahí!",
-            "</b> Aprender TAC te abre puertas laborales en cualquier profesión del futuro.",
-            "</b> Desconéctate un momento: el descanso visual es vital después de horas de pantalla.",
-            "</b> Canva es excelente para hacer infografías creativas para tus exposiciones.",
-            "</b> Revisa los términos y condiciones antes de instalar aplicaciones nuevas.",
-            "</b> Crea carpetas en tu computadora para cada materia y mantén el orden.",
-            "</b> El plagio académico invalida tus tareas. Siempre cita tus fuentes.",
-            "</b> La verificación en dos pasos en tu correo es la mejor barrera contra hackers.",
-            "</b> Desconfía de los anuncios que dicen que ganaste un premio por ser el visitante 1,000.",
-            "</b> Explora Gemini y pídele ejemplos prácticos sobre el tema que estés estudiando."
-        ];
-        
-        const hoy = new Date();
-        const indice = (hoy.getDate() - 1) % capsulas.length;
-        document.getElementById('texto-capsula').innerHTML = capsulas[indice];
-    }
-    actualizarContenido();
-</script>
-
-<div style="text-align: center; padding: 15px; font-size: 0.85rem; color: rgba(107, 114, 128, 0.7); font-weight: 500; font-family: 'Inter', sans-serif; letter-spacing: 0.02em;">
-    &copy; 2021-2027 Desarrollado por Lic. Jos&eacute; Antonio Ortiz Corzo / ProfeTools GT
-</div>
 </body>
+
 </html>
