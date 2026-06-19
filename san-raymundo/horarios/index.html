@@ -185,7 +185,7 @@
                 <i class="fas fa-graduation-cap"></i> Horarios por Grado <span class="tab-counter">20</span>
             </button>
             <button class="tab-btn" id="tab-generales-btn" onclick="cambiarTab('generales')">
-                <i class="fas fa-list-alt"></i> Horarios Generales <span class="tab-counter">2</span>
+                <i class="fas fa-list-alt"></i> Horarios Generales <span class="tab-counter">3</span>
             </button>
         </div>
 
@@ -280,11 +280,8 @@
                 </table>
             </div>
             <div class="admin-tab-panel" id="panel-generales-admin">
-                <a href="https://github.com/jortizcorzo-tac/tac-virtual/upload/main/san-raymundo/horarios/docentes" target="_blank" class="btn-github-upload">
-                    <i class="fab fa-github"></i> Subir (Docentes)
-                </a>
-                <a href="https://github.com/jortizcorzo-tac/tac-virtual/upload/main/san-raymundo/horarios/grados" target="_blank" class="btn-github-upload">
-                    <i class="fab fa-github"></i> Subir (Grados)
+                <a href="https://github.com/jortizcorzo-tac/tac-virtual/upload/main/san-raymundo/horarios/generales" target="_blank" class="btn-github-upload">
+                    <i class="fab fa-github"></i> Subir Imágenes Generales
                 </a>
                 <table class="admin-table">
                     <thead><tr><th>Horario General</th><th>Nombre de archivo esperado</th><th>Estado</th></tr></thead>
@@ -353,8 +350,9 @@ const GRADOS = [
 ];
 
 const GENERALES = [
-    { id: 1, nombre: "Horario General Docentes", archivo: "general_docentes", tipo: "docentes", icono: "👨‍🏫", color: "#1e3a8a" },
-    { id: 2, nombre: "Horario General Grados", archivo: "general_grados", tipo: "grados", icono: "🏫", color: "#10b981" }
+    { id: 1, nombre: "Horario General Docentes", archivo: "general_docentes", tipo: "generales", icono: "👨‍🏫", color: "#1e3a8a" },
+    { id: 2, nombre: "Horario General Grados (Parte 1)", archivo: "general_grados_1", tipo: "generales", icono: "🏫", color: "#10b981" },
+    { id: 3, nombre: "Horario General Grados (Parte 2)", archivo: "general_grados_2", tipo: "generales", icono: "🏫", color: "#10b981" }
 ];
 
 const EXTS = ['jpg','jpeg','png','webp'];
