@@ -184,6 +184,9 @@
             <button class="tab-btn" id="tab-grados-btn" onclick="cambiarTab('grados')">
                 <i class="fas fa-graduation-cap"></i> Horarios por Grado <span class="tab-counter">20</span>
             </button>
+            <button class="tab-btn" id="tab-generales-btn" onclick="cambiarTab('generales')">
+                <i class="fas fa-list-alt"></i> Horarios Generales <span class="tab-counter">2</span>
+            </button>
         </div>
 
         <div class="tab-panel active" id="panel-docentes">
@@ -202,6 +205,10 @@
             </div>
             <div class="fichas-grid" id="grid-grados-horarios"></div>
             <div class="no-resultados" id="no-resultados-grados" style="display:none;"><i class="fas fa-search"></i> No se encontraron resultados.</div>
+        </div>
+
+        <div class="tab-panel" id="panel-generales">
+            <div class="fichas-grid" id="grid-generales"></div>
         </div>
     </div>
 
@@ -252,6 +259,7 @@
             <div class="admin-tabs-mini">
                 <button class="admin-tab-btn active" onclick="cambiarAdminTab('docentes-admin', this)"><i class="fas fa-chalkboard-teacher"></i> Docentes</button>
                 <button class="admin-tab-btn" onclick="cambiarAdminTab('grados-admin', this)"><i class="fas fa-graduation-cap"></i> Grados</button>
+                <button class="admin-tab-btn" onclick="cambiarAdminTab('generales-admin', this)"><i class="fas fa-list-alt"></i> Generales</button>
             </div>
             <div class="admin-tab-panel active" id="panel-docentes-admin">
                 <a href="https://github.com/jortizcorzo-tac/tac-virtual/upload/main/san-raymundo/horarios/docentes" target="_blank" class="btn-github-upload">
@@ -269,6 +277,18 @@
                 <table class="admin-table">
                     <thead><tr><th>Grado</th><th>Nombre de archivo esperado</th><th>Estado</th></tr></thead>
                     <tbody id="tabla-grados-admin"></tbody>
+                </table>
+            </div>
+            <div class="admin-tab-panel" id="panel-generales-admin">
+                <a href="https://github.com/jortizcorzo-tac/tac-virtual/upload/main/san-raymundo/horarios/docentes" target="_blank" class="btn-github-upload">
+                    <i class="fab fa-github"></i> Subir (Docentes)
+                </a>
+                <a href="https://github.com/jortizcorzo-tac/tac-virtual/upload/main/san-raymundo/horarios/grados" target="_blank" class="btn-github-upload">
+                    <i class="fab fa-github"></i> Subir (Grados)
+                </a>
+                <table class="admin-table">
+                    <thead><tr><th>Horario General</th><th>Nombre de archivo esperado</th><th>Estado</th></tr></thead>
+                    <tbody id="tabla-generales-admin"></tbody>
                 </table>
             </div>
         </div>
@@ -332,6 +352,11 @@ const GRADOS = [
     { id: 20, nombre: "Tercero E", archivo: "tercero_e", color: "#e67e22" }
 ];
 
+const GENERALES = [
+    { id: 1, nombre: "Horario General Docentes", archivo: "general_docentes", tipo: "docentes", icono: "👨‍🏫", color: "#1e3a8a" },
+    { id: 2, nombre: "Horario General Grados", archivo: "general_grados", tipo: "grados", icono: "🏫", color: "#10b981" }
+];
+
 const EXTS = ['jpg','jpeg','png','webp'];
 
 function checkImgExists(src) {
@@ -378,6 +403,15 @@ async function renderGrados() {
     for (const g of GRADOS) {
         const url = await resolverHorario('grados', g.archivo);
         grid.appendChild(crearFicha(g.nombre, url, '🏫', g.color));
+    }
+}
+
+async function renderGenerales() {
+    const grid = document.getElementById('grid-generales');
+    grid.innerHTML = '';
+    for (const g of GENERALES) {
+        const url = await resolverHorario(g.tipo, g.archivo);
+        grid.appendChild(crearFicha(g.nombre, url, g.icono, g.color));
     }
 }
 
@@ -481,11 +515,14 @@ async function renderTablaAdmin() {
     let htmlGra = '';
     for (const g of GRADOS) htmlGra += await renderRow(g.nombre, g.archivo, 'grados');
     document.getElementById('tabla-grados-admin').innerHTML = htmlGra;
+    let htmlGen = '';
+    for (const g of GENERALES) htmlGen += await renderRow(g.nombre, g.archivo, g.tipo);
+    document.getElementById('tabla-generales-admin').innerHTML = htmlGen;
 }
 
 function toggleModoLectura() { document.body.classList.toggle('modo-lectura'); }
 
-document.addEventListener('DOMContentLoaded', () => { renderDocentes(); renderGrados(); });
+document.addEventListener('DOMContentLoaded', () => { renderDocentes(); renderGrados(); renderGenerales(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarLightbox(); cerrarAdminPanel(); cerrarModalLogin(); } });
 </script>
 
